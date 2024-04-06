@@ -3,7 +3,7 @@ import tkinter as tk
 
 class CircleButton(tk.Canvas):
     def __init__(self, master=None, state=None, width=0, height=0, **kwargs):
-        super().__init__(master, **kwargs)
+        super().__init__(master, width=width, height=height, **kwargs)
         self.state = state
         self.width = width
         self.height = height
