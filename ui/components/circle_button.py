@@ -2,21 +2,29 @@ import tkinter as tk
 
 
 class CircleButton(tk.Canvas):
-    def __init__(self, master=None, state=None, width=0, height=0, **kwargs):
+    def __init__(self, master=None, status=None, width=0, height=0, screen_to_change=None, on_click=None, **kwargs):
         super().__init__(master, width=width, height=height, **kwargs)
-        self.state = state
+        self.status = status
         self.width = width
         self.height = height
+        self.on_click = on_click
+        self.screen_to_change = screen_to_change
         self.draw_circle()
+        if status == "IN_PROGRESS":
+            self.bind("<Button-1>", self.button_click)
 
+    def button_click(self, event):
+        self.on_click(self.screen_to_change)
     def draw_circle(self):
         self.delete("all")
         cell_width = self.winfo_reqwidth()
         cell_height = self.winfo_reqheight()
 
-        if self.state == "IN_PROGRESS":
+        if self.status == "IN_PROGRESS":
+            color = "blue"
+        elif self.status == "LOCKED":
             color = "grey"
-        elif self.state == "COMPLETED":
+        elif self.status == "COMPLETED":
             color = "green"
         else:
             raise ValueError("Invalid state")
