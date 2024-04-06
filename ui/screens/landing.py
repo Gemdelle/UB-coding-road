@@ -15,6 +15,14 @@ def draw(frame):
     resized_image = image.resize((20, 20))
     tk_image = ImageTk.PhotoImage(resized_image)
 
+    # Crear un marco para el título y la cuadrícula
+    title_frame = tk.Frame(frame)
+    title_frame.grid(row=0, column=0, columnspan=8)  # Establecer el marco encima de la cuadrícula
+
+    # Colocar el título en el marco del título y centrarlo vertical y horizontalmente
+    title_label = WhiteStormLabel(title_frame, text=f"CODING ROAD MAP", font_size=10, bg="#3d6466")
+    title_label.pack(side='right',padx=(500, 0),pady=(10,10))  # Ajustar el relleno vertical y extender horizontalmente
+
     row_index = 0
     for key, value in user_progress.items():
         label = WhiteStormLabel(frame, text=f"{row_index}. {key}", font_size=10)
@@ -36,12 +44,13 @@ def draw(frame):
 
         row_index += 1
 
-        # Place title_label in column 6
-    title_label = WhiteStormLabel(frame, text=f"CODING ROAD MAP", font_size=10)
-    title_label.grid(row=0, column=6, padx=10, pady=10, sticky=tk.W)
-
-    # Configure column widths before and after title_label
-    for i in range(6):  # Columns before title_label
+    # Configure column widths
+    for i in range(8):  # Todas las columnas
         frame.columnconfigure(i, weight=1)
 
-    frame.columnconfigure(7, weight=1)  # Column after title_label
+if __name__ == "__main__":
+    app = tk.Tk()
+    frame = tk.Frame(app)
+    frame.pack(fill=tk.BOTH, expand=True)
+    draw(frame)
+    app.mainloop()
