@@ -17,32 +17,33 @@ def draw(frame, change_screen):
     resized_image = image.resize((20, 20))
     tk_image = ImageTk.PhotoImage(resized_image)
 
-    # Crear un marco para el título y la cuadrícula
-    title_frame = tk.Frame(frame, bg="#3d6466")
-    title_frame.grid(row=0, column=0, columnspan=8)  # Establecer el marco encima de la cuadrícula
+    title_frame = tk.Frame(frame, bg=frame.cget('bg'))
+    title_frame.grid(row=0, column=0, columnspan=8)
 
-    # Colocar el título en el marco del título y centrarlo vertical y horizontalmente
     title_label = WhiteStormLabel(title_frame, text=f"CODING ROAD MAP", font_size=10, bg="#3d6466")
     title_label.pack(side='right',padx=(500, 0),pady=(10,10))
 
+    body_frame = tk.Frame(frame, bg=frame.cget('bg'))
+    body_frame.grid(row=1, column=0, columnspan=8)
+
     row_index = 0
     for key, value in user_progress.items():
-        label = WhiteStormLabel(frame, text=f"{row_index}. {key}", font_size=10, bg=frame.cget('bg'))
-        label.grid(row=row_index+1, column=0, padx=10, pady=10, sticky=tk.W)
+        label = WhiteStormLabel(body_frame, text=f"{row_index}. {key}", font_size=10, bg=frame.cget('bg'))
+        label.grid(row=row_index, column=0, padx=10, pady=10, sticky=tk.W)
 
         if value["status"] != "LOCKED":
-            book_image = tk.Label(frame, image=tk_image)
+            book_image = tk.Label(body_frame, image=tk_image)
             book_image.image = tk_image
-            book_image.grid(row=row_index+1, column=1, padx=10, pady=10, sticky=tk.W)
+            book_image.grid(row=row_index, column=1, padx=10, pady=10, sticky=tk.W)
 
         for i in range(value["total"]):
             state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
             screen_to_change = Screens[f'{key}_{i}'.upper()]
-            button = CircleButton(frame, status=state, width=20, height=20, screen_to_change=screen_to_change,bg=frame.cget('bg'), on_click=change_screen, highlightthickness=0)
-            button.grid(row=row_index+1, column=2 + i, padx=10, pady=10, sticky=tk.W)
+            button = CircleButton(body_frame, status=state, width=20, height=20, screen_to_change=screen_to_change,bg=frame.cget('bg'), on_click=change_screen, highlightthickness=0)
+            button.grid(row=row_index, column=2 + i, padx=10, pady=10, sticky=tk.W)
 
         test_stats = value["test"]
-        rhombus_button = RombusButton(frame, width=20, height=20, text=f"{test_stats['actual']}/{test_stats['total']}")
-        rhombus_button.grid(row=row_index+1, column=2 + value["total"] + 1, padx=10, pady=10, sticky=tk.W)
+        rhombus_button = RombusButton(body_frame, width=20, height=20, text=f"{test_stats['actual']}/{test_stats['total']}")
+        rhombus_button.grid(row=row_index, column=2 + value["total"] + 1, padx=10, pady=10, sticky=tk.W)
 
         row_index += 1
