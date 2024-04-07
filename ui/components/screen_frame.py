@@ -136,8 +136,9 @@ class ScreenFrame(tk.Frame):
     def __init__(self, master, screen, change_screen):
         super().__init__(master, width=1280, height=720, bg="#3d6466")
         self.pack_propagate(False)
+        self.change_screen = change_screen
+        self.draw_function = screen_draw_functions.get(screen)
 
-        draw_function = screen_draw_functions.get(screen)
-
-        if draw_function:
-            draw_function(self, change_screen)
+    def draw(self):
+        if self.draw_function:
+            self.draw_function(self, self.change_screen)
