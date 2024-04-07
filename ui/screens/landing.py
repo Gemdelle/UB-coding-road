@@ -27,7 +27,7 @@ def draw(frame, change_screen):
 
     row_index = 0
     for key, value in user_progress.items():
-        label = WhiteStormLabel(frame, text=f"{row_index}. {key}", font_size=10)
+        label = WhiteStormLabel(frame, text=f"{row_index}. {key}", font_size=10, bg=frame.cget('bg'))
         label.grid(row=row_index+1, column=0, padx=10, pady=10, sticky=tk.W)
 
         if value["status"] != "LOCKED":
@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         for i in range(value["total"]):
             state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
             screen_to_change = Screens[f'{key}_{i}'.upper()]
-            button = CircleButton(frame, status=state, width=20, height=20, screen_to_change=screen_to_change, on_click=change_screen)
+            button = CircleButton(frame, status=state, width=20, height=20, screen_to_change=screen_to_change,bg=frame.cget('bg'), on_click=change_screen, highlightthickness=0)
             button.grid(row=row_index+1, column=2 + i, padx=10, pady=10, sticky=tk.W)
 
         test_stats = value["test"]

@@ -63,3 +63,7 @@ class UserProgressRepository:
             return json.loads(data[0])
         else:
             return None
+
+    def progress_comentarios(self):
+        self._current_progress["comentarios"]["current"] += 1
+        self.update_progress(self._current_progress)

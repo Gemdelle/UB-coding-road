@@ -22,6 +22,7 @@ class Application(tk.Tk):
     def show_screen(self, screen):
         print(f"SHOWING SCREEN: {screen}")
         frame = self.frames[screen]
+        frame.draw()
         frame.tkraise()
 def toggle_fullscreen(app, event=None):
     if app.attributes("-fullscreen"):
