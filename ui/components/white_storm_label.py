@@ -8,4 +8,4 @@ class WhiteStormLabel(tk.Label):
 
         self.custom_font = font.Font(family="White Storm", size=font_size)
         self.custom_font = font.Font(family="Georgia", size=font_size)
-        self.config(font=self.custom_font)  # Aplicar la fuente al widget
+        self.config(font=self.custom_font)

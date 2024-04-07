@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class RombusButton(tk.Canvas):
     def __init__(self, master=None, width=0, height=0, text="", **kwargs):
         super().__init__(master, width=width, height=height, **kwargs)

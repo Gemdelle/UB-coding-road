@@ -10,7 +10,7 @@ class CircleButton(tk.Canvas):
         self.on_click = on_click
         self.screen_to_change = screen_to_change
         self.draw_circle()
-        if on_click is not None and status == "IN_PROGRESS" or status == "COMPLETED":
+        if on_click is not None and (status == "IN_PROGRESS" or status == "COMPLETED"):
             self.bind("<Button-1>", self.button_click)
 
     def button_click(self, event):
