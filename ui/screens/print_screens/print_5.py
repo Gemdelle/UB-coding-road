@@ -8,19 +8,18 @@ from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
 
 def process_input(input_area, process_button, correct, incorrect, change_screen):
-    global comentarios_0_completed
     input_text = input_area.get("1.0", "end-1c")
 
     try:
         process = subprocess.Popen(["python", "-c", input_text], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
 
-        output=stdout.decode()
-        if output == "":
+        output=stdout.decode().strip()
+        if output == "Please Climb the tower fast":
             process_button.grid_remove()
             repository = UserProgressRepository()
             correct()
-            repository.progress_comentarios()
+            repository.progress_print()
             change_screen(Screens.LANDING)
         else:
             incorrect()
@@ -31,30 +30,30 @@ def draw(frame, change_screen):
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
 
-    user_completed_stage = user_progress["comentarios"]["current"] > 0
+    user_completed_stage = user_progress["print"]["current"] > 5
 
     title_frame = tk.Frame(frame, bg=frame.cget('bg'))
     title_frame.grid(row=0, column=0, columnspan=8)
 
-    title_label = WhiteStormLabel(title_frame, text=f"0. Comentarios", font_size=25, foreground="#e8e8e3", bg=frame.cget('bg'))
-    title_label.grid(row=0, column=1, sticky='w', padx=(40, 0), pady=(0, 0))
+    title_label = WhiteStormLabel(title_frame, text=f"1. Print", font_size=25, foreground="#e8e8e3", bg=frame.cget('bg'))
+    title_label.grid(row=0, column=1, sticky='w', padx=(0, 0), pady=(0, 0))
     levels_image_path = None
-    for i in range(user_progress["comentarios"]["total"]):
-        state = "LOCKED" if user_progress["comentarios"]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress["comentarios"]["current"] else "LOCKED" if i > user_progress["comentarios"]["current"] else "COMPLETED"
+    for i in range(user_progress["print"]["total"]):
+        state = "LOCKED" if user_progress["print"]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress["print"]["current"] else "LOCKED" if i > user_progress["print"]["current"] else "COMPLETED"
         if state == "IN_PROGRESS":
-            levels_image_path = resource_path("assets\\images\\levels\\a-current.png")
+            levels_image_path = resource_path("assets\\images\\levels\\b-current.png")
         elif state == "LOCKED":
             levels_image_path = resource_path("assets\\images\\levels\\locked.png")
         elif state == "COMPLETED":
-            levels_image_path = resource_path("assets\\images\\levels\\a-passed.png")
+            levels_image_path = resource_path("assets\\images\\levels\\b-passed.png")
         button = ClickableImage(title_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'))
         button.grid(row=0, column=i + 2, sticky='w', padx=(10, 0), pady=(20, 0))
 
-    book_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\books\\1.png"), bg=frame.cget('bg'), image_size=(60, 80))
-    book_image.grid(row=0, column=user_progress["comentarios"]["total"] + 3, sticky='w', padx=(400, 0), pady=(0, 0))
+    book_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\books\\2.png"), bg=frame.cget('bg'), image_size=(60, 80))
+    book_image.grid(row=0, column=user_progress["print"]["total"] + 3, sticky='w', padx=(400, 0), pady=(0, 0))
 
     back_arrow_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\back_arrow.png"),image_size=(50, 50), callback=lambda: change_screen(Screens.LANDING))
-    back_arrow_image.grid(row=0, column=user_progress["comentarios"]["total"] + 3, sticky='w', padx=(470, 0), pady=(20, 0))
+    back_arrow_image.grid(row=0, column=user_progress["print"]["total"] + 3, sticky='w', padx=(470, 0), pady=(20, 0))
 
     code_frame = tk.Frame(frame, bg=frame.cget('bg'))
     code_frame.grid(row=1, column=0, sticky='w', padx=(40, 0), pady=(10, 0))
@@ -65,7 +64,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Comenta la variable "autor" con el símbolo # para que \n no se tenga en cuenta en la ejecución del programa.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Imprimir la frase "Please climb the tower fast"\nutilizando un string formateado.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))
@@ -79,9 +78,10 @@ def draw(frame, change_screen):
     input_area = tk.Text(code_frame,width=55, height=25,  relief="ridge", borderwidth=3, font=("Courier New", 13))
 
     if user_completed_stage:
-        input_area.insert("1.0", '#autor = "Ludwig van Beethoven"\n#print(autor)')
+        input_area.insert("1.0", 'palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"\nprint(f"Please {palabra1} {palabra2} {palabra3} fast")')
     else:
-        input_area.insert("1.0", 'autor = "Ludwig van Beethoven"\nprint(autor)')
+        input_area.insert("1.0", 'palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"')
+
     input_area.grid(row=0, column=0, sticky='w')
 
     if not user_completed_stage:
@@ -99,11 +99,11 @@ def draw(frame, change_screen):
         input_area.config(state=tk.DISABLED, cursor="arrow")
 
 def incorrect_music_sheet(output_frame):
-    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-1\\1b.png"),
+    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-2\\1.png"),
                                        image_size=(285, 425), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(180, 0), pady=(20, 0))
 
 def correct_music_sheet(output_frame):
-    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-1\\1a.png"),
+    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-2\\3.png"),
                                        image_size=(285, 425), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(180, 0), pady=(20, 0))

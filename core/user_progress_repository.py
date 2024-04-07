@@ -67,3 +67,7 @@ class UserProgressRepository:
     def progress_comentarios(self):
         self._current_progress["comentarios"]["current"] += 1
         self.update_progress(self._current_progress)
+
+    def progress_print(self):
+        self._current_progress["print"]["current"] += 1
+        self.update_progress(self._current_progress)

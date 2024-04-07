@@ -41,11 +41,11 @@ def draw(frame, change_screen):
     for i in range(user_progress["comentarios"]["total"]):
         state = "LOCKED" if user_progress["comentarios"]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress["comentarios"]["current"] else "LOCKED" if i > user_progress["comentarios"]["current"] else "COMPLETED"
         if state == "IN_PROGRESS":
-            levels_image_path = resource_path("assets\\images\\levels\\1\\current.png")
+            levels_image_path = resource_path("assets\\images\\levels\\a-current.png")
         elif state == "LOCKED":
-            levels_image_path = resource_path("assets\\images\\levels\\1\\locked.png")
+            levels_image_path = resource_path("assets\\images\\levels\\locked.png")
         elif state == "COMPLETED":
-            levels_image_path = resource_path("assets\\images\\levels\\1\\passed.png")
+            levels_image_path = resource_path("assets\\images\\levels\\a-passed.png")
         button = ClickableImage(title_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'))
         button.grid(row=0, column=i + 2, sticky='w', padx=(10, 0), pady=(20, 0))
 

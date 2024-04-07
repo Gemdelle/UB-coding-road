@@ -5,9 +5,9 @@ from ui.screens import splash, landing, book
 from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion_2, asignacion_3, asignacion_4, \
     asignacion_5, asignacion_test
 from ui.screens.comentarios_screens import comentarios_0, comentarios_1, comentarios_2, comentarios_3, comentarios_4, \
-    comentarios_5, comentarios_test
+    comentarios_test
 from ui.screens.input_screens import input_0, input_1, input_2, input_3, input_4, input_test
-from ui.screens.print_screens import print_0, print_1, print_2, print_3, print_4, print_test
+from ui.screens.print_screens import print_0, print_1, print_2, print_3, print_4, print_test, print_5
 from ui.screens.transformacion_screens import transformacion_0, transformacion_1, transformacion_test
 
 screen_draw_functions = {
@@ -19,13 +19,13 @@ screen_draw_functions = {
     Screens.COMENTARIOS_2: comentarios_2.draw,
     Screens.COMENTARIOS_3: comentarios_3.draw,
     Screens.COMENTARIOS_4: comentarios_4.draw,
-    Screens.COMENTARIOS_5: comentarios_5.draw,
     Screens.COMENTARIOS_TEST: comentarios_test.draw,
     Screens.PRINT_0: print_0.draw,
     Screens.PRINT_1: print_1.draw,
     Screens.PRINT_2: print_2.draw,
     Screens.PRINT_3: print_3.draw,
     Screens.PRINT_4: print_4.draw,
+    Screens.PRINT_5: print_5.draw,
     Screens.PRINT_TEST: print_test.draw,
     Screens.ASIGNACION_0: asignacion_0.draw,
     Screens.ASIGNACION_1: asignacion_1.draw,
