@@ -3,7 +3,6 @@ import subprocess
 
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
-from ui.components.circle_button import CircleButton
 from ui.components.clickable_image import ClickableImage
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
