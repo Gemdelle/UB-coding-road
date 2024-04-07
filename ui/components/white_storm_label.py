@@ -1,8 +1,6 @@
 import tkinter as tk
 from tkinter import font
 
-from utils.resource_path_util import resource_path
-
 
 class WhiteStormLabel(tk.Label):
     def __init__(self, master=None, font_size=None, **kwargs):

@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 from utils.resource_path_util import resource_path
 
 
-def draw(frame):
+def draw(frame, change_screen):
     # Load and resize the image
     image = Image.open(resource_path("assets\\images\\background.jpg"))
     image = image.resize((1280, 720), Image.LANCZOS)

@@ -13,15 +13,15 @@ class Application(tk.Tk):
 
         self.frames = {}
         for screen in Screens:
-            frame = ScreenFrame(self, screen)
+            frame = ScreenFrame(self, screen, change_screen=self.show_screen)
             self.frames[screen] = frame
             frame.grid(row=0, column=0, sticky="nsew")
         print(repository.get_current_progress())
         self.show_screen(Screens.LANDING)
 
     def show_screen(self, screen):
+        print(f"SHOWING SCREEN: {screen}")
         frame = self.frames[screen]
-        frame.pack_propagate(False)
         frame.tkraise()
 def toggle_fullscreen(app, event=None):
     if app.attributes("-fullscreen"):
