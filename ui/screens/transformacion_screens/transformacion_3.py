@@ -10,7 +10,7 @@ from utils.resource_path_util import resource_path
 
 def process_input(input_area, process_button, correct, incorrect, change_screen):
     input_text = input_area.get("1.0", "end-1c")
-    input_text_with_validation = input_text + 'print(isinstance(numero, int))'
+    input_text_with_validation = input_text + 'print(isinstance(numero, str) and numero == "3.14")'
     captured_output = io.StringIO()
     sys.stdout = captured_output
     try:
@@ -32,7 +32,7 @@ def draw(frame, change_screen):
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
 
-    user_completed_stage = user_progress["transformacion"]["current"] > 0
+    user_completed_stage = user_progress["transformacion"]["current"] > 3
 
     title_frame = tk.Frame(frame, bg=frame.cget('bg'))
     title_frame.grid(row=0, column=0, columnspan=8)
@@ -66,7 +66,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Transformar el valor “3” almacenado\nen <numero> de string a entero.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Transformar el valor almacenado en <numero>\nde punto flotante a string.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))
@@ -80,9 +80,9 @@ def draw(frame, change_screen):
     input_area = tk.Text(code_frame,width=55, height=25,  relief="ridge", borderwidth=3, font=("Courier New", 13))
 
     if user_completed_stage:
-        input_area.insert("1.0", 'numero = int("3")')
+        input_area.insert("1.0", 'numero = str(3.14)')
     else:
-        input_area.insert("1.0", 'numero = "3"\n')
+        input_area.insert("1.0", 'numero = 3.14\n')
 
     input_area.grid(row=0, column=0, sticky='w')
 
@@ -101,11 +101,11 @@ def draw(frame, change_screen):
         input_area.config(state=tk.DISABLED, cursor="arrow")
 
 def incorrect_music_sheet(output_frame):
-    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-4\\4-1-str.png"),
+    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-4\\4-4-float.png"),
                                        image_size=(598, 412), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(20, 0))
 
 def correct_music_sheet(output_frame):
-    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-4\\4-1-int.png"),
+    music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-4\\4-4-str.png"),
                                        image_size=(598, 412), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(20, 0))

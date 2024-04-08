@@ -1,46 +1,51 @@
 import tkinter as tk
-from PIL import ImageTk, Image
 
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
-from ui.components.circle_button import CircleButton
+from ui.components.clickable_image import ClickableImage
 from ui.components.rhombus_button import RombusButton
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
 
+levels=["a","b","c","d","e","f","g","h","i","j","k", "l"]
 
 def draw(frame, change_screen):
+    global levels
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
-
-    image = Image.open(resource_path("assets\\images\\book.jpg"))
-    resized_image = image.resize((20, 20))
-    tk_image = ImageTk.PhotoImage(resized_image)
 
     title_frame = tk.Frame(frame, bg=frame.cget('bg'))
     title_frame.grid(row=0, column=0, columnspan=8)
 
-    title_label = WhiteStormLabel(title_frame, text=f"CODING ROAD MAP", font_size=10, bg="#3d6466")
-    title_label.pack(side='right',padx=(500, 0),pady=(10,10))
+    title_label = WhiteStormLabel(title_frame, text=f"CODING ROAD MAP", font_size=50, bg=frame.cget('bg'))
+    title_label.grid(row=0, column=0, sticky=tk.W,padx=(300, 0), pady=(0, 0))
 
     body_frame = tk.Frame(frame, bg=frame.cget('bg'))
     body_frame.grid(row=1, column=0, columnspan=8)
 
     row_index = 0
     for key, value in user_progress.items():
-        label = WhiteStormLabel(body_frame, text=f"{row_index}. {key}", font_size=10, bg=frame.cget('bg'))
-        label.grid(row=row_index, column=0, padx=10, pady=10, sticky=tk.W)
+        label = WhiteStormLabel(body_frame, text=f"{row_index}. {key.capitalize()}", foreground="#e8e8e3", font_size=30, bg=frame.cget('bg'))
+        label.grid(row=row_index, column=0, padx=(40, 40), pady=(0, 0), sticky=tk.W)
 
         if value["status"] != "LOCKED":
-            book_image = tk.Label(body_frame, image=tk_image)
-            book_image.image = tk_image
-            book_image.grid(row=row_index, column=1, padx=10, pady=10, sticky=tk.W)
+            book_image = ClickableImage(body_frame, image_path=resource_path("assets\\images\\books\\"+str(row_index+1)+".png"),
+                                        bg=frame.cget('bg'), image_size=(60, 80))
+            book_image.grid(row=row_index, column=1, sticky='w', padx=(0, 20),
+                            pady=(20, 10))
 
         for i in range(value["total"]):
             state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
             screen_to_change = Screens[f'{key}_{i}'.upper()]
-            button = CircleButton(body_frame, status=state, width=20, height=20, screen_to_change=screen_to_change,bg=frame.cget('bg'), on_click=change_screen, highlightthickness=0)
-            button.grid(row=row_index, column=2 + i, padx=10, pady=10, sticky=tk.W)
+            levels_image_path = None
+            if state == "IN_PROGRESS":
+                levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-current.png")
+            elif state == "LOCKED":
+                levels_image_path = resource_path("assets\\images\\levels\\locked.png")
+            elif state == "COMPLETED":
+                levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-passed.png")
+            button = ClickableImage(body_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'), highlightthickness=0, callback=lambda screen=screen_to_change: change_screen(screen))
+            button.grid(row=row_index, column=2 + i, padx=(5, 5), pady=(20, 0), sticky=tk.W)
 
         test_stats = value["test"]
         rhombus_button = RombusButton(body_frame, width=20, height=20, text=f"{test_stats['actual']}/{test_stats['total']}")

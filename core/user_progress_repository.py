@@ -71,3 +71,15 @@ class UserProgressRepository:
     def progress_print(self):
         self._current_progress["print"]["current"] += 1
         self.update_progress(self._current_progress)
+
+    def progress_asignacion(self):
+        self._current_progress["asignacion"]["current"] += 1
+        self.update_progress(self._current_progress)
+
+    def progress_transformacion(self):
+        self._current_progress["transformacion"]["current"] += 1
+        self.update_progress(self._current_progress)
+
+    def progress_input(self):
+        self._current_progress["input"]["current"] += 1
+        self.update_progress(self._current_progress)

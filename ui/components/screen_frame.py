@@ -6,9 +6,10 @@ from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion
     asignacion_5, asignacion_test
 from ui.screens.comentarios_screens import comentarios_0, comentarios_1, comentarios_2, comentarios_3, comentarios_4, \
     comentarios_test
-from ui.screens.input_screens import input_0, input_1, input_2, input_3, input_4, input_test
+from ui.screens.input_screens import input_0, input_1, input_2, input_test
 from ui.screens.print_screens import print_0, print_1, print_2, print_3, print_4, print_test, print_5
-from ui.screens.transformacion_screens import transformacion_0, transformacion_1, transformacion_test
+from ui.screens.transformacion_screens import transformacion_0, transformacion_1, transformacion_test, transformacion_2, \
+    transformacion_3
 
 screen_draw_functions = {
     Screens.SPLASH: splash.draw,
@@ -36,12 +37,12 @@ screen_draw_functions = {
     Screens.ASIGNACION_TEST: asignacion_test.draw,
     Screens.TRANSFORMACION_0: transformacion_0.draw,
     Screens.TRANSFORMACION_1: transformacion_1.draw,
+    Screens.TRANSFORMACION_2: transformacion_2.draw,
+    Screens.TRANSFORMACION_3: transformacion_3.draw,
     Screens.TRANSFORMACION_TEST: transformacion_test.draw,
     Screens.INPUT_0: input_0.draw,
     Screens.INPUT_1: input_1.draw,
     Screens.INPUT_2: input_2.draw,
-    Screens.INPUT_3: input_3.draw,
-    Screens.INPUT_4: input_4.draw,
     Screens.INPUT_TEST: input_test.draw,
     # Screens.OPERACIONES_ARITMETICAS_0: operaciones_aritmeticas_0.draw,
     # Screens.OPERACIONES_ARITMETICAS_1: operaciones_aritmeticas_1.draw,

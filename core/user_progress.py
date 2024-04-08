@@ -4,25 +4,25 @@ from core.user_progress_status import UserProgressStatus
 initial_data = {
     "comentarios": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
-        "total": 6,
-        "test": {
-            "actual": 0,
-            "total": 100
-        }
-    },
-    "print": {
-        "status": UserProgressStatus.LOCKED.value,
-        "current": 0,
+        "current": 5,
         "total": 5,
         "test": {
             "actual": 0,
             "total": 100
         }
     },
+    "print": {
+        "status": UserProgressStatus.IN_PROGRESS.value,
+        "current": 6,
+        "total": 6,
+        "test": {
+            "actual": 0,
+            "total": 100
+        }
+    },
     "asignacion": {
-        "status": UserProgressStatus.LOCKED.value,
-        "current": 0,
+        "status": UserProgressStatus.IN_PROGRESS.value,
+        "current": 6,
         "total": 6,
         "test": {
             "actual": 0,
@@ -30,18 +30,18 @@ initial_data = {
         }
     },
     "transformacion": {
-        "status": UserProgressStatus.LOCKED.value,
-        "current": 0,
-        "total": 2,
+        "status": UserProgressStatus.IN_PROGRESS.value,
+        "current": 4,
+        "total": 4,
         "test": {
             "actual": 0,
             "total": 100
         }
     },
     "input": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.IN_PROGRESS.value,
         "current": 0,
-        "total": 5,
+        "total": 3,
         "test": {
             "actual": 0,
             "total": 100
