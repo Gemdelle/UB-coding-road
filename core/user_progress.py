@@ -4,7 +4,7 @@ from core.user_progress_status import UserProgressStatus
 initial_data = {
     "comentarios": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 5,
+        "current": 0,
         "total": 5,
         "test": {
             "actual": 0,
@@ -12,8 +12,8 @@ initial_data = {
         }
     },
     "print": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 7,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 7,
         "test": {
             "actual": 0,
@@ -21,8 +21,8 @@ initial_data = {
         }
     },
     "asignacion": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 6,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 6,
         "test": {
             "actual": 0,
@@ -30,8 +30,8 @@ initial_data = {
         }
     },
     "transformacion": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 4,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 4,
         "test": {
             "actual": 0,
@@ -39,8 +39,8 @@ initial_data = {
         }
     },
     "input": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 3,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 3,
         "test": {
             "actual": 0,

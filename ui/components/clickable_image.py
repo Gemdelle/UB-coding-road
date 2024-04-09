@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 
 
 class ClickableImage(tk.Label):
-    def __init__(self, master=None, **kw):
+    def __init__(self, master=None, flip=False, **kw):
         self.callback = kw.pop('callback', None)
         self.image_path = kw.pop('image_path', None)
         self.image_size = kw.pop('image_size', (200, 200))

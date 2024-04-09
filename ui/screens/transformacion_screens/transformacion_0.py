@@ -55,11 +55,15 @@ def draw(frame, change_screen):
         button = ClickableImage(title_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'))
         button.grid(row=0, column=i + 2, sticky='w', padx=(10, 0), pady=(20, 0))
 
-    book_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\books\\4.png"), bg=frame.cget('bg'), image_size=(60, 80))
-    book_image.grid(row=0, column=user_progress["transformacion"]["total"] + 3, sticky='w', padx=(400, 0), pady=(0, 0))
+    back_arrow_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\back_arrow.png"),
+                                      image_size=(87, 46), callback=lambda: change_screen(Screens.LANDING),
+                                      bg=frame.cget('bg'))
+    back_arrow_image.grid(row=0, column=user_progress["transformacion"]["total"] + 3, sticky='w', padx=(300, 0),
+                          pady=(5, 0))
 
-    back_arrow_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\back_arrow.png"),image_size=(50, 50), callback=lambda: change_screen(Screens.LANDING))
-    back_arrow_image.grid(row=0, column=user_progress["transformacion"]["total"] + 3, sticky='w', padx=(470, 0), pady=(20, 0))
+    book_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\books\\4.png"),
+                                bg=frame.cget('bg'), image_size=(60, 80))
+    book_image.grid(row=0, column=user_progress["transformacion"]["total"] + 3, sticky='w', padx=(420, 0), pady=(0, 0))
 
     code_frame = tk.Frame(frame, bg=frame.cget('bg'))
     code_frame.grid(row=1, column=0, sticky='w', padx=(40, 0), pady=(10, 0))
@@ -115,4 +119,7 @@ def correct_music_sheet(output_frame, code_frame, change_screen, input_area):
     next_level_button = tk.Button(code_frame, width=7, height=2, text="Next",
                                   command=lambda: change_screen(Screens.TRANSFORMACION_1))
     next_level_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
+    pet_image = ClickableImage(code_frame, image_path=resource_path("assets\\images\\pet.png"),
+                               image_size=(100, 50), bg=code_frame.cget('bg'))
+    pet_image.grid(row=1, column=0, sticky='e', padx=(0, 75), pady=(10, 10))
     input_area.config(state=tk.DISABLED, cursor="arrow")

@@ -1,6 +1,6 @@
 import tkinter as tk
 import subprocess
-
+from PIL import Image
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from ui.components.clickable_image import ClickableImage
@@ -115,4 +115,7 @@ def correct_music_sheet(output_frame,code_frame,change_screen, input_area):
     next_level_button = tk.Button(code_frame, width=7, height=2, text="Next",
                                   command=lambda: change_screen(Screens.COMENTARIOS_1))
     next_level_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
+    pet_image = ClickableImage(code_frame, image_path=resource_path("assets\\images\\pet.png"),
+                                       image_size=(100, 50), bg=code_frame.cget('bg'))
+    pet_image.grid(row=1, column=0, sticky='e', padx=(0, 75), pady=(10, 10))
     input_area.config(state=tk.DISABLED, cursor="arrow")
