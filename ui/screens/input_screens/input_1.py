@@ -77,7 +77,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: En el sobre hay que anotar el precio de envío.\nLeer por teclado el precio de envío, <precio>,\nque corresponde a 2000 pesos.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ En el sobre hay que anotar el precio de envío.\nLeer por teclado el precio de envío, <precio>,\nque corresponde a 2000 pesos.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))

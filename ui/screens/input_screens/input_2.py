@@ -79,7 +79,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Otro dato necesario es el precio extra por envío express,\n <precio_express>, ya que tiene que llegar cuanto antes. Leer por teclado\nel precio del envío express, que corresponde a 600.5 pesos.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Otro dato necesario es el precio extra por envío express,\n <precio_express>, ya que tiene que llegar cuanto antes. Leer por teclado\nel precio del envío express, que corresponde a 600.5 pesos.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))

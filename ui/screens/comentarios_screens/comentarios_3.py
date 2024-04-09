@@ -68,7 +68,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: La partitura no se está mostrando en la hoja.\nDescomentar la variable partitura para mostrar el contenido.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ La partitura no se está mostrando en la hoja.\nDescomentar la variable partitura para mostrar el contenido.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))

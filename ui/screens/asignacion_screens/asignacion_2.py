@@ -70,7 +70,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Declarar dos variables de tipo float <diametro_planeta1>\n y <diametro_planeta2 > con el diámetro de la Tierra (12742.1 km.)\n y el diámetro de la Luna (3474.8 km.).')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Declarar dos variables de tipo float <diametro_planeta1>\n y <diametro_planeta2 > con el diámetro de la Tierra (12742.1 km.)\n y el diámetro de la Luna (3474.8 km.).')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))

@@ -73,7 +73,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Descomenta la variable "titulo" y la línea que la imprime,\nque está actualmente comentada con el símbolo #,\npara que se tenga en cuenta en la ejecución del programa.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Descomentar la variable "titulo" y la línea que la imprime,\nque está actualmente comentada con el símbolo #,\npara que se tenga en cuenta en la ejecución del programa.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))

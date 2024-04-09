@@ -67,7 +67,7 @@ def draw(frame, change_screen):
     task_frame = tk.Frame(task_output_frame)
     task_frame.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Consigna: Se quiere agregar un comentario sobre la música\n al principio del código, pero sin que aparezca en la partitura.\n Escribir un comentario (Buena, muy triste, mala, etc.)\nantes de la declaración de las variables.')
+    task_label = WhiteStormLabel(task_frame,bg=task_frame.cget('bg'),font_size=13, width=60, height=5, text='❧ Se quiere agregar un comentario sobre la música\n al principio del código, pero sin que aparezca en la partitura.\n Escribir un comentario (Buena, muy triste, mala, etc.)\nantes de la declaración de las variables.')
     task_label.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))
