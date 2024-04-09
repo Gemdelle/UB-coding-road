@@ -17,6 +17,7 @@ class Screens(Enum):
     PRINT_3 = "PRINT_3"
     PRINT_4 = "PRINT_4"
     PRINT_5 = "PRINT_5"
+    PRINT_6 = "PRINT_6"
     PRINT_TEST = "PRINT_TEST"
     ASIGNACION_0 = "ASIGNACION_0"
     ASIGNACION_1 = "ASIGNACION_1"

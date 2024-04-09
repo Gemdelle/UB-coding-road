@@ -17,7 +17,7 @@ def draw(frame, change_screen):
     title_frame = tk.Frame(frame, bg=frame.cget('bg'))
     title_frame.grid(row=0, column=0, columnspan=8)
 
-    title_label = WhiteStormLabel(title_frame, text=f"CODING ROAD MAP", font_size=50, bg=frame.cget('bg'))
+    title_label = WhiteStormLabel(title_frame, text=f"Coding Road Map", foreground="#e8e8e3", font_size=35, bg=frame.cget('bg'))
     title_label.grid(row=0, column=0, sticky=tk.W,padx=(300, 0), pady=(0, 0))
 
     body_frame = tk.Frame(frame, bg=frame.cget('bg'))
@@ -25,7 +25,7 @@ def draw(frame, change_screen):
 
     row_index = 0
     for key, value in user_progress.items():
-        label = WhiteStormLabel(body_frame, text=f"{row_index}. {key.capitalize()}", foreground="#e8e8e3", font_size=30, bg=frame.cget('bg'))
+        label = WhiteStormLabel(body_frame, text=f"{row_index}. {key.capitalize()}", foreground="#e8e8e3", font_size=20, bg=frame.cget('bg'))
         label.grid(row=row_index, column=0, padx=(40, 40), pady=(0, 0), sticky=tk.W)
 
         if value["status"] != "LOCKED":

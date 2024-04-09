@@ -37,6 +37,10 @@ def draw(frame, change_screen):
 
     title_label = WhiteStormLabel(title_frame, text=f"0. Comentarios", font_size=25, foreground="#e8e8e3", bg=frame.cget('bg'))
     title_label.grid(row=0, column=1, sticky='w', padx=(40, 0), pady=(0, 0))
+
+    subtitle_label = WhiteStormLabel(title_frame, text=f"0.1 Comentar una variable con #", font_size=16, foreground="#e8e8e3", bg=frame.cget('bg'))
+    subtitle_label.grid(row=0, column=1, sticky='w', padx=(40, 0), pady=(70, 0))
+
     levels_image_path = None
     for i in range(user_progress["comentarios"]["total"]):
         state = "LOCKED" if user_progress["comentarios"]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress["comentarios"]["current"] else "LOCKED" if i > user_progress["comentarios"]["current"] else "COMPLETED"
@@ -49,11 +53,14 @@ def draw(frame, change_screen):
         button = ClickableImage(title_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'))
         button.grid(row=0, column=i + 2, sticky='w', padx=(10, 0), pady=(20, 0))
 
-    book_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\books\\1.png"), bg=frame.cget('bg'), image_size=(60, 80))
-    book_image.grid(row=0, column=user_progress["comentarios"]["total"] + 3, sticky='w', padx=(400, 0), pady=(0, 0))
+    back_arrow_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\back_arrow.png"),
+                                      image_size=(87, 46), callback=lambda: change_screen(Screens.LANDING),
+                                      bg=frame.cget('bg'))
+    back_arrow_image.grid(row=0, column=user_progress["comentarios"]["total"] + 3, sticky='w', padx=(350, 0),
+                          pady=(5, 0))
 
-    back_arrow_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\back_arrow.png"),image_size=(50, 50), callback=lambda: change_screen(Screens.LANDING))
-    back_arrow_image.grid(row=0, column=user_progress["comentarios"]["total"] + 3, sticky='w', padx=(470, 0), pady=(20, 0))
+    book_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\books\\1.png"), bg=frame.cget('bg'), image_size=(60, 80))
+    book_image.grid(row=0, column=user_progress["comentarios"]["total"] + 3, sticky='w', padx=(470, 0), pady=(0, 0))
 
     code_frame = tk.Frame(frame, bg=frame.cget('bg'))
     code_frame.grid(row=1, column=0, sticky='w', padx=(40, 0), pady=(10, 0))

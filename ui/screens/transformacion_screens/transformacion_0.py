@@ -38,6 +38,11 @@ def draw(frame, change_screen):
 
     title_label = WhiteStormLabel(title_frame, text=f"3. Transformación de Tipo", font_size=25, foreground="#e8e8e3", bg=frame.cget('bg'))
     title_label.grid(row=0, column=1, sticky='w', padx=(42, 0), pady=(0, 0))
+
+    subtitle_label = WhiteStormLabel(title_frame, text=f'3.1. str a int', font_size=16,
+                                     foreground="#e8e8e3", bg=frame.cget('bg'))
+    subtitle_label.grid(row=0, column=1, sticky='w', padx=(40, 0), pady=(70, 0))
+
     levels_image_path = None
     for i in range(user_progress["transformacion"]["total"]):
         state = "LOCKED" if user_progress["transformacion"]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress["transformacion"]["current"] else "LOCKED" if i > user_progress["transformacion"]["current"] else "COMPLETED"

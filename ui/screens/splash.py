@@ -1,19 +1,12 @@
-import tkinter as tk
-
-from PIL import Image, ImageTk
-
+from core.screens import Screens
+from ui.components.clickable_image import ClickableImage
 from utils.resource_path_util import resource_path
+from utils.set_time_out_manager import SetTimeoutManager
 
 
 def draw(frame, change_screen):
-    # Load and resize the image
-    image = Image.open(resource_path("assets\\images\\background.jpg"))
-    image = image.resize((1280, 720), Image.LANCZOS)
+    splash_image = ClickableImage(frame, image_path=resource_path("assets\\images\\splash.png"), image_size=(1280, 720), bg=frame.cget('bg'))
+    splash_image.pack()
 
-    background_image = ImageTk.PhotoImage(image)
-
-    background_label = tk.Label(frame, image=background_image)
-    background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-    label = tk.Label(frame, text="Splash Screen", font=("Helvetica", 20))
-    label.pack(pady=20)
+    set_timeout_manager = SetTimeoutManager()
+    set_timeout_manager.setTimeout(lambda: change_screen(Screens.LANDING), 3)

@@ -45,6 +45,11 @@ def draw(frame, change_screen):
 
     title_label = WhiteStormLabel(title_frame, text=f"4. Input", font_size=25, foreground="#e8e8e3", bg=frame.cget('bg'))
     title_label.grid(row=0, column=1, sticky='w', padx=(0, 0), pady=(0, 0))
+
+    subtitle_label = WhiteStormLabel(title_frame, text=f'4.2 Ingresar un número en str y transformarlo después a int', font_size=16,
+                                     foreground="#e8e8e3", bg=frame.cget('bg'))
+    subtitle_label.grid(row=0, column=1, sticky='w', padx=(40, 0), pady=(70, 0))
+
     levels_image_path = None
     for i in range(user_progress["input"]["total"]):
         state = "LOCKED" if user_progress["input"]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress["input"]["current"] else "LOCKED" if i > user_progress["input"]["current"] else "COMPLETED"
