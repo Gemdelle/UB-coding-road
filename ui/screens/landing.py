@@ -44,11 +44,11 @@ def draw(frame, change_screen):
                 levels_image_path = resource_path("assets\\images\\levels\\locked.png")
             elif state == "COMPLETED":
                 levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-passed.png")
-            button = ClickableImage(body_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'), highlightthickness=0, callback=lambda screen=screen_to_change: change_screen(screen))
+            button = ClickableImage(body_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'), highlightthickness=0, callback=lambda screen=screen_to_change, state=state: change_screen(screen) if state != "LOCKED" else None)
             button.grid(row=row_index, column=2 + i, padx=(5, 5), pady=(20, 0), sticky=tk.W)
 
-        test_stats = value["test"]
-        rhombus_button = RombusButton(body_frame, width=20, height=20, text=f"{test_stats['actual']}/{test_stats['total']}")
-        rhombus_button.grid(row=row_index, column=2 + value["total"] + 1, padx=10, pady=10, sticky=tk.W)
+        # test_stats = value["test"]
+        # rhombus_button = RombusButton(body_frame, width=20, height=20, text=f"{test_stats['actual']}/{test_stats['total']}")
+        # rhombus_button.grid(row=row_index, column=2 + value["total"] + 1, padx=10, pady=10, sticky=tk.W)
 
         row_index += 1

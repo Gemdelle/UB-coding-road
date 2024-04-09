@@ -21,8 +21,8 @@ initial_data = {
         }
     },
     "asignacion": {
-        "status": UserProgressStatus.LOCKED.value,
-        "current": 0,
+        "status": UserProgressStatus.IN_PROGRESS.value,
+        "current": 3,
         "total": 6,
         "test": {
             "actual": 0,

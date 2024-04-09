@@ -8,7 +8,7 @@ from ui.components.clickable_image import ClickableImage
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
 
-def process_input(input_area, process_button, correct, incorrect, change_screen):
+def process_input(input_area, process_button, correct, incorrect):
     input_text = input_area.get("1.0", "end-1c")
     input_text_with_validation = input_text + 'print(planeta1 == "Earth" and planeta2 == "Moon"and distancia == 384400)'
     captured_output = io.StringIO()
@@ -22,7 +22,6 @@ def process_input(input_area, process_button, correct, incorrect, change_screen)
             repository = UserProgressRepository()
             correct()
             repository.progress_asignacion()
-            change_screen(Screens.LANDING)
         else:
             incorrect()
     except Exception as e:
@@ -72,12 +71,7 @@ def draw(frame, change_screen):
     output_frame = tk.Frame(task_output_frame, bg=frame.cget('bg'))
     output_frame.grid(row=1, column=0, sticky='w', padx=(0, 0), pady=(0, 0))
 
-    if user_completed_stage:
-        correct_music_sheet(output_frame)
-    else:
-        incorrect_music_sheet(output_frame)
-
-    input_area = tk.Text(code_frame,width=55, height=25,  relief="ridge", borderwidth=3, font=("Courier New", 13))
+    input_area = tk.Text(code_frame, width=55, height=25, relief="ridge", borderwidth=3, font=("Courier New", 13))
 
     if user_completed_stage:
         input_area.insert("1.0", 'planeta1 = "Earth"\nplaneta2 = "Moon"\ndistancia = 384400')
@@ -86,15 +80,20 @@ def draw(frame, change_screen):
 
     input_area.grid(row=0, column=0, sticky='w')
 
+    if user_completed_stage:
+        correct_music_sheet(output_frame, code_frame, change_screen, input_area)
+    else:
+        incorrect_music_sheet(output_frame)
+
+
     if not user_completed_stage:
         process_button = tk.Button(code_frame,width=7, height=2, text="Run", command=lambda: process_input(input_area, process_button,
                                                                                          lambda: correct_music_sheet(
-                                                                                             output_frame),
+                                                                                             output_frame, code_frame, change_screen, input_area),
                                                                                          lambda: incorrect_music_sheet(
-                                                                                             output_frame),
-                                                                                         change_screen))
+                                                                                             output_frame)))
         process_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
-        process_input(input_area,process_button,lambda: correct_music_sheet(output_frame), lambda: incorrect_music_sheet(output_frame), change_screen)
+        process_input(input_area,process_button,lambda: correct_music_sheet(output_frame, code_frame, change_screen, input_area), lambda: incorrect_music_sheet(output_frame))
     else:
         empty_frame = tk.Frame(code_frame,width=1, height=60, bg=frame.cget('bg'))
         empty_frame.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(0, 0))
@@ -108,7 +107,11 @@ def incorrect_music_sheet(output_frame):
                                    image_size=(142, 225), bg=output_frame.cget('bg'))
     output_image2.grid(row=0, column=0, sticky='w', padx=(330, 0), pady=(130, 100))
 
-def correct_music_sheet(output_frame):
+def correct_music_sheet(output_frame, code_frame, change_screen, input_area):
     music_sheet_image = ClickableImage(output_frame, image_path=resource_path("assets\\images\\ex-3\\02-01.png"),
                                        image_size=(598, 412), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(0, 0), pady=(20, 0))
+    next_level_button = tk.Button(code_frame, width=7, height=2, text="Next",
+                                  command=lambda: change_screen(Screens.ASIGNACION_2))
+    next_level_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
+    input_area.config(state=tk.DISABLED, cursor="arrow")
