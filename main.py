@@ -3,7 +3,16 @@ import tkinter as tk
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from ui.components.screen_frame import ScreenFrame
+from utils.resource_path_util import resource_path
+from utils.sound_manager import SoundManager
 
+# Preload Sounds
+sound_manager = SoundManager()
+sound_manager.load_sound("background_music", resource_path("assets\\sounds\\background_music.mp3"))
+sound_manager.load_sound("correct", resource_path("assets\\sounds\\correct.mp3"))
+sound_manager.load_sound("wrong", resource_path("assets\\sounds\\wrong.mp3"))
+sound_manager.load_sound("next-level", resource_path("assets\\sounds\\next-level.mp3"))
+sound_manager.load_sound("introduction", resource_path("assets\\sounds\\introduction.mp3"))
 
 class Application(tk.Tk):
     def __init__(self):
@@ -17,7 +26,7 @@ class Application(tk.Tk):
             self.frames[screen] = frame
             frame.grid(row=0, column=0, sticky="nsew")
         print(repository.get_current_progress())
-        self.show_screen(Screens.SPLASH)
+        self.show_screen(Screens.LANDING)
 
     def show_screen(self, screen):
         print(f"SHOWING SCREEN: {screen}")
@@ -29,7 +38,6 @@ def toggle_fullscreen(app, event=None):
         exit_fullscreen(app, event=None)
     else:
         go_full_screen(app)
-
 
 def go_full_screen(app):
     app.attributes("-fullscreen", True)

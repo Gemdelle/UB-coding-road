@@ -101,7 +101,7 @@ def draw(frame, change_screen):
                                                                                          lambda: incorrect_music_sheet(
                                                                                              output_frame)))
         process_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
-        process_input(input_area,process_button,lambda: correct_music_sheet(output_frame, code_frame, change_screen, input_area), lambda: incorrect_music_sheet(output_frame))
+        incorrect_music_sheet(output_frame)
     else:
         empty_frame = tk.Frame(code_frame,width=1, height=60, bg=frame.cget('bg'))
         empty_frame.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(0, 0))

@@ -3,16 +3,24 @@ import tkinter as tk
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from ui.components.clickable_image import ClickableImage
-from ui.components.rhombus_button import RombusButton
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
+from utils.sound_manager import SoundManager
 
 levels=["a","b","c","d","e","f","g","h","i","j","k", "l"]
+
+def play_background_music():
+    sound_manager = SoundManager()
+    # if not sound_manager.is_playing("background_music"):
+    sound_manager.set_volume("background_music", 0.3)
+    sound_manager.play_sound("background_music")
 
 def draw(frame, change_screen):
     global levels
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
+
+    play_background_music()
 
     title_frame = tk.Frame(frame, bg=frame.cget('bg'))
     title_frame.grid(row=0, column=0, columnspan=8)
