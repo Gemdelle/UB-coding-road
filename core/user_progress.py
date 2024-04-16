@@ -4,7 +4,7 @@ from core.user_progress_status import UserProgressStatus
 initial_data = {
     "comentarios": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 4,
+        "current": 0,
         "total": 5,
         "test": {
             "actual": 0,
