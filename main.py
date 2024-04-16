@@ -26,7 +26,7 @@ class Application(tk.Tk):
             self.frames[screen] = frame
             frame.grid(row=0, column=0, sticky="nsew")
         print(repository.get_current_progress())
-        self.show_screen(Screens.LANDING)
+        self.show_screen(Screens.SPLASH)
 
     def show_screen(self, screen):
         print(f"SHOWING SCREEN: {screen}")

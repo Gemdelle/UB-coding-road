@@ -7,8 +7,26 @@ from core.user_progress_repository import UserProgressRepository
 from ui.components.clickable_image import ClickableImage
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
+from utils.set_time_out_manager import SetTimeoutManager
+from utils.sound_manager import SoundManager
 
-def process_input(input_area, process_button, correct, incorrect):
+
+def play_correct_sound():
+    sound_manager = SoundManager()
+    sound_manager.set_volume("correct", 0.3)
+    sound_manager.play_sound("correct")
+
+def play_wrong_sound():
+    sound_manager = SoundManager()
+    sound_manager.set_volume("wrong", 0.3)
+    sound_manager.play_sound("wrong")
+def showWrongMessage(code_frame):
+    wrong = WhiteStormLabel(code_frame, text=f'Try Again', font_size=16,
+                                     foreground="#A020F0", bg=code_frame.cget('bg'))
+    wrong.grid(row=1, column=0, sticky='e', padx=(0, 75), pady=(10, 10))
+    set_timeout_manager = SetTimeoutManager()
+    set_timeout_manager.setTimeout(lambda: wrong.grid_forget(), 2)
+def process_input(input_area, process_button, code_frame, correct, incorrect):
     input_text = input_area.get("1.0", "end-1c")
     input_text_with_validation = input_text + 'print(planeta1 == "Earth" and planeta2 == "Moon")'
     captured_output = io.StringIO()
@@ -24,8 +42,12 @@ def process_input(input_area, process_button, correct, incorrect):
             repository.progress_asignacion()
         else:
             incorrect()
+            play_wrong_sound()
+            showWrongMessage(code_frame)
     except Exception as e:
         incorrect()
+        play_wrong_sound()
+        showWrongMessage(code_frame)
 
 def draw(frame, change_screen):
     repository = UserProgressRepository()
@@ -95,7 +117,7 @@ def draw(frame, change_screen):
         incorrect_music_sheet(output_frame)
 
     if not user_completed_stage:
-        process_button = tk.Button(code_frame,width=7, height=2, text="Run", command=lambda: process_input(input_area, process_button,
+        process_button = tk.Button(code_frame,width=7, height=2, text="Run", command=lambda: process_input(input_area, process_button,code_frame,
                                                                                          lambda: correct_music_sheet(
                                                                                              output_frame, code_frame, change_screen, input_area),
                                                                                          lambda: incorrect_music_sheet(
