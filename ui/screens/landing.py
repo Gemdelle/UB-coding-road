@@ -5,15 +5,9 @@ from core.user_progress_repository import UserProgressRepository
 from ui.components.clickable_image import ClickableImage
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
-from utils.sound_manager import SoundManager
+from utils.sound_manager import SoundManager, play_background_music, play_button_sound
 
 levels=["a","b","c","d","e","f","g","h","i","j","k", "l"]
-
-def play_background_music():
-    sound_manager = SoundManager()
-    # if not sound_manager.is_playing("background_music"):
-    sound_manager.set_volume("background_music", 0.2)
-    sound_manager.play_sound("background_music")
 
 def draw(frame, change_screen):
     global levels
@@ -52,7 +46,7 @@ def draw(frame, change_screen):
                 levels_image_path = resource_path("assets\\images\\levels\\locked.png")
             elif state == "COMPLETED":
                 levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-passed.png")
-            button = ClickableImage(body_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'), highlightthickness=0, callback=lambda screen=screen_to_change, state=state: change_screen(screen) if state != "LOCKED" else None)
+            button = ClickableImage(body_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'), highlightthickness=0, callback=lambda screen=screen_to_change, state=state: (change_screen(screen), play_button_sound()) if state != "LOCKED" else None)
             button.grid(row=row_index, column=2 + i, padx=(5, 5), pady=(20, 0), sticky=tk.W)
 
         # test_stats = value["test"]

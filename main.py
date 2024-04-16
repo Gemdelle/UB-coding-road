@@ -13,6 +13,7 @@ sound_manager.load_sound("correct", resource_path("assets\\sounds\\correct.mp3")
 sound_manager.load_sound("wrong", resource_path("assets\\sounds\\wrong.mp3"))
 sound_manager.load_sound("next-level", resource_path("assets\\sounds\\next-level.mp3"))
 sound_manager.load_sound("introduction", resource_path("assets\\sounds\\introduction.mp3"))
+sound_manager.load_sound("button", resource_path("assets\\sounds\\button.mp3"))
 
 class Application(tk.Tk):
     def __init__(self):

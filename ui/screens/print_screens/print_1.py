@@ -7,18 +7,9 @@ from ui.components.clickable_image import ClickableImage
 from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
 from utils.set_time_out_manager import SetTimeoutManager
-from utils.sound_manager import SoundManager
+from utils.sound_manager import SoundManager, play_correct_sound, play_wrong_sound, play_button_sound
 
 
-def play_correct_sound():
-    sound_manager = SoundManager()
-    sound_manager.set_volume("correct", 0.3)
-    sound_manager.play_sound("correct")
-
-def play_wrong_sound():
-    sound_manager = SoundManager()
-    sound_manager.set_volume("wrong", 0.3)
-    sound_manager.play_sound("wrong")
 def showWrongMessage(code_frame):
     wrong = WhiteStormLabel(code_frame, text=f'Try again', font_size=16,
                                      foreground="#7A0D13", bg=code_frame.cget('bg'))
@@ -77,7 +68,7 @@ def draw(frame, change_screen):
         button.grid(row=0, column=i + 2, sticky='w', padx=(10, 0), pady=(20, 0))
 
     back_arrow_image = ClickableImage(title_frame, image_path=resource_path("assets\\images\\back_arrow.png"),
-                                      image_size=(87, 46), callback=lambda: change_screen(Screens.LANDING),
+                                      image_size=(87, 46), callback=lambda: (change_screen(Screens.LANDING), play_button_sound()),
                                       bg=frame.cget('bg'))
     back_arrow_image.grid(row=0, column=user_progress["print"]["total"] + 3, sticky='w', padx=(230, 0),
                           pady=(5, 0))
@@ -138,7 +129,7 @@ def correct_music_sheet(output_frame, code_frame, change_screen, input_area):
                                        image_size=(285, 425), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(180, 0), pady=(20, 0))
     next_level_button = tk.Button(code_frame, width=7, height=2, text="Next",
-                                  command=lambda: change_screen(Screens.PRINT_2))
+                                  command=lambda: (change_screen(Screens.PRINT_2), play_button_sound()))
     next_level_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
     pet_image = ClickableImage(code_frame, image_path=resource_path("assets\\images\\pet.png"),
                                image_size=(70, 50), bg=code_frame.cget('bg'))
