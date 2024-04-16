@@ -41,6 +41,7 @@ def process_input(input_area, process_button, code_frame, correct, incorrect):
             repository = UserProgressRepository()
             correct()
             repository.progress_asignacion()
+            play_correct_sound()
         else:
             incorrect()
             play_wrong_sound()
