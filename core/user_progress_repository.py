@@ -3,6 +3,7 @@ import os
 import sqlite3
 
 from core.user_progress import initial_data
+from core.user_progress_status import UserProgressStatus
 
 
 class UserProgressRepository:
@@ -66,18 +67,26 @@ class UserProgressRepository:
 
     def progress_comentarios(self):
         self._current_progress["comentarios"]["current"] += 1
+        if self._current_progress["comentarios"]["total"] == self._current_progress["comentarios"]["current"]:
+            self._current_progress["print"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_print(self):
         self._current_progress["print"]["current"] += 1
+        if self._current_progress["print"]["total"] == self._current_progress["print"]["current"]:
+            self._current_progress["asignacion"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_asignacion(self):
         self._current_progress["asignacion"]["current"] += 1
+        if self._current_progress["asignacion"]["total"] == self._current_progress["asignacion"]["current"]:
+            self._current_progress["transformacion"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_transformacion(self):
         self._current_progress["transformacion"]["current"] += 1
+        if self._current_progress["transformacion"]["total"] == self._current_progress["transformacion"]["current"]:
+            self._current_progress["input"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_input(self):
