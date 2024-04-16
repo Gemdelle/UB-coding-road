@@ -12,7 +12,7 @@ levels=["a","b","c","d","e","f","g","h","i","j","k", "l"]
 def play_background_music():
     sound_manager = SoundManager()
     # if not sound_manager.is_playing("background_music"):
-    sound_manager.set_volume("background_music", 0.3)
+    sound_manager.set_volume("background_music", 0.2)
     sound_manager.play_sound("background_music")
 
 def draw(frame, change_screen):

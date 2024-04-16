@@ -7,7 +7,7 @@ from utils.sound_manager import SoundManager
 
 def play_music():
     sound_manager = SoundManager()
-    sound_manager.set_volume("introduction", 0.3)
+    sound_manager.set_volume("introduction", 0.05)
     sound_manager.play_sound("introduction")
 
 def draw(frame, change_screen):

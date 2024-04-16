@@ -22,8 +22,8 @@ def play_wrong_sound():
     sound_manager.set_volume("wrong", 0.3)
     sound_manager.play_sound("wrong")
 def showWrongMessage(code_frame):
-    wrong = WhiteStormLabel(code_frame, text=f'Try Again', font_size=16,
-                                     foreground="#A020F0", bg=code_frame.cget('bg'))
+    wrong = WhiteStormLabel(code_frame, text=f'Try again', font_size=16,
+                                     foreground="#7A0D13", bg=code_frame.cget('bg'))
     wrong.grid(row=1, column=0, sticky='e', padx=(0, 75), pady=(10, 10))
     set_timeout_manager = SetTimeoutManager()
     set_timeout_manager.setTimeout(lambda: wrong.grid_forget(), 2)
