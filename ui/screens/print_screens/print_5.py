@@ -1,3 +1,5 @@
+import io
+import sys
 import tkinter as tk
 import subprocess
 
@@ -18,12 +20,13 @@ def showWrongMessage(code_frame):
     set_timeout_manager.setTimeout(lambda: wrong.grid_forget(), 2)
 def process_input(input_area, process_button, code_frame, correct, incorrect):
     input_text = input_area.get("1.0", "end-1c")
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
 
     try:
-        process = subprocess.Popen(["python", "-c", input_text], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
+        exec(input_text)
 
-        output=stdout.decode().strip()
+        output = captured_output.getvalue().replace("\n", "")
         if output == "Please Climb the tower fast":
             process_button.grid_remove()
             repository = UserProgressRepository()
@@ -130,7 +133,7 @@ def correct_music_sheet(output_frame, code_frame, change_screen, input_area):
                                        image_size=(285, 425), bg=output_frame.cget('bg'))
     music_sheet_image.grid(row=0, column=0, sticky='w', padx=(180, 0), pady=(20, 0))
     next_level_button = tk.Button(code_frame, width=7, height=2, text="Next",
-                                  command=lambda: (change_screen(Screens.LANDING), play_button_sound()))
+                                  command=lambda: (change_screen(Screens.PRINT_6), play_button_sound()))
     next_level_button.grid(row=1, column=0, sticky='e', padx=(0, 0), pady=(10, 10))
     pet_image = ClickableImage(code_frame, image_path=resource_path("assets\\images\\pet.png"),
                                image_size=(70, 50), bg=code_frame.cget('bg'))

@@ -20,7 +20,7 @@ def showWrongMessage(code_frame):
 
 def process_input(input_area, process_button, code_frame, correct, incorrect):
     input_text = input_area.get("1.0", "end-1c")
-    input_text_with_validation = input_text + 'print(planeta1 == "Earth" and planeta2 == "Moon"and distancia == 384400 and diametro_planeta1 =  12742.1 and diametro_planeta2 = 3474.8)'
+    input_text_with_validation = input_text + '\nprint(planeta1 == "Earth" and planeta2 == "Moon"and distancia == 384400 and diametro_planeta1 ==  12742.1 and diametro_planeta2 == 3474.8)'
     captured_output = io.StringIO()
     sys.stdout = captured_output
     try:

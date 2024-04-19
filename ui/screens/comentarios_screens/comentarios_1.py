@@ -1,3 +1,5 @@
+import io
+import sys
 import tkinter as tk
 import subprocess
 
@@ -20,13 +22,14 @@ def showWrongMessage(code_frame):
 def process_input(input_area, process_button, code_frame, correct, incorrect):
     global comentarios_0_completed
     input_text = input_area.get("1.0", "end-1c")
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
 
     try:
-        process = subprocess.Popen(["python", "-c", input_text], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
+        exec(input_text)
 
-        output=stdout.decode()
-        if output == "Sonata para piano No. 14\r\n":
+        output = captured_output.getvalue().replace("\n", "")
+        if output == "Sonata para piano No. 14":
             process_button.grid_remove()
             repository = UserProgressRepository()
             correct()

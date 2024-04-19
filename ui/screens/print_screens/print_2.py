@@ -1,3 +1,5 @@
+import io
+import sys
 import tkinter as tk
 import subprocess
 
@@ -18,13 +20,14 @@ def showWrongMessage(code_frame):
     set_timeout_manager.setTimeout(lambda: wrong.grid_forget(), 2)
 def process_input(input_area, process_button, code_frame, correct, incorrect):
     input_text = input_area.get("1.0", "end-1c")
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
 
     try:
-        process = subprocess.Popen(["python", "-c", input_text], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
+        exec(input_text)
 
-        output=stdout.decode().strip()
-        if output == "Climb\r\nthe\r\ntower":
+        output = captured_output.getvalue()
+        if output == "Climb\nthe\ntower\n":
             process_button.grid_remove()
             repository = UserProgressRepository()
             correct()

@@ -1,5 +1,8 @@
+import io
+import sys
 import tkinter as tk
 import subprocess
+
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from ui.components.clickable_image import ClickableImage
@@ -19,12 +22,13 @@ def showWrongMessage(code_frame):
 def process_input(input_area, process_button, code_frame, correct, incorrect):
     global comentarios_0_completed
     input_text = input_area.get("1.0", "end-1c")
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
 
     try:
-        process = subprocess.Popen(["python", "-c", input_text], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
+        exec(input_text)
 
-        output=stdout.decode()
+        output = captured_output.getvalue().replace("\n", "")
         if output == "":
             process_button.grid_remove()
             repository = UserProgressRepository()

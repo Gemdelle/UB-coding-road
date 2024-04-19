@@ -19,7 +19,7 @@ def showWrongMessage(code_frame):
     set_timeout_manager.setTimeout(lambda: wrong.grid_forget(), 2)
 def process_input(input_area, process_button, code_frame, correct, incorrect):
     input_text = input_area.get("1.0", "end-1c")
-    input_text_with_validation = input_text + 'print(planeta1 == "Earth" and planeta2 == "Moon")'
+    input_text_with_validation = input_text + '\nprint(planeta1 == "Venus" and planeta2 == "Mercury")'
     captured_output = io.StringIO()
     sys.stdout = captured_output
     try:

@@ -26,7 +26,6 @@ def process_input(input_area, process_button, code_frame, correct, incorrect):
     ]
 
     input_text = input_area.get("1.0", "end-1c")
-    # Check if all patterns are present
     all_patterns_present = all(re.search(pattern, input_text) is not None for pattern in patterns)
     captured_output = io.StringIO()
     sys.stdout = captured_output
