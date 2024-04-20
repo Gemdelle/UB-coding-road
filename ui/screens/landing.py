@@ -1,9 +1,10 @@
 import tkinter as tk
+from tkinter import YES, BOTH
+
+from PIL import Image, ImageTk
 
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
-from ui.components.clickable_image import ClickableImage
-from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
 from utils.sound_manager import SoundManager, play_background_music, play_button_sound
 
@@ -16,25 +17,28 @@ def draw(frame, change_screen):
 
     play_background_music()
 
-    title_frame = tk.Frame(frame, bg=frame.cget('bg'))
-    title_frame.grid(row=0, column=0, columnspan=8)
+    canvas = tk.Canvas(frame, bg="black", width=1280, height=720)
+    canvas.pack(fill=BOTH, expand=YES)
 
-    title_label = WhiteStormLabel(title_frame, text=f"Coding Road Map", foreground="#e8e8e3", font_size=35, bg=frame.cget('bg'))
-    title_label.grid(row=0, column=0, sticky=tk.W,padx=(300, 0), pady=(0, 0))
+    image = Image.open(resource_path("assets\\images\\background.jpg"))
+    image = image.resize((1280, 720))
+    canvas.image = ImageTk.PhotoImage(image)
+    canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
 
-    body_frame = tk.Frame(frame, bg=frame.cget('bg'))
-    body_frame.grid(row=1, column=0, columnspan=8)
+    canvas.create_text(630, 50, text="Coding Road Map", fill="#e8e8e3", font=("Georgia", 35, "bold"))
 
     row_index = 0
+    row_offset = 50
     for key, value in user_progress.items():
-        label = WhiteStormLabel(body_frame, text=f"{row_index}. {key.capitalize()}", foreground="#e8e8e3", font_size=20, bg=frame.cget('bg'))
-        label.grid(row=row_index, column=0, padx=(40, 40), pady=(0, 0), sticky=tk.W)
+        column_offset = 50
+        canvas.create_text(150, 100 + row_offset, text=f"{row_index}. {key.capitalize()}", fill="#e8e8e3", font=("Georgia", 20, "bold"), anchor="nw")
 
         if value["status"] != "LOCKED":
-            book_image = ClickableImage(body_frame, image_path=resource_path("assets\\images\\books\\"+str(row_index+1)+".png"),
-                                        bg=frame.cget('bg'), image_size=(60, 80))
-            book_image.grid(row=row_index, column=1, sticky='w', padx=(0, 20),
-                            pady=(20, 10))
+            image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index+1)+".png"))
+            image_book = image_book.resize((40, 50))
+            image_book_tk = ImageTk.PhotoImage(image_book)
+            setattr(canvas, f"image_book_{row_index}", image_book_tk)
+            canvas.create_image(400, 90 + row_offset, anchor=tk.NW, image=image_book_tk)
 
         for i in range(value["total"]):
             state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
@@ -46,11 +50,29 @@ def draw(frame, change_screen):
                 levels_image_path = resource_path("assets\\images\\levels\\locked.png")
             elif state == "COMPLETED":
                 levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-passed.png")
-            button = ClickableImage(body_frame, image_path=levels_image_path, image_size=(60, 100), bg=frame.cget('bg'), highlightthickness=0, callback=lambda screen=screen_to_change, state=state: (change_screen(screen), play_button_sound()) if state != "LOCKED" else None)
-            button.grid(row=row_index, column=2 + i, padx=(5, 5), pady=(20, 0), sticky=tk.W)
 
-        # test_stats = value["test"]
-        # rhombus_button = RombusButton(body_frame, width=20, height=20, text=f"{test_stats['actual']}/{test_stats['total']}")
-        # rhombus_button.grid(row=row_index, column=2 + value["total"] + 1, padx=10, pady=10, sticky=tk.W)
+            image_level = Image.open(levels_image_path)
+            image_level = image_level.resize((60, 100))
+            image_level_tk = ImageTk.PhotoImage(image_level)
 
+            def on_image_click(event, screen=screen_to_change):
+                change_screen(screen)
+                canvas.destroy()
+
+            def on_image_enter(event):
+                canvas.config(cursor="hand2")
+
+            def on_image_leave(event):
+                canvas.config(cursor="")
+
+            setattr(canvas, f"image_level_tk_{row_index}_{i}", image_level_tk)
+            button = canvas.create_image(430 + column_offset, 80 + row_offset, anchor=tk.NW, image=image_level_tk)
+            if state != "LOCKED":
+                canvas.tag_bind(button, "<Enter>", on_image_enter)
+                canvas.tag_bind(button, "<Leave>", on_image_leave)
+                canvas.tag_bind(button, '<Button-1>', on_image_click)
+
+            column_offset += 80
+
+        row_offset += 100
         row_index += 1
