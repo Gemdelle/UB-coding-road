@@ -8,6 +8,22 @@ from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
 from utils.sound_manager import play_button_sound
 
+output_container_width = 500
+output_container_height = 534
+output_container_x = 730
+output_container_y = 122
+
+def resize_and_center_image(image):
+    img_width, img_height = image.size
+    scale = min(output_container_width / img_width, output_container_height / img_height)
+    new_width = int(img_width * scale)
+    new_height = int(img_height * scale)
+    resized_image = image.resize((new_width, new_height))
+
+    x = (output_container_width - new_width) // 2
+    y = (output_container_height - new_height) // 2
+
+    return resized_image, x, y
 
 class ScreenLayout:
     def __init__(self, frame, back_screen, next_screen, process_input, level_name, level_number, module_number, background_image_path, correct_output_image_path, incorrect_output_image_path, title_text, subtitle_text, task_text, correct_code_text, incorrect_code_text):
@@ -49,8 +65,8 @@ class ScreenLayout:
         # End Background #
 
         # Start Title and Subtitle #
-        canvas.create_text(70, 50, text=self.title_text, fill="#e8e8e3", font=("Georgia", 25, "bold"), anchor="w")
-        canvas.create_text(70, 100, text=self.subtitle_text, fill="#e8e8e3",
+        canvas.create_text(45, 65, text=self.title_text, fill="#e8e8e3", font=("Georgia", 25, "bold"), anchor="w")
+        canvas.create_text(45, 115, text=self.subtitle_text, fill="#e8e8e3",
                            font=("Georgia", 16, "bold"), anchor="w")
         # End Title and Subtitle #
 
@@ -71,7 +87,7 @@ class ScreenLayout:
             image_level_tk = ImageTk.PhotoImage(image_level)
 
             setattr(canvas, f"image_level_tk_{i}", image_level_tk)
-            canvas.create_image(320 + column_offset, 60, anchor="w", image=image_level_tk)
+            canvas.create_image(320 + column_offset, 75, anchor="w", image=image_level_tk)
             column_offset += 60
         # End Levels Images #
 
@@ -86,7 +102,7 @@ class ScreenLayout:
             canvas.destroy()
 
         setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
-        back_arrow_button = canvas.create_image(1100, 60, anchor="w", image=back_arrow_image_tk)
+        back_arrow_button = canvas.create_image(1075, 75, anchor="w", image=back_arrow_image_tk)
         canvas.tag_bind(back_arrow_button, "<Enter>", on_image_enter)
         canvas.tag_bind(back_arrow_button, "<Leave>", on_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
@@ -94,22 +110,22 @@ class ScreenLayout:
 
         # Start Book #
         book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.level_number}.png"))
-        book_image_image = book_image_image.resize((60, 80))
+        book_image_image = book_image_image.resize((51, 81))
         book_image_image_tk = ImageTk.PhotoImage(book_image_image)
 
         setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        canvas.create_image(1200, 60, anchor="w", image=book_image_image_tk)
+        canvas.create_image(1180, 75, anchor="w", image=book_image_image_tk)
         # End Book #
 
         # Start Task #
         task_canvas = tk.Canvas(self.frame, bg="#e8e8e3", width=600, height=160)
-        canvas.create_window(70, 200, window=task_canvas, anchor="w")
+        canvas.create_window(45, 220, window=task_canvas, anchor="w")
         task_canvas.create_text(20, 80, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
         # Start Code Area #
         text_area = tk.Text(canvas, wrap="word", width=75, height=22)
-        canvas.create_window(70, 480, window=text_area, anchor="w")
+        canvas.create_window(45, 490, window=text_area, anchor="w")
         # End Code Area #
 
         if user_completed_stage:
@@ -122,7 +138,7 @@ class ScreenLayout:
         if not user_completed_stage:
             # Start Run Button #
             run_button_canvas = tk.Canvas(self.frame, bg="red", width=60, height=30)
-            run_button_window = canvas.create_window(600, 630, window=run_button_canvas, anchor="w")
+            run_button_window = canvas.create_window(580, 640, window=run_button_canvas, anchor="w")
             run_button_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
             run_button_image = run_button_image.resize((87, 46))
             run_button_image_tk = ImageTk.PhotoImage(run_button_image)
@@ -171,25 +187,25 @@ class ScreenLayout:
     def incorrect_output(self, output_canvas):
         if self.incorrect_output_image_path is not None:
             music_sheet_image = Image.open(self.incorrect_output_image_path)
-            music_sheet_image = music_sheet_image.resize((307, 534))
-            music_sheet_image_tk = ImageTk.PhotoImage(music_sheet_image)
+            resized_image, x, y = resize_and_center_image(music_sheet_image)
+            music_sheet_image_tk = ImageTk.PhotoImage(resized_image)
 
             setattr(output_canvas, f"music_sheet_image_tk_wrong", music_sheet_image_tk)
-            output_canvas.create_image(800, 120, anchor='nw', image=music_sheet_image_tk)
+            output_canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk)
 
     def correct_output(self, canvas):
         music_sheet_image = Image.open(self.correct_output_image_path)
-        music_sheet_image = music_sheet_image.resize((307, 534))
-        music_sheet_image_tk = ImageTk.PhotoImage(music_sheet_image)
+        resized_image, x, y = resize_and_center_image(music_sheet_image)
+        music_sheet_image_tk = ImageTk.PhotoImage(resized_image)
         setattr(canvas, f"music_sheet_image_tk_right", music_sheet_image_tk)
-        canvas.create_image(800, 120, anchor='nw', image=music_sheet_image_tk)
+        canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk)
 
     def correct_excercise_state(self, canvas, input_area):
         self.correct_output(canvas)
 
         # Start Next Button #
         next_button_canvas = tk.Canvas(canvas, bg="white", width=60, height=30, highlightthickness=0)
-        canvas.create_window(600, 630, window=next_button_canvas, anchor="w")
+        canvas.create_window(580, 640, window=next_button_canvas, anchor="w")
         next_button_image = Image.open(resource_path("assets\\images\\book.jpg"))
         next_button_image = next_button_image.resize((87, 46))
         next_button_image_tk = ImageTk.PhotoImage(next_button_image)
