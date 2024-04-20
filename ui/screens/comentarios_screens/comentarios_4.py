@@ -3,12 +3,10 @@ import re
 
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
-from ui.components.clickable_image import ClickableImage
 from ui.components.screen_layout import ScreenLayout
-from ui.components.white_storm_label import WhiteStormLabel
 from utils.resource_path_util import resource_path
 from utils.set_time_out_manager import SetTimeoutManager
-from utils.sound_manager import play_correct_sound, play_wrong_sound, play_button_sound
+from utils.sound_manager import play_correct_sound, play_wrong_sound
 
 
 def showWrongMessage(code_frame):
