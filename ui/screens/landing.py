@@ -8,7 +8,6 @@ from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
 from utils.sound_manager import SoundManager, play_background_music, play_button_sound
 
-levels=["a","b","c","d","e","f","g","h","i","j","k", "l"]
 
 def draw(frame, change_screen):
     global levels
@@ -45,11 +44,11 @@ def draw(frame, change_screen):
             screen_to_change = Screens[f'{key}_{i}'.upper()]
             levels_image_path = None
             if state == "IN_PROGRESS":
-                levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-current.png")
+                levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-current.png")
             elif state == "LOCKED":
                 levels_image_path = resource_path("assets\\images\\levels\\locked.png")
             elif state == "COMPLETED":
-                levels_image_path = resource_path("assets\\images\\levels\\"+levels[row_index]+"-passed.png")
+                levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-passed.png")
 
             image_level = Image.open(levels_image_path)
             image_level = image_level.resize((60, 100))
