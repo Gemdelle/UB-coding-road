@@ -169,12 +169,13 @@ class ScreenLayout:
             text_area.config(state=tk.DISABLED, cursor="arrow")
 
     def incorrect_output(self, output_canvas):
-        music_sheet_image = Image.open(self.incorrect_output_image_path)
-        music_sheet_image = music_sheet_image.resize((307, 534))
-        music_sheet_image_tk = ImageTk.PhotoImage(music_sheet_image)
+        if self.incorrect_output_image_path is not None:
+            music_sheet_image = Image.open(self.incorrect_output_image_path)
+            music_sheet_image = music_sheet_image.resize((307, 534))
+            music_sheet_image_tk = ImageTk.PhotoImage(music_sheet_image)
 
-        setattr(output_canvas, f"music_sheet_image_tk_wrong", music_sheet_image_tk)
-        output_canvas.create_image(800, 120, anchor='nw', image=music_sheet_image_tk)
+            setattr(output_canvas, f"music_sheet_image_tk_wrong", music_sheet_image_tk)
+            output_canvas.create_image(800, 120, anchor='nw', image=music_sheet_image_tk)
 
     def correct_output(self, canvas):
         music_sheet_image = Image.open(self.correct_output_image_path)
