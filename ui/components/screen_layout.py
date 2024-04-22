@@ -58,7 +58,7 @@ class ScreenLayout:
             canvas.config(cursor="")
 
         # Start Background #
-        image = Image.open(self.background_image_path)
+        image = Image.open(resource_path(f"assets\\images\\backgrounds\\background-{self.module_number}.png"))
         image = image.resize((1280, 720))
         canvas.image = ImageTk.PhotoImage(image)
         canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)

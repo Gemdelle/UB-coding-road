@@ -19,7 +19,7 @@ def draw(frame, change_screen):
     canvas = tk.Canvas(frame, bg="black", width=1280, height=720)
     canvas.pack(fill=BOTH, expand=YES)
 
-    image = Image.open(resource_path("assets\\images\\background.jpg"))
+    image = Image.open(resource_path("assets\\images\\backgrounds\\background-main.png"))
     image = image.resize((1280, 720))
     canvas.image = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
