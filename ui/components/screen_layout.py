@@ -65,8 +65,8 @@ class ScreenLayout:
         # End Background #
 
         # Start Title and Subtitle #
-        canvas.create_text(45, 65, text=self.title_text, fill="#e8e8e3", font=("Georgia", 25, "bold"), anchor="w")
-        canvas.create_text(45, 115, text=self.subtitle_text, fill="#e8e8e3",
+        canvas.create_text(45, 40, text=self.title_text, fill="#e8e8e3", font=("Georgia", 25, "bold"), anchor="w")
+        canvas.create_text(45, 80, text=self.subtitle_text, fill="#e8e8e3",
                            font=("Georgia", 16, "bold"), anchor="w")
         # End Title and Subtitle #
 
@@ -97,14 +97,14 @@ class ScreenLayout:
         # End Levels Images #
 
         # Start Task #
-        task_canvas = tk.Canvas(self.frame, bg="#e8e8e3", width=600, height=160)
-        canvas.create_window(45, 220, window=task_canvas, anchor="w")
+        task_canvas = tk.Canvas(self.frame, bg="#e8e8e3", width=600, height=190)
+        canvas.create_window(45, 200, window=task_canvas, anchor="w")
         task_canvas.create_text(20, 80, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
         # Start Code Area #
         text_area = tk.Text(canvas, wrap="word", width=75, height=22)
-        canvas.create_window(45, 490, window=text_area, anchor="w")
+        canvas.create_window(45, 500, window=text_area, anchor="w")
         # End Code Area #
 
         if user_completed_stage:
