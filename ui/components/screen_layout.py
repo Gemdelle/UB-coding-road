@@ -98,11 +98,11 @@ class ScreenLayout:
 
         # Start Task #
         frame_image = Image.open(resource_path(f"assets\\images\\frames\\instructions-background.png"))
-        frame_image = frame_image.resize((600, 190))
+        frame_image = frame_image.resize((680, 200))
         frame_image_tk = ImageTk.PhotoImage(frame_image)
         setattr(canvas, f"frame_image_tk", frame_image_tk)
-        canvas.create_image(45, 200, anchor="w", image=frame_image_tk)
-        canvas.create_text(45, 200, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
+        canvas.create_image(25, 200, anchor="w", image=frame_image_tk)
+        canvas.create_text(120, 160, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
         # Start Code Area #
@@ -119,10 +119,10 @@ class ScreenLayout:
 
         if not user_completed_stage:
             # Start Run Button #
-            run_button_canvas = tk.Canvas(self.frame, bg="red", width=60, height=30)
-            run_button_window = canvas.create_window(580, 640, window=run_button_canvas, anchor="w")
+            run_button_canvas = tk.Canvas(self.frame, bg="red", width=90, height=60)
+            run_button_window = canvas.create_window(560, 640, window=run_button_canvas, anchor="w")
             run_button_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
-            run_button_image = run_button_image.resize((87, 46))
+            run_button_image = run_button_image.resize((120, 80))
             run_button_image_tk = ImageTk.PhotoImage(run_button_image)
 
             def on_run_button_click(event):
@@ -145,7 +145,7 @@ class ScreenLayout:
 
             # Start Tooltip Button #
             tooltip_button_image = Image.open(resource_path("assets\\images\\levels\\0-current.png"))
-            tooltip_button_image = tooltip_button_image.resize((46, 46))
+            tooltip_button_image = tooltip_button_image.resize((60, 60))
             tooltip_button_image_tk = ImageTk.PhotoImage(tooltip_button_image)
 
             def on_tooltip_button_enter(event):
@@ -157,7 +157,7 @@ class ScreenLayout:
                 self.incorrect_output(canvas)
 
             setattr(canvas, "tooltip_button_image_tk", tooltip_button_image_tk)
-            tooltip_button = canvas.create_image(1000, 680, anchor="w", image=tooltip_button_image_tk)
+            tooltip_button = canvas.create_image(1068, 673, anchor="w", image=tooltip_button_image_tk)
             canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
             canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
             # End Tooltip Button #
@@ -168,7 +168,7 @@ class ScreenLayout:
 
         # Start Back Arrow #
         back_arrow_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
-        back_arrow_image = back_arrow_image.resize((87, 46))
+        back_arrow_image = back_arrow_image.resize((59, 33))
         back_arrow_image_tk = ImageTk.PhotoImage(back_arrow_image)
 
         def on_back_arrow_click(event):
@@ -177,7 +177,7 @@ class ScreenLayout:
             canvas.destroy()
 
         setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
-        back_arrow_button = canvas.create_image(1075, 675, anchor="w", image=back_arrow_image_tk)
+        back_arrow_button = canvas.create_image(1141, 666, anchor="w", image=back_arrow_image_tk)
         canvas.tag_bind(back_arrow_button, "<Enter>", on_image_enter)
         canvas.tag_bind(back_arrow_button, "<Leave>", on_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
@@ -185,11 +185,11 @@ class ScreenLayout:
 
         # Start Book #
         book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.module_number}.png"))
-        book_image_image = book_image_image.resize((51, 81))
+        book_image_image = book_image_image.resize((40, 63))
         book_image_image_tk = ImageTk.PhotoImage(book_image_image)
 
         setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        canvas.create_image(1180, 675, anchor="w", image=book_image_image_tk)
+        canvas.create_image(1213, 665, anchor="w", image=book_image_image_tk)
         # End Book #
 
     def incorrect_output(self, output_canvas):
