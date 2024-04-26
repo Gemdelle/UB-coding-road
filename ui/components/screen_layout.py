@@ -81,11 +81,11 @@ class ScreenLayout:
         for i in range(user_progress[self.level_name]["total"]):
             state = "LOCKED" if user_progress[self.level_name]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress[self.level_name]["current"] else "LOCKED" if i > user_progress[self.level_name]["current"] else "COMPLETED"
             if state == "IN_PROGRESS":
-                levels_image_path = resource_path(f"assets\\images\\levels\\{self.level_number}-current.png")
+                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-current.png")
             elif state == "LOCKED":
                 levels_image_path = resource_path("assets\\images\\levels\\locked.png")
             elif state == "COMPLETED":
-                levels_image_path = resource_path(f"assets\\images\\levels\\{self.level_number}-passed.png")
+                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-passed.png")
 
             image_level = Image.open(levels_image_path)
             image_level = image_level.resize((45, 80))
@@ -97,8 +97,12 @@ class ScreenLayout:
         # End Levels Images #
 
         # Start Task #
-        task_canvas = tk.Canvas(self.frame, bg="#e8e8e3", width=600, height=190)
+        task_canvas = tk.Canvas(self.frame, width=600, height=190)
         canvas.create_window(45, 200, window=task_canvas, anchor="w")
+        frame_image = Image.open(resource_path(f"assets\\images\\frames\\instructions-background.png"))
+        frame_image = frame_image.resize((600, 190))
+        task_canvas.image = ImageTk.PhotoImage(frame_image)
+        task_canvas.create_image(0, 0, anchor=tk.NW, image=task_canvas.image)
         task_canvas.create_text(20, 80, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
@@ -181,7 +185,7 @@ class ScreenLayout:
         # End Back Arrow #
 
         # Start Book #
-        book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.level_number}.png"))
+        book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.module_number}.png"))
         book_image_image = book_image_image.resize((51, 81))
         book_image_image_tk = ImageTk.PhotoImage(book_image_image)
 
