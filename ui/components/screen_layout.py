@@ -119,10 +119,10 @@ class ScreenLayout:
 
         if not user_completed_stage:
             # Start Run Button #
-            run_button_canvas = tk.Canvas(self.frame, bg="red", width=90, height=60)
+            run_button_canvas = tk.Canvas(self.frame, bg="white", width=80, height=50, highlightthickness=0)
             run_button_window = canvas.create_window(560, 640, window=run_button_canvas, anchor="w")
-            run_button_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
-            run_button_image = run_button_image.resize((120, 80))
+            run_button_image = Image.open(resource_path("assets\\images\\buttons\\run-button.png"))
+            run_button_image = run_button_image.resize((76, 47))
             run_button_image_tk = ImageTk.PhotoImage(run_button_image)
 
             def on_run_button_click(event):
@@ -137,7 +137,7 @@ class ScreenLayout:
                 run_button_canvas.config(cursor="")
 
             setattr(run_button_canvas, f"run_button_image_tk", run_button_image_tk)
-            run_button = run_button_canvas.create_image(10, 10, anchor="w", image=run_button_image_tk)
+            run_button = run_button_canvas.create_image(5, 25, anchor="w", image=run_button_image_tk)
             run_button_canvas.tag_bind(run_button, "<Enter>", on_image_enter)
             run_button_canvas.tag_bind(run_button, "<Leave>", on_image_leave)
             run_button_canvas.tag_bind(run_button, '<Button-1>', on_run_button_click)

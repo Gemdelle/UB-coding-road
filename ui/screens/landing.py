@@ -30,7 +30,9 @@ def draw(frame, change_screen):
     row_offset = 50
     for key, value in user_progress.items():
         column_offset = 50
-        canvas.create_text(150, 100 + row_offset, text=f"{row_index}. {key.capitalize()}", fill="#e8e8e3", font=("Georgia", 15, "bold"), anchor="nw")
+        capitalized_module_name = [word.capitalize() for word in key.split('_')]
+        output_capitalized_module_name = " ".join(capitalized_module_name)
+        canvas.create_text(150, 100 + row_offset, text=f"{row_index}. {output_capitalized_module_name}", fill="#e8e8e3", font=("Georgia", 15, "bold"), anchor="nw")
 
         if value["status"] != "LOCKED":
             image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index+1)+".png"))

@@ -12,7 +12,7 @@ def play_music():
 
 def draw(frame, change_screen):
     play_music()
-    splash_image = ClickableImage(frame, image_path=resource_path("assets\\images\\splash.png"), image_size=(1200, 640), bg=frame.cget('bg'))
+    splash_image = ClickableImage(frame, image_path=resource_path("assets\\images\\splash.png"), image_size=(1280, 720), bg=frame.cget('bg'))
     splash_image.pack()
 
     set_timeout_manager = SetTimeoutManager()
