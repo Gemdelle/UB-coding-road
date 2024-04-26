@@ -72,7 +72,12 @@ class ScreenLayout:
 
         # Start Levels Images #
         levels_image_path = None
-        column_offset = 50
+        image_width = 45
+        offset_between_images = 20
+
+        total_width = (user_progress[self.level_name]["total"] - 1) * offset_between_images + user_progress[self.level_name]["total"] * image_width
+
+        x_start = 1230 - total_width
         for i in range(user_progress[self.level_name]["total"]):
             state = "LOCKED" if user_progress[self.level_name]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress[self.level_name]["current"] else "LOCKED" if i > user_progress[self.level_name]["current"] else "COMPLETED"
             if state == "IN_PROGRESS":
@@ -87,35 +92,9 @@ class ScreenLayout:
             image_level_tk = ImageTk.PhotoImage(image_level)
 
             setattr(canvas, f"image_level_tk_{i}", image_level_tk)
-            canvas.create_image(320 + column_offset, 75, anchor="w", image=image_level_tk)
-            column_offset += 60
+            x_coordinate = x_start + i * (image_width + offset_between_images)
+            canvas.create_image(x_coordinate, 75, anchor="w", image=image_level_tk)
         # End Levels Images #
-
-        # Start Back Arrow #
-        back_arrow_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
-        back_arrow_image = back_arrow_image.resize((87, 46))
-        back_arrow_image_tk = ImageTk.PhotoImage(back_arrow_image)
-
-        def on_back_arrow_click(event):
-            play_button_sound()
-            self.back_screen()
-            canvas.destroy()
-
-        setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
-        back_arrow_button = canvas.create_image(1075, 75, anchor="w", image=back_arrow_image_tk)
-        canvas.tag_bind(back_arrow_button, "<Enter>", on_image_enter)
-        canvas.tag_bind(back_arrow_button, "<Leave>", on_image_leave)
-        canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
-        # End Back Arrow #
-
-        # Start Book #
-        book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.level_number}.png"))
-        book_image_image = book_image_image.resize((51, 81))
-        book_image_image_tk = ImageTk.PhotoImage(book_image_image)
-
-        setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        canvas.create_image(1180, 75, anchor="w", image=book_image_image_tk)
-        # End Book #
 
         # Start Task #
         task_canvas = tk.Canvas(self.frame, bg="#e8e8e3", width=600, height=160)
@@ -175,7 +154,7 @@ class ScreenLayout:
                 self.incorrect_output(canvas)
 
             setattr(canvas, "tooltip_button_image_tk", tooltip_button_image_tk)
-            tooltip_button = canvas.create_image(1150, 680, anchor="w", image=tooltip_button_image_tk)
+            tooltip_button = canvas.create_image(1000, 680, anchor="w", image=tooltip_button_image_tk)
             canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
             canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
             # End Tooltip Button #
@@ -183,6 +162,32 @@ class ScreenLayout:
             self.incorrect_output(canvas)
         else:
             text_area.config(state=tk.DISABLED, cursor="arrow")
+
+        # Start Back Arrow #
+        back_arrow_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
+        back_arrow_image = back_arrow_image.resize((87, 46))
+        back_arrow_image_tk = ImageTk.PhotoImage(back_arrow_image)
+
+        def on_back_arrow_click(event):
+            play_button_sound()
+            self.back_screen()
+            canvas.destroy()
+
+        setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
+        back_arrow_button = canvas.create_image(1075, 675, anchor="w", image=back_arrow_image_tk)
+        canvas.tag_bind(back_arrow_button, "<Enter>", on_image_enter)
+        canvas.tag_bind(back_arrow_button, "<Leave>", on_image_leave)
+        canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
+        # End Back Arrow #
+
+        # Start Book #
+        book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.level_number}.png"))
+        book_image_image = book_image_image.resize((51, 81))
+        book_image_image_tk = ImageTk.PhotoImage(book_image_image)
+
+        setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
+        canvas.create_image(1180, 675, anchor="w", image=book_image_image_tk)
+        # End Book #
 
     def incorrect_output(self, output_canvas):
         if self.incorrect_output_image_path is not None:
