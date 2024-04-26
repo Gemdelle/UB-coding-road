@@ -48,7 +48,7 @@ initial_data = {
         }
     },
     "operaciones_aritmeticas": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.IN_PROGRESS.value,
         "current": 0,
         "total": 9,
         "test": {
