@@ -47,24 +47,24 @@ initial_data = {
             "total": 100
         }
     },
-    # "operaciones_aritmeticas": {
-    #     "status": UserProgressStatus.LOCKED.value,
-    #     "current": 0,
-    #     "total": 9,
-    #     "test": {
-    #         "actual": 0,
-    #         "total": 100
-    #     }
-    # },
-    # "operaciones_comparacion": {
-    #     "status": UserProgressStatus.LOCKED.value,
-    #     "current": 0,
-    #     "total": 6,
-    #     "test": {
-    #         "actual": 0,
-    #         "total": 100
-    #     }
-    # },
+    "operaciones_aritmeticas": {
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
+        "total": 9,
+        "test": {
+            "actual": 0,
+            "total": 100
+        }
+    },
+    "operaciones_comparacion": {
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
+        "total": 6,
+        "test": {
+            "actual": 0,
+            "total": 100
+        }
+    },
     # "bucle_if": {
     #     "status": UserProgressStatus.LOCKED.value,
     #     "current": 0,

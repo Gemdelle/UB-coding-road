@@ -92,3 +92,11 @@ class UserProgressRepository:
     def progress_input(self):
         self._current_progress["input"]["current"] += 1
         self.update_progress(self._current_progress)
+
+    def progress_operaciones_aritmeticas(self):
+        self._current_progress["operaciones_aritmeticas"]["current"] += 1
+        self.update_progress(self._current_progress)
+
+    def progress_operaciones_comparacion(self):
+        self._current_progress["operaciones_comparacion"]["current"] += 1
+        self.update_progress(self._current_progress)

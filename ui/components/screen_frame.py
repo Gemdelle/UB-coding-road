@@ -7,6 +7,11 @@ from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion
 from ui.screens.comentarios_screens import comentarios_0, comentarios_1, comentarios_2, comentarios_3, comentarios_4, \
     comentarios_test
 from ui.screens.input_screens import input_0, input_1, input_2, input_test
+from ui.screens.operaciones_aritmeticas import operaciones_aritmeticas_0, operaciones_aritmeticas_1, \
+    operaciones_aritmeticas_2, operaciones_aritmeticas_3, operaciones_aritmeticas_4, operaciones_aritmeticas_5, \
+    operaciones_aritmeticas_6, operaciones_aritmeticas_7, operaciones_aritmeticas_8
+from ui.screens.operaciones_comparacion import operaciones_comparacion_0, operaciones_comparacion_1, \
+    operaciones_comparacion_2, operaciones_comparacion_3, operaciones_comparacion_4, operaciones_comparacion_5
 from ui.screens.print_screens import print_0, print_1, print_2, print_3, print_4, print_test, print_5, print_6
 from ui.screens.transformacion_screens import transformacion_0, transformacion_1, transformacion_test, transformacion_2, \
     transformacion_3
@@ -45,22 +50,22 @@ screen_draw_functions = {
     Screens.INPUT_1: input_1.draw,
     Screens.INPUT_2: input_2.draw,
     Screens.INPUT_TEST: input_test.draw,
-    # Screens.OPERACIONES_ARITMETICAS_0: operaciones_aritmeticas_0.draw,
-    # Screens.OPERACIONES_ARITMETICAS_1: operaciones_aritmeticas_1.draw,
-    # Screens.OPERACIONES_ARITMETICAS_2: operaciones_aritmeticas_2.draw,
-    # Screens.OPERACIONES_ARITMETICAS_3: operaciones_aritmeticas_3.draw,
-    # Screens.OPERACIONES_ARITMETICAS_4: operaciones_aritmeticas_4.draw,
-    # Screens.OPERACIONES_ARITMETICAS_5: operaciones_aritmeticas_5.draw,
-    # Screens.OPERACIONES_ARITMETICAS_6: operaciones_aritmeticas_6.draw,
-    # Screens.OPERACIONES_ARITMETICAS_7: operaciones_aritmeticas_7.draw,
-    # Screens.OPERACIONES_ARITMETICAS_8: operaciones_aritmeticas_8.draw,
+    Screens.OPERACIONES_ARITMETICAS_0: operaciones_aritmeticas_0.draw,
+    Screens.OPERACIONES_ARITMETICAS_1: operaciones_aritmeticas_1.draw,
+    Screens.OPERACIONES_ARITMETICAS_2: operaciones_aritmeticas_2.draw,
+    Screens.OPERACIONES_ARITMETICAS_3: operaciones_aritmeticas_3.draw,
+    Screens.OPERACIONES_ARITMETICAS_4: operaciones_aritmeticas_4.draw,
+    Screens.OPERACIONES_ARITMETICAS_5: operaciones_aritmeticas_5.draw,
+    Screens.OPERACIONES_ARITMETICAS_6: operaciones_aritmeticas_6.draw,
+    Screens.OPERACIONES_ARITMETICAS_7: operaciones_aritmeticas_7.draw,
+    Screens.OPERACIONES_ARITMETICAS_8: operaciones_aritmeticas_8.draw,
     # Screens.OPERACIONES_ARITMETICAS_TEST: operaciones_aritmeticas_test.draw,
-    # Screens.OPERACIONES_COMPARACION_0: operaciones_comparacion_0.draw,
-    # Screens.OPERACIONES_COMPARACION_1: operaciones_comparacion_1.draw,
-    # Screens.OPERACIONES_COMPARACION_2: operaciones_comparacion_2.draw,
-    # Screens.OPERACIONES_COMPARACION_3: operaciones_comparacion_3.draw,
-    # Screens.OPERACIONES_COMPARACION_4: operaciones_comparacion_4.draw,
-    # Screens.OPERACIONES_COMPARACION_5: operaciones_comparacion_5.draw,
+    Screens.OPERACIONES_COMPARACION_0: operaciones_comparacion_0.draw,
+    Screens.OPERACIONES_COMPARACION_1: operaciones_comparacion_1.draw,
+    Screens.OPERACIONES_COMPARACION_2: operaciones_comparacion_2.draw,
+    Screens.OPERACIONES_COMPARACION_3: operaciones_comparacion_3.draw,
+    Screens.OPERACIONES_COMPARACION_4: operaciones_comparacion_4.draw,
+    Screens.OPERACIONES_COMPARACION_5: operaciones_comparacion_5.draw,
     # Screens.OPERACIONES_COMPARACION_TEST: operaciones_comparacion_test.draw,
     # Screens.BUCLE_IF_0: bucle_if_0.draw,
     # Screens.BUCLE_IF_1: bucle_if_1.draw,
