@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import YES, BOTH
 
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageEnhance
 
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
@@ -44,9 +44,31 @@ def draw(frame, change_screen):
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
 
+    image2 = Image.open(resource_path("assets\\images\\frames\\instructions-background.png"))
+    image2 = image2.resize((1100, 100))
+    image2_tk = ImageTk.PhotoImage(image2)
+    setattr(canvas, f"image2_tk", image2_tk)
+    canvas.create_image(130, 50, anchor=tk.NW, image=image2_tk)
+
     row_index = 0
     row_offset = 50
+    emblems_offset = 40
     for key, value in user_progress.items():
+        emblem_image = Image.open(resource_path("assets\\images\\emblems\\"+str(row_index)+".png"))
+        emblem_image = emblem_image.resize((62, 62))
+
+        if value["status"] == "LOCKED":
+            emblem_image_enhance = ImageEnhance.Brightness(emblem_image)
+            emblem_image_unlocked = emblem_image_enhance.enhance(0.2)
+            emblem_image_tk = ImageTk.PhotoImage(emblem_image_unlocked)
+        else:
+            emblem_image_tk = ImageTk.PhotoImage(emblem_image)
+
+        setattr(canvas, f"emblem_image_tk_{row_index}", emblem_image_tk)
+        canvas.create_image(130 + emblems_offset, 50, anchor=tk.NW, image=emblem_image_tk)
+
+        emblems_offset += 63
+
         if row_index < 5:
             column_offset = 40
             #capitalized_module_name = [word.capitalize() for word in key.split('_')]

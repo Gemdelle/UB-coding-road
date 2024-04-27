@@ -1,9 +1,8 @@
 from tkinter import BOTH, YES
 
 import tkinter as tk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageEnhance
 
-from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
 from utils.set_time_out_manager import SetTimeoutManager
@@ -121,7 +120,7 @@ class ScreenLayout:
         if not user_completed_stage:
             # Start Run Button #
             run_button_canvas = tk.Canvas(self.frame, bg="white", width=100, height=72, highlightthickness=0)
-            run_button_window = canvas.create_window(540, 640, window=run_button_canvas, anchor="w")
+            run_button_window = canvas.create_window(548, 635, window=run_button_canvas, anchor="w")
             run_button_image = Image.open(resource_path("assets\\images\\buttons\\run-button.png"))
             run_button_image = run_button_image.resize((96, 70))
             run_button_image_tk = ImageTk.PhotoImage(run_button_image)
@@ -278,11 +277,11 @@ class ScreenLayout:
 
     def show_wrong_message(self, code_frame):
         wrong_feedback_image = Image.open(resource_path("assets\\images\\code-feedback\\try-again-message-feedback.png"))
-        wrong_feedback_image = wrong_feedback_image.resize((83, 80))
+        wrong_feedback_image = wrong_feedback_image.resize((91, 80))
         wrong_feedback_tk = ImageTk.PhotoImage(wrong_feedback_image)
 
         setattr(code_frame, f"wrong_feedback_tk", wrong_feedback_tk)
-        wrong_feedback_id = code_frame.create_image(640, 655, anchor="w", image=wrong_feedback_tk)
+        wrong_feedback_id = code_frame.create_image(690, 640, anchor="w", image=wrong_feedback_tk)
 
         set_timeout_manager = SetTimeoutManager()
         set_timeout_manager.setTimeout(lambda: code_frame.delete(wrong_feedback_id), 2)
