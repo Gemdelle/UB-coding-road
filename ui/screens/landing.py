@@ -39,30 +39,20 @@ def draw(frame, change_screen):
         canvas.config(cursor="")
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(1180, 330, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(1180, 375, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
 
+    create_programme(canvas)
+    create_notes(canvas)
+    create_library(canvas)
+    create_toggle_sound(canvas)
+
     row_index = 0
     row_offset = 50
-    emblems_offset = 40
+    emblems_offset = 63
     for key, value in user_progress.items():
-        emblem_image = Image.open(resource_path("assets\\images\\emblems\\"+str(row_index)+".png"))
-        emblem_image = emblem_image.resize((45, 65))
-
-        if value["status"] == "LOCKED":
-            emblem_image_enhance = ImageEnhance.Brightness(emblem_image)
-            emblem_image_unlocked = emblem_image_enhance.enhance(0.2)
-            emblem_image_tk = ImageTk.PhotoImage(emblem_image_unlocked)
-        else:
-            emblem_image_tk = ImageTk.PhotoImage(emblem_image)
-
-        setattr(canvas, f"emblem_image_tk_{row_index}", emblem_image_tk)
-        canvas.create_image(140 + emblems_offset, 65, anchor=tk.NW, image=emblem_image_tk)
-
-        emblems_offset += 80
-
         if row_index < 5:
             column_offset = 40
             #capitalized_module_name = [word.capitalize() for word in key.split('_')]
@@ -108,7 +98,112 @@ def draw(frame, change_screen):
                     canvas.tag_bind(button, "<Leave>", on_image_leave)
                     canvas.tag_bind(button, '<Button-1>', on_image_click)
 
+                emblem_image = Image.open(resource_path("assets\\images\\emblems\\" + str(row_index) + ".png"))
+                emblem_image = emblem_image.resize((45, 65))
+
+                if value["status"] == "LOCKED":
+                    emblem_image_enhance = ImageEnhance.Brightness(emblem_image)
+                    emblem_image_unlocked = emblem_image_enhance.enhance(0.2)
+                    emblem_image_tk = ImageTk.PhotoImage(emblem_image_unlocked)
+                else:
+                    emblem_image_tk = ImageTk.PhotoImage(emblem_image)
+
+                setattr(canvas, f"emblem_image_tk_{row_index}", emblem_image_tk)
+                canvas.create_image(580 + column_offset + emblems_offset, 135 + row_offset, anchor=tk.NW,
+                                    image=emblem_image_tk)
+
                 column_offset += 63
 
         row_offset += 95
         row_index += 1
+
+
+def create_toggle_sound(canvas):
+    sound_manager = SoundManager()
+    toggle_sound_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-on.png"))
+    toggle_sound_button_image = toggle_sound_button_image.resize((115, 71))
+    toggle_sound_button_image_tk = ImageTk.PhotoImage(toggle_sound_button_image)
+
+    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-off.png"))
+    toggle_sound_off_button_image = toggle_sound_off_button_image.resize((115, 71))
+    toggle_sound_off_button_image_tk = ImageTk.PhotoImage(toggle_sound_off_button_image)
+
+    def on_tooltip_button_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_tooltip_button_leave(event):
+        canvas.config(cursor="")
+
+    def on_tooltip_button_click(button_id):
+        canvas.config(cursor="hand2")
+        sound_manager.toggle_sound()
+        toggle_sound_image_tk_changed = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
+        setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk_changed)
+        canvas.itemconfig(button_id, image=toggle_sound_image_tk_changed)
+
+    toggle_sound_image_tk = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
+    setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk)
+    tooltip_button = canvas.create_image(730, 110, anchor="w", image=toggle_sound_image_tk)
+    canvas.tag_bind(tooltip_button, '<Button-1>', lambda event: on_tooltip_button_click(tooltip_button))
+    canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
+    canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
+
+def create_programme(canvas):
+    programme_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\programme-button.png"))
+    programme_button_image = programme_button_image.resize((97, 60))
+    programme_button_image_tk = ImageTk.PhotoImage(programme_button_image)
+
+    def on_programme_button_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_programme_button_leave(event):
+        canvas.config(cursor="")
+
+    def on_programme_button_click(button_id):
+        canvas.config(cursor="hand2")
+
+    setattr(canvas, "programme_button_image_tk", programme_button_image_tk)
+    programme_button = canvas.create_image(340, 110, anchor="w", image=programme_button_image_tk)
+    canvas.tag_bind(programme_button, '<Button-1>', lambda event: on_programme_button_click(programme_button))
+    canvas.tag_bind(programme_button, "<Enter>", on_programme_button_enter)
+    canvas.tag_bind(programme_button, "<Leave>", on_programme_button_leave)
+
+def create_notes(canvas):
+    notes_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\notes-button.png"))
+    notes_button_image = notes_button_image.resize((97, 60))
+    notes_button_image_tk = ImageTk.PhotoImage(notes_button_image)
+
+    def on_notes_button_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_notes_button_leave(event):
+        canvas.config(cursor="")
+
+    def on_notes_button_click(button_id):
+        canvas.config(cursor="hand2")
+
+    setattr(canvas, "notes_button_image_tk", notes_button_image_tk)
+    notes_button = canvas.create_image(470, 110, anchor="w", image=notes_button_image_tk)
+    canvas.tag_bind(notes_button, '<Button-1>', lambda event: on_notes_button_click(notes_button))
+    canvas.tag_bind(notes_button, "<Enter>", on_notes_button_enter)
+    canvas.tag_bind(notes_button, "<Leave>", on_notes_button_leave)
+
+def create_library(canvas):
+    library_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\library-button.png"))
+    library_button_image = library_button_image.resize((97, 60))
+    library_button_image_tk = ImageTk.PhotoImage(library_button_image)
+
+    def on_library_button_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_library_button_leave(event):
+        canvas.config(cursor="")
+
+    def on_library_button_click(button_id):
+        canvas.config(cursor="hand2")
+
+    setattr(canvas, "library_button_image_tk", library_button_image_tk)
+    library_button = canvas.create_image(600, 110, anchor="w", image=library_button_image_tk)
+    canvas.tag_bind(library_button, '<Button-1>', lambda event: on_library_button_click(library_button))
+    canvas.tag_bind(library_button, "<Enter>", on_library_button_enter)
+    canvas.tag_bind(library_button, "<Leave>", on_library_button_leave)

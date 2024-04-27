@@ -12,6 +12,8 @@ class SoundManager:
             pygame.mixer.init()
             cls._instance.sounds = {}
             cls._instance.channel_assignments = {}
+            cls._instance.is_muted = False
+            cls._instance.previous_volumes = {}
         return cls._instance
 
     def load_sound(self, name, file_path):
@@ -24,6 +26,9 @@ class SoundManager:
             raise ValueError(f"Sound '{name}' not loaded.")
         channel = pygame.mixer.find_channel()
         self.channel_assignments[name] = channel
+        if self.is_muted:
+            self.previous_volumes[name] = self.sounds[name].get_volume()
+            self.sounds[name].set_volume(0)
         self.sounds[name].play(loops=loops)
 
     def stop_sound(self, name):
@@ -54,6 +59,20 @@ class SoundManager:
         if name not in self.sounds:
             raise ValueError(f"Sound '{name}' not loaded.")
         return name in self.channel_assignments and self.channel_assignments[name].get_busy()
+
+    def is_sound_muted(self):
+        return self.is_muted
+    def toggle_sound(self):
+        if self.is_muted:
+            self.is_muted = False
+            for name, volume in self.previous_volumes.items():
+                self.sounds[name].set_volume(volume)
+            self.previous_volumes.clear()
+        else:
+            self.is_muted = True
+            for name, sound in self.sounds.items():
+                self.previous_volumes[name] = sound.get_volume()
+                sound.set_volume(0)
 
 
 def play_button_sound():
