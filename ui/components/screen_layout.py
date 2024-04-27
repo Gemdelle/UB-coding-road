@@ -202,8 +202,16 @@ class ScreenLayout:
         book_image_image = book_image_image.resize((40, 63))
         book_image_image_tk = ImageTk.PhotoImage(book_image_image)
 
+        def on_book_button_image_enter(event):
+            canvas.config(cursor="hand2")
+
+        def on_book_button_image_leave(event):
+            canvas.config(cursor="")
+
         setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        canvas.create_image(660, 60, anchor="w", image=book_image_image_tk)
+        book_button = canvas.create_image(660, 60, anchor="w", image=book_image_image_tk)
+        canvas.tag_bind(book_button, "<Enter>", on_book_button_image_enter)
+        canvas.tag_bind(book_button, "<Leave>", on_book_button_image_leave)
         # End Book #
 
     def incorrect_output(self, output_canvas):
