@@ -144,22 +144,30 @@ class ScreenLayout:
             # End Run Button #
 
             # Start Tooltip Button #
-            tooltip_button_image = Image.open(resource_path("assets\\images\\levels\\0-current.png"))
+            tooltip_button_image = Image.open(resource_path("assets\\images\\tooltip\\light-tooltip.png"))
             tooltip_button_image = tooltip_button_image.resize((60, 60))
             tooltip_button_image_tk = ImageTk.PhotoImage(tooltip_button_image)
 
-            def on_tooltip_button_enter(event):
+            tooltip_off_button_image = Image.open(resource_path("assets\\images\\tooltip\\dark-tooltip.png"))
+            tooltip_off_button_image = tooltip_off_button_image.resize((60, 60))
+            tooltip_off_button_image_tk = ImageTk.PhotoImage(tooltip_off_button_image)
+
+            def on_tooltip_button_enter(button_id):
                 canvas.config(cursor="hand2")
                 self.correct_output(canvas)
+                setattr(canvas, "tooltip_button_image_tk", tooltip_button_image_tk)
+                canvas.itemconfig(button_id, image=tooltip_button_image_tk)
 
-            def on_tooltip_button_leave(event):
+            def on_tooltip_button_leave(button_id):
                 canvas.config(cursor="")
                 self.incorrect_output(canvas)
+                setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
+                canvas.itemconfig(button_id, image=tooltip_off_button_image_tk)
 
-            setattr(canvas, "tooltip_button_image_tk", tooltip_button_image_tk)
-            tooltip_button = canvas.create_image(1068, 673, anchor="w", image=tooltip_button_image_tk)
-            canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
-            canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
+            setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
+            tooltip_button = canvas.create_image(1068, 673, anchor="w", image=tooltip_off_button_image_tk)
+            canvas.tag_bind(tooltip_button, "<Enter>", lambda event: on_tooltip_button_enter(tooltip_button))
+            canvas.tag_bind(tooltip_button, "<Leave>", lambda event: on_tooltip_button_leave(tooltip_button))
             # End Tooltip Button #
 
             self.incorrect_output(canvas)
@@ -212,10 +220,10 @@ class ScreenLayout:
         self.correct_output(canvas)
 
         # Start Next Button #
-        next_button_canvas = tk.Canvas(canvas, bg="white", width=60, height=30, highlightthickness=0)
-        canvas.create_window(580, 640, window=next_button_canvas, anchor="w")
+        next_button_canvas = tk.Canvas(canvas, bg="white", width=100, height=72, highlightthickness=0)
+        canvas.create_window(540, 640, window=next_button_canvas, anchor="w")
         next_button_image = Image.open(resource_path("assets\\images\\book.jpg"))
-        next_button_image = next_button_image.resize((87, 46))
+        next_button_image = next_button_image.resize((96, 70))
         next_button_image_tk = ImageTk.PhotoImage(next_button_image)
 
         def on_next_button_click(event):
@@ -236,14 +244,14 @@ class ScreenLayout:
         # End Next Button #
 
         # Start Pet #
-        pet_canvas = tk.Canvas(canvas, bg="white", width=70, height=50, highlightthickness=0)
-        canvas.create_window(500, 630, window=pet_canvas, anchor="w")
-        pet_image = Image.open(resource_path("assets\\images\\pet.png"))
-        pet_image = pet_image.resize((70, 50))
-        pet_image_tk = ImageTk.PhotoImage(pet_image)
-
-        setattr(pet_canvas, f"pet_image_tk_right", pet_image_tk)
-        pet_canvas.create_image(0, 30, anchor='w', image=pet_image_tk)
+        # pet_canvas = tk.Canvas(canvas, bg="white", width=70, height=50, highlightthickness=0)
+        # canvas.create_window(500, 630, window=pet_canvas, anchor="w")
+        # pet_image = Image.open(resource_path("assets\\images\\pet.png"))
+        # pet_image = pet_image.resize((70, 50))
+        # pet_image_tk = ImageTk.PhotoImage(pet_image)
+        #
+        # setattr(pet_canvas, f"pet_image_tk_right", pet_image_tk)
+        # pet_canvas.create_image(0, 30, anchor='w', image=pet_image_tk)
         # End Pet #
 
         input_area.config(state=tk.DISABLED, cursor="arrow")
