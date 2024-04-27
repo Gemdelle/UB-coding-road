@@ -44,12 +44,6 @@ def draw(frame, change_screen):
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
 
-    image2 = Image.open(resource_path("assets\\images\\frames\\instructions-background.png"))
-    image2 = image2.resize((1100, 100))
-    image2_tk = ImageTk.PhotoImage(image2)
-    setattr(canvas, f"image2_tk", image2_tk)
-    canvas.create_image(130, 50, anchor=tk.NW, image=image2_tk)
-
     row_index = 0
     row_offset = 50
     emblems_offset = 40
