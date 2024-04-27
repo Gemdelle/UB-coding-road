@@ -72,7 +72,7 @@ def draw(frame, change_screen):
                     levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-passed.png")
 
                 image_level = Image.open(levels_image_path)
-                image_level = image_level.resize((55, 95))
+                image_level = image_level.resize((50, 90))
                 image_level_tk = ImageTk.PhotoImage(image_level)
 
                 def on_image_click(event, screen=screen_to_change):
