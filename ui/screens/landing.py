@@ -108,7 +108,7 @@ def draw(frame, change_screen):
                     canvas.config(cursor="")
 
                 setattr(canvas, f"image_level_tk_{row_index}_{i}", image_level_tk)
-                button = canvas.create_image(580 + column_offset, 70 + row_offset, anchor=tk.NW, image=image_level_tk)
+                button = canvas.create_image(580 + column_offset, 120 + row_offset, anchor=tk.NW, image=image_level_tk)
                 if state != "LOCKED":
                     canvas.tag_bind(button, "<Enter>", on_image_enter)
                     canvas.tag_bind(button, "<Leave>", on_image_leave)
