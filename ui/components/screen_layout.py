@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
+from utils.set_time_out_manager import SetTimeoutManager
 from utils.sound_manager import play_button_sound
 
 output_container_width = 500
@@ -127,8 +128,8 @@ class ScreenLayout:
 
             def on_run_button_click(event):
                 self.process_input(text_area, run_button_window, canvas,
-                              lambda: self.correct_excercise_state(canvas, text_area),
-                              lambda: self.incorrect_output(canvas))
+                                   lambda: (self.correct_excercise_state(canvas, text_area), self.show_right_message(canvas)),
+                                   lambda: (self.incorrect_output(canvas), self.show_wrong_message(canvas)))
 
             def on_image_enter(event):
                 run_button_canvas.config(cursor="hand2")
@@ -261,3 +262,29 @@ class ScreenLayout:
         # End Pet #
 
         input_area.config(state=tk.DISABLED, cursor="arrow")
+
+    def show_right_message(self, code_frame):
+        right_feedback_canvas = tk.Canvas(self.frame, bg="white", width=104, height=100, highlightthickness=0)
+        right_feedback_window = code_frame.create_window(440, 620, window=right_feedback_canvas, anchor="w")
+        right_feedback_image = Image.open(resource_path("assets\\images\\code-feedback\\nice-message-feedback.png"))
+        right_feedback_image = right_feedback_image.resize((83, 80))
+        right_feedback_tk = ImageTk.PhotoImage(right_feedback_image)
+
+        setattr(right_feedback_canvas, f"right_feedback_tk", right_feedback_tk)
+        right_feedback_canvas.create_image(20, 60, anchor="w", image=right_feedback_tk)
+
+        set_timeout_manager = SetTimeoutManager()
+        set_timeout_manager.setTimeout(lambda: code_frame.delete(right_feedback_window), 2)
+
+    def show_wrong_message(self, code_frame):
+        wrong_feedback_canvas = tk.Canvas(self.frame, bg="white", width=104, height=100, highlightthickness=0)
+        wrong_feedback_window = code_frame.create_window(440, 620, window=wrong_feedback_canvas, anchor="w")
+        wrong_feedback_image = Image.open(resource_path("assets\\images\\code-feedback\\try-again-message-feedback.png"))
+        wrong_feedback_image = wrong_feedback_image.resize((83, 80))
+        wrong_feedback_tk = ImageTk.PhotoImage(wrong_feedback_image)
+
+        setattr(wrong_feedback_canvas, f"wrong_feedback_tk", wrong_feedback_tk)
+        wrong_feedback_canvas.create_image(20, 60, anchor="w", image=wrong_feedback_tk)
+
+        set_timeout_manager = SetTimeoutManager()
+        set_timeout_manager.setTimeout(lambda: code_frame.delete(wrong_feedback_window), 2)

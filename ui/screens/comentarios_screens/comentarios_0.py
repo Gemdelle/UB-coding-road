@@ -38,11 +38,9 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
         else:
             incorrect()
             play_wrong_sound()
-            showWrongMessage(code_canvas)
     except Exception as e:
         incorrect()
         play_wrong_sound()
-        showWrongMessage(code_canvas)
 
 def draw(frame, change_screen):
     layout = ScreenLayout(

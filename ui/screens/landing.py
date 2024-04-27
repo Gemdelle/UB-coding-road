@@ -46,7 +46,7 @@ def draw(frame, change_screen):
             #canvas.create_text(150, 100 + row_offset, text=f"{row_index}. {output_capitalized_module_name}", fill="#e8e8e3", font=("Georgia", 15, "bold"), anchor="nw")
 
             if value["status"] != "LOCKED":
-                image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index+1)+".png"))
+                image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index)+".png"))
                 image_book = image_book.resize((50, 70))
                 image_book_tk = ImageTk.PhotoImage(image_book)
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
