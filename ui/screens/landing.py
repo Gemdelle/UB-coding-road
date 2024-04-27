@@ -24,7 +24,7 @@ def draw(frame, change_screen):
     canvas.image = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
 
-    image_next_arrow = Image.open(resource_path("assets\\images\\back_arrow.png"))
+    image_next_arrow = Image.open(resource_path("assets\\images\\next_arrow.png"))
     image_next_arrow = image_next_arrow.resize((59, 33))
     image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
     def on_image_next_arrow_click(event):
