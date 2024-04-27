@@ -39,10 +39,12 @@ def draw(frame, change_screen):
         canvas.config(cursor="")
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(1180, 330, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(1180, 375, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
+
+    create_toggle_sound(canvas)
 
     row_index = 0
     row_offset = 50
@@ -112,3 +114,34 @@ def draw(frame, change_screen):
 
         row_offset += 95
         row_index += 1
+
+
+def create_toggle_sound(canvas):
+    sound_manager = SoundManager()
+    toggle_sound_button_image = Image.open(resource_path("assets\\images\\tooltip\\light-tooltip.png"))
+    toggle_sound_button_image = toggle_sound_button_image.resize((50, 60))
+    toggle_sound_button_image_tk = ImageTk.PhotoImage(toggle_sound_button_image)
+
+    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\tooltip\\dark-tooltip.png"))
+    toggle_sound_off_button_image = toggle_sound_off_button_image.resize((50, 60))
+    toggle_sound_off_button_image_tk = ImageTk.PhotoImage(toggle_sound_off_button_image)
+
+    def on_tooltip_button_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_tooltip_button_leave(event):
+        canvas.config(cursor="")
+
+    def on_tooltip_button_click(button_id):
+        canvas.config(cursor="")
+        sound_manager.toggle_sound()
+        toggle_sound_image_tk_changed = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
+        setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk_changed)
+        canvas.itemconfig(button_id, image=toggle_sound_image_tk_changed)
+
+    toggle_sound_image_tk = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
+    setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk)
+    tooltip_button = canvas.create_image(1080, 665, anchor="w", image=toggle_sound_image_tk)
+    canvas.tag_bind(tooltip_button, '<Button-1>', lambda event: on_tooltip_button_click(tooltip_button))
+    canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
+    canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)

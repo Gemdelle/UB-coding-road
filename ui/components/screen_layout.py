@@ -191,7 +191,7 @@ class ScreenLayout:
             canvas.config(cursor="")
 
         setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
-        back_arrow_button = canvas.create_image(1141, 666, anchor="w", image=back_arrow_image_tk)
+        back_arrow_button = canvas.create_image(590, 57, anchor="w", image=back_arrow_image_tk)
         canvas.tag_bind(back_arrow_button, "<Enter>", on_arrow_click_image_enter)
         canvas.tag_bind(back_arrow_button, "<Leave>", on_arrow_click_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
@@ -203,7 +203,7 @@ class ScreenLayout:
         book_image_image_tk = ImageTk.PhotoImage(book_image_image)
 
         setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        canvas.create_image(1213, 665, anchor="w", image=book_image_image_tk)
+        canvas.create_image(660, 60, anchor="w", image=book_image_image_tk)
         # End Book #
 
     def incorrect_output(self, output_canvas):

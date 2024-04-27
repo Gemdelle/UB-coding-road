@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         canvas.config(cursor="")
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(40, 330, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(40, 375, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
