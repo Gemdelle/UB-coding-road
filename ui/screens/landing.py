@@ -29,7 +29,7 @@ def draw(frame, change_screen):
     row_index = 0
     row_offset = 50
     for key, value in user_progress.items():
-        column_offset = 50
+        column_offset = 40
         capitalized_module_name = [word.capitalize() for word in key.split('_')]
         output_capitalized_module_name = " ".join(capitalized_module_name)
         canvas.create_text(150, 100 + row_offset, text=f"{row_index}. {output_capitalized_module_name}", fill="#e8e8e3", font=("Georgia", 15, "bold"), anchor="nw")
@@ -53,7 +53,7 @@ def draw(frame, change_screen):
                 levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-passed.png")
 
             image_level = Image.open(levels_image_path)
-            image_level = image_level.resize((60, 100))
+            image_level = image_level.resize((50, 90))
             image_level_tk = ImageTk.PhotoImage(image_level)
 
             def on_image_click(event, screen=screen_to_change):
@@ -73,7 +73,7 @@ def draw(frame, change_screen):
                 canvas.tag_bind(button, "<Leave>", on_image_leave)
                 canvas.tag_bind(button, '<Button-1>', on_image_click)
 
-            column_offset += 80
+            column_offset += 60
 
         row_offset += 80
         row_index += 1
