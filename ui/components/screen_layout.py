@@ -6,7 +6,7 @@ from PIL import Image, ImageTk, ImageEnhance
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
 from utils.set_time_out_manager import SetTimeoutManager
-from utils.sound_manager import play_button_sound
+from utils.sound_manager import play_button_sound, SoundManager
 
 output_container_width = 500
 output_container_height = 534
@@ -77,7 +77,7 @@ class ScreenLayout:
 
         total_width = (user_progress[self.level_name]["total"] - 1) * offset_between_images + user_progress[self.level_name]["total"] * image_width
 
-        x_start = 1230 - total_width
+        x_start = 1130 - total_width
         for i in range(user_progress[self.level_name]["total"]):
             state = "LOCKED" if user_progress[self.level_name]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress[self.level_name]["current"] else "LOCKED" if i > user_progress[self.level_name]["current"] else "COMPLETED"
             if state == "IN_PROGRESS":
@@ -95,6 +95,8 @@ class ScreenLayout:
             x_coordinate = x_start + i * (image_width + offset_between_images)
             canvas.create_image(x_coordinate, 75, anchor="w", image=image_level_tk)
         # End Levels Images #
+
+        create_toggle_sound(canvas)
 
         # Start Task #
         frame_image = Image.open(resource_path(f"assets\\images\\frames\\instructions-background.png"))
@@ -165,7 +167,7 @@ class ScreenLayout:
                 canvas.itemconfig(button_id, image=tooltip_off_button_image_tk)
 
             setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
-            tooltip_button = canvas.create_image(1180, 665, anchor="w", image=tooltip_off_button_image_tk)
+            tooltip_button = canvas.create_image(1160, 665, anchor="w", image=tooltip_off_button_image_tk)
             canvas.tag_bind(tooltip_button, "<Enter>", lambda event: on_tooltip_button_enter(tooltip_button))
             canvas.tag_bind(tooltip_button, "<Leave>", lambda event: on_tooltip_button_leave(tooltip_button))
             # End Tooltip Button #
@@ -174,9 +176,26 @@ class ScreenLayout:
         else:
             text_area.config(state=tk.DISABLED, cursor="arrow")
 
+        # Start Book #
+        book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.module_number}.png"))
+        book_image_image = book_image_image.resize((28, 44))
+        book_image_image_tk = ImageTk.PhotoImage(book_image_image)
+
+        def on_book_button_image_enter(event):
+            canvas.config(cursor="hand2")
+
+        def on_book_button_image_leave(event):
+            canvas.config(cursor="")
+
+        setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
+        book_button = canvas.create_image(1220, 665, anchor="w", image=book_image_image_tk)
+        canvas.tag_bind(book_button, "<Enter>", on_book_button_image_enter)
+        canvas.tag_bind(book_button, "<Leave>", on_book_button_image_leave)
+        # End Book #
+
         # Start Back Arrow #
         back_arrow_image = Image.open(resource_path("assets\\images\\back_arrow.png"))
-        back_arrow_image = back_arrow_image.resize((41, 23))
+        back_arrow_image = back_arrow_image.resize((59, 33))
         back_arrow_image_tk = ImageTk.PhotoImage(back_arrow_image)
 
         def on_back_arrow_click(event):
@@ -196,23 +215,6 @@ class ScreenLayout:
         canvas.tag_bind(back_arrow_button, "<Leave>", on_arrow_click_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
         # End Back Arrow #
-
-        # Start Book #
-        book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.module_number}.png"))
-        book_image_image = book_image_image.resize((28, 44))
-        book_image_image_tk = ImageTk.PhotoImage(book_image_image)
-
-        def on_book_button_image_enter(event):
-            canvas.config(cursor="hand2")
-
-        def on_book_button_image_leave(event):
-            canvas.config(cursor="")
-
-        setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        book_button = canvas.create_image(75, 60, anchor="w", image=book_image_image_tk)
-        canvas.tag_bind(book_button, "<Enter>", on_book_button_image_enter)
-        canvas.tag_bind(book_button, "<Leave>", on_book_button_image_leave)
-        # End Book #
 
     def incorrect_output(self, output_canvas):
         if self.incorrect_output_image_path is not None:
@@ -293,3 +295,33 @@ class ScreenLayout:
 
         set_timeout_manager = SetTimeoutManager()
         set_timeout_manager.setTimeout(lambda: code_frame.delete(wrong_feedback_id), 2)
+
+def create_toggle_sound(canvas):
+    sound_manager = SoundManager()
+    toggle_sound_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-on-button.png"))
+    toggle_sound_button_image = toggle_sound_button_image.resize((115, 71))
+    toggle_sound_button_image_tk = ImageTk.PhotoImage(toggle_sound_button_image)
+
+    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-off-button.png"))
+    toggle_sound_off_button_image = toggle_sound_off_button_image.resize((115, 71))
+    toggle_sound_off_button_image_tk = ImageTk.PhotoImage(toggle_sound_off_button_image)
+
+    def on_tooltip_button_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_tooltip_button_leave(event):
+        canvas.config(cursor="")
+
+    def on_tooltip_button_click(button_id):
+        canvas.config(cursor="hand2")
+        sound_manager.toggle_sound()
+        toggle_sound_image_tk_changed = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
+        setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk_changed)
+        canvas.itemconfig(button_id, image=toggle_sound_image_tk_changed)
+
+    toggle_sound_image_tk = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
+    setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk)
+    tooltip_button = canvas.create_image(1142, 70, anchor="w", image=toggle_sound_image_tk)
+    canvas.tag_bind(tooltip_button, '<Button-1>', lambda event: on_tooltip_button_click(tooltip_button))
+    canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
+    canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
