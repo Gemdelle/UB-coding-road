@@ -184,10 +184,16 @@ class ScreenLayout:
             self.back_screen()
             canvas.destroy()
 
+        def on_arrow_click_image_enter(event):
+            canvas.config(cursor="hand2")
+
+        def on_arrow_click_image_leave(event):
+            canvas.config(cursor="")
+
         setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
         back_arrow_button = canvas.create_image(1141, 666, anchor="w", image=back_arrow_image_tk)
-        canvas.tag_bind(back_arrow_button, "<Enter>", on_image_enter)
-        canvas.tag_bind(back_arrow_button, "<Leave>", on_image_leave)
+        canvas.tag_bind(back_arrow_button, "<Enter>", on_arrow_click_image_enter)
+        canvas.tag_bind(back_arrow_button, "<Leave>", on_arrow_click_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
         # End Back Arrow #
 
