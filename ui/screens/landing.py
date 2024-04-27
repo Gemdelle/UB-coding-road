@@ -128,11 +128,11 @@ def draw(frame, change_screen):
 
 def create_toggle_sound(canvas):
     sound_manager = SoundManager()
-    toggle_sound_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-on.png"))
+    toggle_sound_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-on-button.png"))
     toggle_sound_button_image = toggle_sound_button_image.resize((115, 71))
     toggle_sound_button_image_tk = ImageTk.PhotoImage(toggle_sound_button_image)
 
-    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-off.png"))
+    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-off-button.png"))
     toggle_sound_off_button_image = toggle_sound_off_button_image.resize((115, 71))
     toggle_sound_off_button_image_tk = ImageTk.PhotoImage(toggle_sound_off_button_image)
 
@@ -151,14 +151,14 @@ def create_toggle_sound(canvas):
 
     toggle_sound_image_tk = toggle_sound_off_button_image_tk if sound_manager.is_muted else toggle_sound_button_image_tk
     setattr(canvas, "toggle_sound_button_image_tk", toggle_sound_image_tk)
-    tooltip_button = canvas.create_image(730, 110, anchor="w", image=toggle_sound_image_tk)
+    tooltip_button = canvas.create_image(730, 90, anchor="w", image=toggle_sound_image_tk)
     canvas.tag_bind(tooltip_button, '<Button-1>', lambda event: on_tooltip_button_click(tooltip_button))
     canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
     canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
 
 def create_programme(canvas):
     programme_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\programme-button.png"))
-    programme_button_image = programme_button_image.resize((125, 60))
+    programme_button_image = programme_button_image.resize((95, 40))
     programme_button_image_tk = ImageTk.PhotoImage(programme_button_image)
 
     def on_programme_button_enter(event):
@@ -171,14 +171,14 @@ def create_programme(canvas):
         canvas.config(cursor="hand2")
 
     setattr(canvas, "programme_button_image_tk", programme_button_image_tk)
-    programme_button = canvas.create_image(300, 110, anchor="w", image=programme_button_image_tk)
+    programme_button = canvas.create_image(210, 90, anchor="w", image=programme_button_image_tk)
     canvas.tag_bind(programme_button, '<Button-1>', lambda event: on_programme_button_click(programme_button))
     canvas.tag_bind(programme_button, "<Enter>", on_programme_button_enter)
     canvas.tag_bind(programme_button, "<Leave>", on_programme_button_leave)
 
 def create_notes(canvas):
     notes_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\notes-button.png"))
-    notes_button_image = notes_button_image.resize((97, 60))
+    notes_button_image = notes_button_image.resize((77, 40))
     notes_button_image_tk = ImageTk.PhotoImage(notes_button_image)
 
     def on_notes_button_enter(event):
@@ -191,14 +191,14 @@ def create_notes(canvas):
         canvas.config(cursor="hand2")
 
     setattr(canvas, "notes_button_image_tk", notes_button_image_tk)
-    notes_button = canvas.create_image(470, 110, anchor="w", image=notes_button_image_tk)
+    notes_button = canvas.create_image(470, 90, anchor="w", image=notes_button_image_tk)
     canvas.tag_bind(notes_button, '<Button-1>', lambda event: on_notes_button_click(notes_button))
     canvas.tag_bind(notes_button, "<Enter>", on_notes_button_enter)
     canvas.tag_bind(notes_button, "<Leave>", on_notes_button_leave)
 
 def create_library(canvas):
     library_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\library-button.png"))
-    library_button_image = library_button_image.resize((97, 60))
+    library_button_image = library_button_image.resize((77, 40))
     library_button_image_tk = ImageTk.PhotoImage(library_button_image)
 
     def on_library_button_enter(event):
@@ -211,7 +211,7 @@ def create_library(canvas):
         canvas.config(cursor="hand2")
 
     setattr(canvas, "library_button_image_tk", library_button_image_tk)
-    library_button = canvas.create_image(600, 110, anchor="w", image=library_button_image_tk)
+    library_button = canvas.create_image(600, 90, anchor="w", image=library_button_image_tk)
     canvas.tag_bind(library_button, '<Button-1>', lambda event: on_library_button_click(library_button))
     canvas.tag_bind(library_button, "<Enter>", on_library_button_enter)
     canvas.tag_bind(library_button, "<Leave>", on_library_button_leave)

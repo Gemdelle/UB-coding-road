@@ -116,11 +116,11 @@ def draw(frame, change_screen):
         row_index += 1
 def create_toggle_sound(canvas):
     sound_manager = SoundManager()
-    toggle_sound_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-on.png"))
+    toggle_sound_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-on-button.png"))
     toggle_sound_button_image = toggle_sound_button_image.resize((115, 71))
     toggle_sound_button_image_tk = ImageTk.PhotoImage(toggle_sound_button_image)
 
-    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-off.png"))
+    toggle_sound_off_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\music-off-button.png"))
     toggle_sound_off_button_image = toggle_sound_off_button_image.resize((115, 71))
     toggle_sound_off_button_image_tk = ImageTk.PhotoImage(toggle_sound_off_button_image)
 
