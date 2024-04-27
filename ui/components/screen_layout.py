@@ -66,7 +66,7 @@ class ScreenLayout:
 
         # Start Title and Subtitle #
         canvas.create_text(45, 40, text=self.title_text, fill="#e8e8e3", font=("Georgia", 25, "bold"), anchor="w")
-        canvas.create_text(45, 80, text=self.subtitle_text, fill="#e8e8e3",
+        canvas.create_text(45, 75, text=self.subtitle_text, fill="#e8e8e3",
                            font=("Georgia", 16, "bold"), anchor="w")
         # End Title and Subtitle #
 
@@ -107,7 +107,7 @@ class ScreenLayout:
 
         # Start Code Area #
         text_area = tk.Text(canvas, wrap="word", width=75, height=22)
-        canvas.create_window(45, 500, window=text_area, anchor="w")
+        canvas.create_window(55, 500, window=text_area, anchor="w")
         # End Code Area #
 
         if user_completed_stage:
@@ -226,10 +226,10 @@ class ScreenLayout:
         self.correct_output(canvas)
 
         # Start Next Button #
-        next_button_canvas = tk.Canvas(canvas, bg="white", width=100, height=72, highlightthickness=0)
-        canvas.create_window(540, 640, window=next_button_canvas, anchor="w")
+        next_button_canvas = tk.Canvas(canvas, bg="white", width=200, height=110, highlightthickness=0)
+        canvas.create_window(450, 620, window=next_button_canvas, anchor="w")
         next_button_image = Image.open(resource_path("assets\\images\\buttons\\next.png"))
-        next_button_image = next_button_image.resize((96, 70))
+        next_button_image = next_button_image.resize((200, 110))
         next_button_image_tk = ImageTk.PhotoImage(next_button_image)
 
         def on_next_button_click(event):
@@ -243,7 +243,7 @@ class ScreenLayout:
             next_button_canvas.config(cursor="")
 
         setattr(next_button_canvas, f"next_button_image_tk", next_button_image_tk)
-        next_button = next_button_canvas.create_image(5, 34, anchor="w", image=next_button_image_tk)
+        next_button = next_button_canvas.create_image(3, 60, anchor="w", image=next_button_image_tk)
         next_button_canvas.tag_bind(next_button, "<Enter>", on_image_enter)
         next_button_canvas.tag_bind(next_button, "<Leave>", on_image_leave)
         next_button_canvas.tag_bind(next_button, '<Button-1>', on_next_button_click)
