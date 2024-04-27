@@ -50,7 +50,7 @@ def draw(frame, change_screen):
                 image_book = image_book.resize((50, 70))
                 image_book_tk = ImageTk.PhotoImage(image_book)
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                canvas.create_image(600, 70 + row_offset, anchor=tk.NW, image=image_book_tk)
+                canvas.create_image(550, 70 + row_offset, anchor=tk.NW, image=image_book_tk)
 
             for i in range(value["total"]):
                 state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
@@ -64,7 +64,7 @@ def draw(frame, change_screen):
                     levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-passed.png")
 
                 image_level = Image.open(levels_image_path)
-                image_level = image_level.resize((50, 90))
+                image_level = image_level.resize((55, 95))
                 image_level_tk = ImageTk.PhotoImage(image_level)
 
                 def on_image_click(event, screen=screen_to_change):
@@ -78,13 +78,13 @@ def draw(frame, change_screen):
                     canvas.config(cursor="")
 
                 setattr(canvas, f"image_level_tk_{row_index}_{i}", image_level_tk)
-                button = canvas.create_image(630 + column_offset, 70 + row_offset, anchor=tk.NW, image=image_level_tk)
+                button = canvas.create_image(580 + column_offset, 70 + row_offset, anchor=tk.NW, image=image_level_tk)
                 if state != "LOCKED":
                     canvas.tag_bind(button, "<Enter>", on_image_enter)
                     canvas.tag_bind(button, "<Leave>", on_image_leave)
                     canvas.tag_bind(button, '<Button-1>', on_image_click)
 
-                column_offset += 60
+                column_offset += 63
 
         row_offset += 95
         row_index += 1
