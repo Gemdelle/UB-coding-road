@@ -63,8 +63,16 @@ def draw(frame, change_screen):
                 image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index)+".png"))
                 image_book = image_book.resize((50, 70))
                 image_book_tk = ImageTk.PhotoImage(image_book)
+                def on_book_buttom_enter(event):
+                    canvas.config(cursor="hand2")
+
+                def on_book_buttom_leave(event):
+                    canvas.config(cursor="")
+
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                canvas.create_image(550, 135 + row_offset, anchor=tk.NW, image=image_book_tk)
+                book_buttom = canvas.create_image(550, 135 + row_offset, anchor=tk.NW, image=image_book_tk)
+                canvas.tag_bind(book_buttom, "<Enter>", on_book_buttom_enter)
+                canvas.tag_bind(book_buttom, "<Leave>", on_book_buttom_leave)
 
             for i in range(value["total"]):
                 state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
