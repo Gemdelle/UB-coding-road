@@ -72,8 +72,8 @@ class ScreenLayout:
 
         # Start Levels Images #
         levels_image_path = None
-        image_width = 45
-        offset_between_images = 20
+        image_width = 55
+        offset_between_images = 10
 
         total_width = (user_progress[self.level_name]["total"] - 1) * offset_between_images + user_progress[self.level_name]["total"] * image_width
 
@@ -88,7 +88,7 @@ class ScreenLayout:
                 levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-passed.png")
 
             image_level = Image.open(levels_image_path)
-            image_level = image_level.resize((45, 80))
+            image_level = image_level.resize((image_width, 95))
             image_level_tk = ImageTk.PhotoImage(image_level)
 
             setattr(canvas, f"image_level_tk_{i}", image_level_tk)
@@ -119,10 +119,10 @@ class ScreenLayout:
 
         if not user_completed_stage:
             # Start Run Button #
-            run_button_canvas = tk.Canvas(self.frame, bg="white", width=80, height=50, highlightthickness=0)
-            run_button_window = canvas.create_window(560, 640, window=run_button_canvas, anchor="w")
+            run_button_canvas = tk.Canvas(self.frame, bg="white", width=100, height=72, highlightthickness=0)
+            run_button_window = canvas.create_window(540, 640, window=run_button_canvas, anchor="w")
             run_button_image = Image.open(resource_path("assets\\images\\buttons\\run-button.png"))
-            run_button_image = run_button_image.resize((76, 47))
+            run_button_image = run_button_image.resize((96, 70))
             run_button_image_tk = ImageTk.PhotoImage(run_button_image)
 
             def on_run_button_click(event):
@@ -137,7 +137,7 @@ class ScreenLayout:
                 run_button_canvas.config(cursor="")
 
             setattr(run_button_canvas, f"run_button_image_tk", run_button_image_tk)
-            run_button = run_button_canvas.create_image(5, 25, anchor="w", image=run_button_image_tk)
+            run_button = run_button_canvas.create_image(5, 34, anchor="w", image=run_button_image_tk)
             run_button_canvas.tag_bind(run_button, "<Enter>", on_image_enter)
             run_button_canvas.tag_bind(run_button, "<Leave>", on_image_leave)
             run_button_canvas.tag_bind(run_button, '<Button-1>', on_run_button_click)
