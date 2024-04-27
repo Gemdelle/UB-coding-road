@@ -24,8 +24,6 @@ def draw(frame, change_screen):
     canvas.image = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
 
-    canvas.create_text(630, 50, text="Coding Road Map", fill="#e8e8e3", font=("Georgia", 35, "bold"))
-
     row_index = 0
     row_offset = 50
     for key, value in user_progress.items():

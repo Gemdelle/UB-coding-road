@@ -222,7 +222,7 @@ class ScreenLayout:
         # Start Next Button #
         next_button_canvas = tk.Canvas(canvas, bg="white", width=100, height=72, highlightthickness=0)
         canvas.create_window(540, 640, window=next_button_canvas, anchor="w")
-        next_button_image = Image.open(resource_path("assets\\images\\book.jpg"))
+        next_button_image = Image.open(resource_path("assets\\images\\buttons\\next.png"))
         next_button_image = next_button_image.resize((96, 70))
         next_button_image_tk = ImageTk.PhotoImage(next_button_image)
 
@@ -237,7 +237,7 @@ class ScreenLayout:
             next_button_canvas.config(cursor="")
 
         setattr(next_button_canvas, f"next_button_image_tk", next_button_image_tk)
-        next_button = next_button_canvas.create_image(10, 10, anchor="w", image=next_button_image_tk)
+        next_button = next_button_canvas.create_image(5, 34, anchor="w", image=next_button_image_tk)
         next_button_canvas.tag_bind(next_button, "<Enter>", on_image_enter)
         next_button_canvas.tag_bind(next_button, "<Leave>", on_image_leave)
         next_button_canvas.tag_bind(next_button, '<Button-1>', on_next_button_click)
