@@ -39,8 +39,8 @@ initial_data = {
         }
     },
     "input": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 3,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 3,
         "test": {
             "actual": 0,
@@ -48,8 +48,8 @@ initial_data = {
         }
     },
     "operaciones_aritmeticas": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 9,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 9,
         "test": {
             "actual": 0,
@@ -57,8 +57,8 @@ initial_data = {
         }
     },
     "operaciones_comparacion": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 6,
+        "status": UserProgressStatus.LOCKED.value,
+        "current": 0,
         "total": 6,
         "test": {
             "actual": 0,
