@@ -4,6 +4,7 @@ from enum import Enum
 class Screens(Enum):
     SPLASH = "SPLASH"
     LANDING = "LANDING"
+    LANDING_2 = "LANDING_2"
     BOOK = "BOOK"
     COMENTARIOS_0 = "COMENTARIOS_0"
     COMENTARIOS_1 = "COMENTARIOS_1"

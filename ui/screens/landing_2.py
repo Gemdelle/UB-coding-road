@@ -14,12 +14,10 @@ def draw(frame, change_screen):
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
 
-    play_background_music()
-
     canvas = tk.Canvas(frame, bg="black", width=1280, height=720)
     canvas.pack(fill=BOTH, expand=YES)
 
-    image = Image.open(resource_path("assets\\images\\backgrounds\\background-main.png"))
+    image = Image.open(resource_path("assets\\images\\backgrounds\\background-main-2.png"))
     image = image.resize((1280, 720))
     canvas.image = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
@@ -27,19 +25,20 @@ def draw(frame, change_screen):
     image_next_arrow = Image.open(resource_path("assets\\images\\back_arrow.png"))
     image_next_arrow = image_next_arrow.resize((59, 33))
     image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
+
     def on_image_next_arrow_click(event):
         play_button_sound()
-        change_screen(Screens.LANDING_2)
+        change_screen(Screens.LANDING)
         canvas.destroy()
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(1110, 330, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(160, 330, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
 
     row_index = 0
     row_offset = 50
     for key, value in user_progress.items():
-        if row_index < 5:
+        if row_index >= 5:
             column_offset = 40
             #capitalized_module_name = [word.capitalize() for word in key.split('_')]
             #output_capitalized_module_name = " ".join(capitalized_module_name)
@@ -86,5 +85,5 @@ def draw(frame, change_screen):
 
                 column_offset += 60
 
-        row_offset += 95
+            row_offset += 95
         row_index += 1
