@@ -25,7 +25,7 @@ def draw(frame, change_screen):
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
 
     image_next_arrow = Image.open(resource_path("assets\\images\\next_arrow.png"))
-    image_next_arrow = image_next_arrow.resize((59, 33))
+    image_next_arrow = image_next_arrow.resize((75, 42))
     image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
     def on_image_next_arrow_click(event):
         play_button_sound()
@@ -33,7 +33,7 @@ def draw(frame, change_screen):
         canvas.destroy()
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(1110, 330, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(1160, 330, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
 
     row_index = 0
@@ -47,10 +47,10 @@ def draw(frame, change_screen):
 
             if value["status"] != "LOCKED":
                 image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index+1)+".png"))
-                image_book = image_book.resize((40, 50))
+                image_book = image_book.resize((50, 65))
                 image_book_tk = ImageTk.PhotoImage(image_book)
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                canvas.create_image(600, 80 + row_offset, anchor=tk.NW, image=image_book_tk)
+                canvas.create_image(600, 75 + row_offset, anchor=tk.NW, image=image_book_tk)
 
             for i in range(value["total"]):
                 state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
