@@ -145,11 +145,11 @@ class ScreenLayout:
 
             # Start Tooltip Button #
             tooltip_button_image = Image.open(resource_path("assets\\images\\tooltip\\light-tooltip.png"))
-            tooltip_button_image = tooltip_button_image.resize((60, 60))
+            tooltip_button_image = tooltip_button_image.resize((50, 60))
             tooltip_button_image_tk = ImageTk.PhotoImage(tooltip_button_image)
 
             tooltip_off_button_image = Image.open(resource_path("assets\\images\\tooltip\\dark-tooltip.png"))
-            tooltip_off_button_image = tooltip_off_button_image.resize((60, 60))
+            tooltip_off_button_image = tooltip_off_button_image.resize((50, 60))
             tooltip_off_button_image_tk = ImageTk.PhotoImage(tooltip_off_button_image)
 
             def on_tooltip_button_enter(button_id):
@@ -165,7 +165,7 @@ class ScreenLayout:
                 canvas.itemconfig(button_id, image=tooltip_off_button_image_tk)
 
             setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
-            tooltip_button = canvas.create_image(1068, 673, anchor="w", image=tooltip_off_button_image_tk)
+            tooltip_button = canvas.create_image(1080, 665, anchor="w", image=tooltip_off_button_image_tk)
             canvas.tag_bind(tooltip_button, "<Enter>", lambda event: on_tooltip_button_enter(tooltip_button))
             canvas.tag_bind(tooltip_button, "<Leave>", lambda event: on_tooltip_button_leave(tooltip_button))
             # End Tooltip Button #
