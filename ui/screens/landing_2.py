@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         canvas.config(cursor="")
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(120, 330, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(40, 330, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
@@ -47,8 +47,8 @@ def draw(frame, change_screen):
     row_offset = 50
     emblems_offset = 40
     for key, value in user_progress.items():
-        emblem_image = Image.open(resource_path("assets\\images\\emblems\\" + str(row_index) + ".png"))
-        emblem_image = emblem_image.resize((62, 62))
+        emblem_image = Image.open(resource_path("assets\\images\\emblems\\"+str(row_index)+".png"))
+        emblem_image = emblem_image.resize((45, 65))
 
         if value["status"] == "LOCKED":
             emblem_image_enhance = ImageEnhance.Brightness(emblem_image)
@@ -58,9 +58,9 @@ def draw(frame, change_screen):
             emblem_image_tk = ImageTk.PhotoImage(emblem_image)
 
         setattr(canvas, f"emblem_image_tk_{row_index}", emblem_image_tk)
-        canvas.create_image(130 + emblems_offset, 50, anchor=tk.NW, image=emblem_image_tk)
+        canvas.create_image(140 + emblems_offset, 65, anchor=tk.NW, image=emblem_image_tk)
 
-        emblems_offset += 63
+        emblems_offset += 80
 
         if row_index >= 5 and row_index <= 6:
             column_offset = 40
@@ -73,7 +73,7 @@ def draw(frame, change_screen):
                 image_book = image_book.resize((50, 70))
                 image_book_tk = ImageTk.PhotoImage(image_book)
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                canvas.create_image(550, 70 + row_offset, anchor=tk.NW, image=image_book_tk)
+                canvas.create_image(550, 135 + row_offset, anchor=tk.NW, image=image_book_tk)
 
             for i in range(value["total"]):
                 state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
@@ -101,7 +101,7 @@ def draw(frame, change_screen):
                     canvas.config(cursor="")
 
                 setattr(canvas, f"image_level_tk_{row_index}_{i}", image_level_tk)
-                button = canvas.create_image(580 + column_offset, 120 + row_offset, anchor=tk.NW, image=image_level_tk)
+                button = canvas.create_image(580 + column_offset, 135 + row_offset, anchor=tk.NW, image=image_level_tk)
                 if state != "LOCKED":
                     canvas.tag_bind(button, "<Enter>", on_image_enter)
                     canvas.tag_bind(button, "<Leave>", on_image_leave)
