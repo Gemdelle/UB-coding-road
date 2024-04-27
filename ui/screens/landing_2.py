@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         canvas.config(cursor="")
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(40, 375, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(40, 405, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
@@ -146,7 +146,7 @@ def create_toggle_sound(canvas):
 
 def create_programme(canvas):
     programme_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\programme-button.png"))
-    programme_button_image = programme_button_image.resize((97, 60))
+    programme_button_image = programme_button_image.resize((125, 60))
     programme_button_image_tk = ImageTk.PhotoImage(programme_button_image)
 
     def on_programme_button_enter(event):
@@ -159,7 +159,7 @@ def create_programme(canvas):
         canvas.config(cursor="hand2")
 
     setattr(canvas, "programme_button_image_tk", programme_button_image_tk)
-    programme_button = canvas.create_image(340, 110, anchor="w", image=programme_button_image_tk)
+    programme_button = canvas.create_image(300, 110, anchor="w", image=programme_button_image_tk)
     canvas.tag_bind(programme_button, '<Button-1>', lambda event: on_programme_button_click(programme_button))
     canvas.tag_bind(programme_button, "<Enter>", on_programme_button_enter)
     canvas.tag_bind(programme_button, "<Leave>", on_programme_button_leave)
