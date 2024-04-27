@@ -94,3 +94,8 @@ def play_background_music():
     if not sound_manager.is_playing("background_music"):
         sound_manager.set_volume("background_music", 0.2)
         sound_manager.play_sound("background_music")
+
+def play_win_emblem_sound():
+    sound_manager = SoundManager()
+    sound_manager.set_volume("win_emblem", 0.3)
+    sound_manager.play_sound("win_emblem")
