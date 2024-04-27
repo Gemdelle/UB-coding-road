@@ -14,7 +14,7 @@ class UserProgressRepository:
             cls._instance = super().__new__(cls)
             cls._instance._db_name = kwargs.get('db_name', 'user_progress_db.sqlite3')
             cls._instance.create_database()
-            cls._instance._preload_current_data()
+            cls._instance.preload_current_data()
         return cls._instance
 
     def create_database(self):
@@ -36,7 +36,7 @@ class UserProgressRepository:
             conn.commit()
         conn.close()
 
-    def _preload_current_data(self):
+    def preload_current_data(self):
         conn = sqlite3.connect(self._db_name)
         cursor = conn.cursor()
         cursor.execute('SELECT progress_data FROM user_progress ORDER BY id DESC LIMIT 1')
@@ -68,35 +68,47 @@ class UserProgressRepository:
     def progress_comentarios(self):
         self._current_progress["comentarios"]["current"] += 1
         if self._current_progress["comentarios"]["total"] == self._current_progress["comentarios"]["current"]:
+            self._current_progress["comentarios"]["status"] = UserProgressStatus.COMPLETED.value
             self._current_progress["print"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_print(self):
         self._current_progress["print"]["current"] += 1
         if self._current_progress["print"]["total"] == self._current_progress["print"]["current"]:
+            self._current_progress["print"]["status"] = UserProgressStatus.COMPLETED.value
             self._current_progress["asignacion"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_asignacion(self):
         self._current_progress["asignacion"]["current"] += 1
         if self._current_progress["asignacion"]["total"] == self._current_progress["asignacion"]["current"]:
+            self._current_progress["asignacion"]["status"] = UserProgressStatus.COMPLETED.value
             self._current_progress["transformacion"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_transformacion(self):
         self._current_progress["transformacion"]["current"] += 1
         if self._current_progress["transformacion"]["total"] == self._current_progress["transformacion"]["current"]:
+            self._current_progress["transformacion"]["status"] = UserProgressStatus.COMPLETED.value
             self._current_progress["input"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_input(self):
         self._current_progress["input"]["current"] += 1
+        if self._current_progress["input"]["total"] == self._current_progress["input"]["current"]:
+            self._current_progress["input"]["status"] = UserProgressStatus.COMPLETED.value
+            self._current_progress["operaciones_aritmeticas"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_operaciones_aritmeticas(self):
         self._current_progress["operaciones_aritmeticas"]["current"] += 1
+        if self._current_progress["operaciones_aritmeticas"]["total"] == self._current_progress["operaciones_aritmeticas"]["current"]:
+            self._current_progress["operaciones_aritmeticas"]["status"] = UserProgressStatus.COMPLETED.value
+            self._current_progress["operaciones_comparacion"]["status"] = UserProgressStatus.IN_PROGRESS.value
         self.update_progress(self._current_progress)
 
     def progress_operaciones_comparacion(self):
         self._current_progress["operaciones_comparacion"]["current"] += 1
+        if self._current_progress["operaciones_comparacion"]["total"] == self._current_progress["operaciones_comparacion"]["current"]:
+            self._current_progress["operaciones_comparacion"]["status"] = UserProgressStatus.COMPLETED.value
         self.update_progress(self._current_progress)
