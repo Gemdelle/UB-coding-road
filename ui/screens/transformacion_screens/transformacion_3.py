@@ -33,7 +33,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.LANDING),
+        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
         process_input=process_input,
         level_name="transformacion",
         level_number=3,

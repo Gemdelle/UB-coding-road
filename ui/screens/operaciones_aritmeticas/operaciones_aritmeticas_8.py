@@ -1,4 +1,3 @@
-import tkinter as tk
 import io
 import sys
 
@@ -34,7 +33,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.LANDING),
+        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
         process_input=process_input,
         level_name="operaciones_aritmeticas",
         level_number=8,
