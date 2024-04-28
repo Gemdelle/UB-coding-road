@@ -5,6 +5,7 @@ from PIL import Image, ImageTk, ImageEnhance
 
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
+from utils.saltos_linea import agregar_saltos_de_linea
 from utils.set_time_out_manager import SetTimeoutManager
 from utils.sound_manager import play_button_sound, SoundManager
 
@@ -104,7 +105,7 @@ class ScreenLayout:
         frame_image_tk = ImageTk.PhotoImage(frame_image)
         setattr(canvas, f"frame_image_tk", frame_image_tk)
         canvas.create_image(25, 200, anchor="w", image=frame_image_tk)
-        canvas.create_text(120, 160, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
+        canvas.create_text(120, 160, justify="left", text=agregar_saltos_de_linea(self.task_text), fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
         # Start Code Area #
@@ -162,7 +163,7 @@ class ScreenLayout:
 
             def on_tooltip_button_leave(button_id):
                 canvas.config(cursor="")
-                self.incorrect_output(canvas)
+                canvas.delete("music_sheet_image_tk_right")
                 setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
                 canvas.itemconfig(button_id, image=tooltip_off_button_image_tk)
 
@@ -222,15 +223,15 @@ class ScreenLayout:
             resized_image, x, y = resize_and_center_image(music_sheet_image)
             music_sheet_image_tk = ImageTk.PhotoImage(resized_image)
 
-            setattr(output_canvas, f"music_sheet_image_tk_wrong", music_sheet_image_tk)
-            output_canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk)
+            setattr(output_canvas, "music_sheet_image_tk_wrong", music_sheet_image_tk)
+            output_canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk, tags="music_sheet_image_tk_wrong")
 
     def correct_output(self, canvas):
         music_sheet_image = Image.open(self.correct_output_image_path)
         resized_image, x, y = resize_and_center_image(music_sheet_image)
         music_sheet_image_tk = ImageTk.PhotoImage(resized_image)
-        setattr(canvas, f"music_sheet_image_tk_right", music_sheet_image_tk)
-        canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk)
+        setattr(canvas, "music_sheet_image_tk_right", music_sheet_image_tk)
+        canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk, tags="music_sheet_image_tk_right")
 
     def correct_excercise_state(self, canvas, input_area):
         self.correct_output(canvas)
