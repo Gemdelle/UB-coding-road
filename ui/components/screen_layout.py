@@ -27,7 +27,7 @@ def resize_and_center_image(image):
     return resized_image, x, y
 
 class ScreenLayout:
-    def __init__(self, frame, back_screen, next_screen, process_input, level_name, level_number, module_number, background_image_path, correct_output_image_path, incorrect_output_image_path, title_text, subtitle_text, task_text, correct_code_text, incorrect_code_text):
+    def __init__(self, frame, back_screen, next_screen, process_input, level_name, level_number, module_number, background_image_path, correct_output_image_path, incorrect_output_image_path, title_text, subtitle_text, task_text, correct_code_text, incorrect_code_text, extra_task_text=None):
         self.frame = frame
         self.level_name = level_name
         self.level_number = level_number
@@ -43,6 +43,7 @@ class ScreenLayout:
         self.task_text = task_text
         self.correct_code_text = correct_code_text
         self.incorrect_code_text = incorrect_code_text
+        self.extra_task_text = extra_task_text
 
     def draw(self):
         repository = UserProgressRepository()
@@ -105,7 +106,35 @@ class ScreenLayout:
         frame_image_tk = ImageTk.PhotoImage(frame_image)
         setattr(canvas, f"frame_image_tk", frame_image_tk)
         canvas.create_image(25, 200, anchor="w", image=frame_image_tk)
-        canvas.create_text(120, 160, justify="left", text=agregar_saltos_de_linea(self.task_text), fill="black", font=("Georgia", 8, "bold"), anchor="w")
+        canvas.create_text(110, 200, justify="left", text=agregar_saltos_de_linea(self.task_text), fill="black", font=("Georgia", 8, "bold"), anchor="w")
+        # End Task #
+
+        # Start Extra Task Info #
+        extra_task_tooltip_button_image = Image.open(resource_path("assets\\images\\tooltip\\extra-instructions-gem.png"))
+        extra_task_tooltip_button_image = extra_task_tooltip_button_image.resize((47, 41))
+        extra_task_tooltip_button_image_tk = ImageTk.PhotoImage(extra_task_tooltip_button_image)
+
+        extra_task_frame_image = Image.open(resource_path(f"assets\\images\\frames\\instructions-extra.png"))
+        extra_task_frame_image = extra_task_frame_image.resize((257, 360))
+        extra_task_frame_image_tk = ImageTk.PhotoImage(extra_task_frame_image)
+
+        def on_extra_task_tooltip_button_enter():
+            canvas.config(cursor="hand2")
+
+            setattr(canvas, f"extra_task_frame_image_tk", extra_task_frame_image_tk)
+            canvas.create_image(670, 280, anchor="w", image=extra_task_frame_image_tk, tags="extra_task_frame")
+            canvas.create_text(735, 290, justify="left", text=self.extra_task_text.upper(), fill="black",
+                               font=("Georgia", 7, "bold"), anchor="w", tags="extra_task_text")
+
+        def on_extra_task_tooltip_button_leave():
+            canvas.config(cursor="")
+            canvas.delete("extra_task_text")
+            canvas.delete("extra_task_frame")
+
+        setattr(canvas, "extra_task_tooltip_button_image_tk", extra_task_tooltip_button_image_tk)
+        extra_task_tooltip_button = canvas.create_image(620, 275, anchor="w", image=extra_task_tooltip_button_image_tk)
+        canvas.tag_bind(extra_task_tooltip_button, "<Enter>", lambda event: on_extra_task_tooltip_button_enter())
+        canvas.tag_bind(extra_task_tooltip_button, "<Leave>", lambda event: on_extra_task_tooltip_button_leave())
         # End Task #
 
         # Start Code Area #
