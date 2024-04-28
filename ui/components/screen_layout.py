@@ -5,6 +5,7 @@ from PIL import Image, ImageTk, ImageEnhance
 
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
+from utils.saltos_linea import agregar_saltos_de_linea
 from utils.set_time_out_manager import SetTimeoutManager
 from utils.sound_manager import play_button_sound, SoundManager
 
@@ -104,7 +105,7 @@ class ScreenLayout:
         frame_image_tk = ImageTk.PhotoImage(frame_image)
         setattr(canvas, f"frame_image_tk", frame_image_tk)
         canvas.create_image(25, 200, anchor="w", image=frame_image_tk)
-        canvas.create_text(120, 160, justify="left", text=self.task_text, fill="black", font=("Georgia", 8, "bold"), anchor="w")
+        canvas.create_text(120, 160, justify="left", text=agregar_saltos_de_linea(self.task_text), fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
         # Start Code Area #
