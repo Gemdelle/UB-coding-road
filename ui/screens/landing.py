@@ -70,7 +70,7 @@ def draw(frame, change_screen):
                     canvas.config(cursor="")
 
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                book_buttom = canvas.create_image(450, 100 + row_offset, anchor=tk.NW, image=image_book_tk)
+                book_buttom = canvas.create_image(500, 160 + row_offset, anchor=tk.NW, image=image_book_tk)
                 canvas.tag_bind(book_buttom, "<Enter>", on_book_buttom_enter)
                 canvas.tag_bind(book_buttom, "<Leave>", on_book_buttom_leave)
 
@@ -100,14 +100,14 @@ def draw(frame, change_screen):
                     canvas.config(cursor="")
 
                 setattr(canvas, f"image_level_tk_{row_index}_{i}", image_level_tk)
-                button = canvas.create_image(580 + column_offset, 135 + row_offset, anchor=tk.NW, image=image_level_tk)
+                button = canvas.create_image(560 + column_offset, 165 + row_offset, anchor=tk.NW, image=image_level_tk)
                 if state != "LOCKED":
                     canvas.tag_bind(button, "<Enter>", on_image_enter)
                     canvas.tag_bind(button, "<Leave>", on_image_leave)
                     canvas.tag_bind(button, '<Button-1>', on_image_click)
 
                 emblem_image = Image.open(resource_path("assets\\images\\emblems\\" + str(row_index) + ".png"))
-                emblem_image = emblem_image.resize((45, 65))
+                emblem_image = emblem_image.resize((65, 85))
 
                 if value["status"] == "LOCKED":
                     emblem_image_enhance = ImageEnhance.Brightness(emblem_image)
@@ -117,7 +117,7 @@ def draw(frame, change_screen):
                     emblem_image_tk = ImageTk.PhotoImage(emblem_image)
 
                 setattr(canvas, f"emblem_image_tk_{row_index}", emblem_image_tk)
-                canvas.create_image(580 + column_offset + emblems_offset, 135 + row_offset, anchor=tk.NW,
+                canvas.create_image(580 + column_offset + emblems_offset, 155 + row_offset, anchor=tk.NW,
                                     image=emblem_image_tk)
 
                 column_offset += 63

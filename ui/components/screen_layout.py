@@ -178,7 +178,7 @@ class ScreenLayout:
 
         # Start Book #
         book_image_image = Image.open(resource_path(f"assets\\images\\books\\{self.module_number}.png"))
-        book_image_image = book_image_image.resize((28, 44))
+        book_image_image = book_image_image.resize((36, 52))
         book_image_image_tk = ImageTk.PhotoImage(book_image_image)
 
         def on_book_button_image_enter(event):
@@ -188,7 +188,7 @@ class ScreenLayout:
             canvas.config(cursor="")
 
         setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
-        book_button = canvas.create_image(1220, 665, anchor="w", image=book_image_image_tk)
+        book_button = canvas.create_image(1220, 668, anchor="w", image=book_image_image_tk)
         canvas.tag_bind(book_button, "<Enter>", on_book_button_image_enter)
         canvas.tag_bind(book_button, "<Leave>", on_book_button_image_leave)
         # End Book #
@@ -210,7 +210,7 @@ class ScreenLayout:
             canvas.config(cursor="")
 
         setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
-        back_arrow_button = canvas.create_image(25, 57, anchor="w", image=back_arrow_image_tk)
+        back_arrow_button = canvas.create_image(45, 57, anchor="w", image=back_arrow_image_tk)
         canvas.tag_bind(back_arrow_button, "<Enter>", on_arrow_click_image_enter)
         canvas.tag_bind(back_arrow_button, "<Leave>", on_arrow_click_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
