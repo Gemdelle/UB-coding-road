@@ -44,8 +44,9 @@ def draw(frame, change_screen):
         incorrect_output_image_path=resource_path("assets\\images\\ex-6\\06-06-w.png"),
         title_text="6. Operadores de Comparación",
         subtitle_text='6.6 No igual que (!=)',
-        task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente.\nEssence está lanzando una nueva campaña “OraNge” y por el día de hoy solo se venderá el perfume cítrico de naranja.\nRequerimientos del cliente:\n“Estoy buscando un perfume de nicho que no sea cítrico porque me produce alergia.“\n*Recordar que los operadores de comparación no se usan únicamente con números, también se pueden utilizar con datos de tipo string.',
+        task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente.\nEssence está lanzando una nueva campaña “OraNge” y por el día de hoy solo se venderá el perfume cítrico de naranja.\nRequerimientos del cliente:\n“Estoy buscando un perfume de nicho que no sea cítrico porque me produce alergia.“',
         correct_code_text='fragancia = "cítrica"\nfragancia_descartada = "cítrica"\ncumple_requisitos = fragancia != fragancia_descartada\nprint(f"En el negocio hay disponibilidad de perfume de fragancia diferente del tipo {fragancia_descartada}: {cumple_requisitos}")\n',
-        incorrect_code_text='fragancia_descartada = "cítrica"\nprint(f“En el negocio hay disponibilidad de perfume de fragancia diferente del tipo {}: {}”)\n'
+        incorrect_code_text='fragancia_descartada = "cítrica"\nprint(f“En el negocio hay disponibilidad de perfume de fragancia diferente del tipo {}: {}”)\n',
+        extra_task_text='*Recordar que los\noperadores de comparación\nno se usan únicamente\ncon números, también\nse pueden utilizar con\ndatos de tipo string.'
     )
     layout.draw()

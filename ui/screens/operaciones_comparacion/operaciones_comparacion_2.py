@@ -43,8 +43,9 @@ def draw(frame, change_screen):
         incorrect_output_image_path=resource_path("assets\\images\\ex-6\\06-03.png"),
         title_text="6. Operadores de Comparación",
         subtitle_text='6.3 Mayor que (>)',
-        task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente:\n“Estoy buscando un perfume de fragancia especiada para usar mañana por la noche, puedo gastar hasta $5120.” \n*Tener en cuenta que el dato de la “noche” corresponde a la ocasión.',
+        task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente:\n“Estoy buscando un perfume de fragancia especiada para usar mañana por la noche, puedo gastar hasta $5120.”',
         correct_code_text='fragancia = "especiada"\nocasion = "noche"\npresupuesto = 5120\nprecio = 5350\ncumple_requisitos = presupuesto > precio\nprint(f"En el negocio hay disponibilidad de perfume de fragancia {fragancia} para ocasión {ocasion} de valor inferior a {presupuesto}: {cumple_requisitos}")\n',
-        incorrect_code_text='print(f"En el negocio hay disponibilidad de perfume de fragancia {} para ocasión {} de valor inferior a {}: {}")\n'
+        incorrect_code_text='print(f"En el negocio hay disponibilidad de perfume de fragancia {} para ocasión {} de valor inferior a {}: {}")\n',
+        extra_task_text='*Tener en cuenta que\nel dato de la “noche”\ncorresponde a la ocasión.'
     )
     layout.draw()

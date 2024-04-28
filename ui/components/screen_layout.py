@@ -1,7 +1,7 @@
 from tkinter import BOTH, YES
 
 import tkinter as tk
-from PIL import Image, ImageTk, ImageEnhance
+from PIL import Image, ImageTk
 
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
@@ -53,12 +53,6 @@ class ScreenLayout:
         canvas = tk.Canvas(self.frame, bg="black", width=1280, height=720)
         canvas.pack(fill=BOTH, expand=YES)
 
-        def on_image_enter(event):
-            canvas.config(cursor="hand2")
-
-        def on_image_leave(event):
-            canvas.config(cursor="")
-
         # Start Background #
         image = Image.open(resource_path(f"assets\\images\\backgrounds\\background-levels.png"))
         image = image.resize((1280, 720))
@@ -109,33 +103,34 @@ class ScreenLayout:
         canvas.create_text(110, 200, justify="left", text=agregar_saltos_de_linea(self.task_text), fill="black", font=("Georgia", 8, "bold"), anchor="w")
         # End Task #
 
-        # Start Extra Task Info #
-        extra_task_tooltip_button_image = Image.open(resource_path("assets\\images\\tooltip\\extra-instructions-gem.png"))
-        extra_task_tooltip_button_image = extra_task_tooltip_button_image.resize((47, 41))
-        extra_task_tooltip_button_image_tk = ImageTk.PhotoImage(extra_task_tooltip_button_image)
+        if self.extra_task_text is not None:
+            # Start Extra Task Info #
+            extra_task_tooltip_button_image = Image.open(resource_path("assets\\images\\tooltip\\extra-instructions-gem.png"))
+            extra_task_tooltip_button_image = extra_task_tooltip_button_image.resize((47, 41))
+            extra_task_tooltip_button_image_tk = ImageTk.PhotoImage(extra_task_tooltip_button_image)
 
-        extra_task_frame_image = Image.open(resource_path(f"assets\\images\\frames\\instructions-extra.png"))
-        extra_task_frame_image = extra_task_frame_image.resize((257, 360))
-        extra_task_frame_image_tk = ImageTk.PhotoImage(extra_task_frame_image)
+            extra_task_frame_image = Image.open(resource_path(f"assets\\images\\frames\\instructions-extra.png"))
+            extra_task_frame_image = extra_task_frame_image.resize((257, 360))
+            extra_task_frame_image_tk = ImageTk.PhotoImage(extra_task_frame_image)
 
-        def on_extra_task_tooltip_button_enter():
-            canvas.config(cursor="hand2")
+            def on_extra_task_tooltip_button_enter():
+                canvas.config(cursor="hand2")
 
-            setattr(canvas, f"extra_task_frame_image_tk", extra_task_frame_image_tk)
-            canvas.create_image(670, 280, anchor="w", image=extra_task_frame_image_tk, tags="extra_task_frame")
-            canvas.create_text(735, 290, justify="left", text=self.extra_task_text.upper(), fill="black",
-                               font=("Georgia", 7, "bold"), anchor="w", tags="extra_task_text")
+                setattr(canvas, f"extra_task_frame_image_tk", extra_task_frame_image_tk)
+                canvas.create_image(670, 280, anchor="w", image=extra_task_frame_image_tk, tags="extra_task_frame")
+                canvas.create_text(735, 290, justify="left", text=self.extra_task_text.upper(), fill="black",
+                                   font=("Georgia", 7, "bold"), anchor="w", tags="extra_task_text")
 
-        def on_extra_task_tooltip_button_leave():
-            canvas.config(cursor="")
-            canvas.delete("extra_task_text")
-            canvas.delete("extra_task_frame")
+            def on_extra_task_tooltip_button_leave():
+                canvas.config(cursor="")
+                canvas.delete("extra_task_text")
+                canvas.delete("extra_task_frame")
 
-        setattr(canvas, "extra_task_tooltip_button_image_tk", extra_task_tooltip_button_image_tk)
-        extra_task_tooltip_button = canvas.create_image(620, 275, anchor="w", image=extra_task_tooltip_button_image_tk)
-        canvas.tag_bind(extra_task_tooltip_button, "<Enter>", lambda event: on_extra_task_tooltip_button_enter())
-        canvas.tag_bind(extra_task_tooltip_button, "<Leave>", lambda event: on_extra_task_tooltip_button_leave())
-        # End Task #
+            setattr(canvas, "extra_task_tooltip_button_image_tk", extra_task_tooltip_button_image_tk)
+            extra_task_tooltip_button = canvas.create_image(620, 275, anchor="w", image=extra_task_tooltip_button_image_tk)
+            canvas.tag_bind(extra_task_tooltip_button, "<Enter>", lambda event: on_extra_task_tooltip_button_enter())
+            canvas.tag_bind(extra_task_tooltip_button, "<Leave>", lambda event: on_extra_task_tooltip_button_leave())
+            # End Extra Task #
 
         # Start Code Area #
         text_area = tk.Text(canvas, wrap="word", width=75, height=22)

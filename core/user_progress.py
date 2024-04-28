@@ -13,7 +13,7 @@ initial_data = {
     },
     "print": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
+        "current": 6,
         "total": 7,
         "test": {
             "actual": 0,
@@ -22,7 +22,7 @@ initial_data = {
     },
     "asignacion": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
+        "current": 5,
         "total": 6,
         "test": {
             "actual": 0,
@@ -31,7 +31,7 @@ initial_data = {
     },
     "transformacion": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
+        "current": 3,
         "total": 4,
         "test": {
             "actual": 0,
@@ -40,7 +40,7 @@ initial_data = {
     },
     "input": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
+        "current": 2,
         "total": 3,
         "test": {
             "actual": 0,
@@ -49,7 +49,7 @@ initial_data = {
     },
     "operaciones_aritmeticas": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
+        "current": 8,
         "total": 9,
         "test": {
             "actual": 0,
@@ -58,7 +58,7 @@ initial_data = {
     },
     "operaciones_comparacion": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 0,
+        "current": 5,
         "total": 6,
         "test": {
             "actual": 0,

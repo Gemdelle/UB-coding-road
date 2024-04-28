@@ -45,7 +45,7 @@ def draw(frame, change_screen):
 
     create_programme(canvas)
     create_notes(canvas)
-    create_library(canvas)
+    create_library(canvas, change_screen)
     create_toggle_sound(canvas)
 
     row_index = 0
@@ -185,7 +185,7 @@ def create_notes(canvas):
     canvas.tag_bind(notes_button, "<Enter>", on_notes_button_enter)
     canvas.tag_bind(notes_button, "<Leave>", on_notes_button_leave)
 
-def create_library(canvas):
+def create_library(canvas, change_screen):
     library_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\library-button.png"))
     library_button_image = library_button_image.resize((70, 50))
     library_button_image_tk = ImageTk.PhotoImage(library_button_image)
@@ -198,6 +198,8 @@ def create_library(canvas):
 
     def on_library_button_click(button_id):
         canvas.config(cursor="hand2")
+        change_screen(Screens.LIBRARY)
+        canvas.destroy()
 
     setattr(canvas, "library_button_image_tk", library_button_image_tk)
     library_button = canvas.create_image(410, 90, anchor="w", image=library_button_image_tk)
