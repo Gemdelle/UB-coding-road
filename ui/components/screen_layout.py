@@ -162,7 +162,7 @@ class ScreenLayout:
 
             def on_tooltip_button_leave(button_id):
                 canvas.config(cursor="")
-                self.incorrect_output(canvas)
+                canvas.delete("music_sheet_image_tk_right")
                 setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
                 canvas.itemconfig(button_id, image=tooltip_off_button_image_tk)
 
@@ -222,15 +222,15 @@ class ScreenLayout:
             resized_image, x, y = resize_and_center_image(music_sheet_image)
             music_sheet_image_tk = ImageTk.PhotoImage(resized_image)
 
-            setattr(output_canvas, f"music_sheet_image_tk_wrong", music_sheet_image_tk)
-            output_canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk)
+            setattr(output_canvas, "music_sheet_image_tk_wrong", music_sheet_image_tk)
+            output_canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk, tags="music_sheet_image_tk_wrong")
 
     def correct_output(self, canvas):
         music_sheet_image = Image.open(self.correct_output_image_path)
         resized_image, x, y = resize_and_center_image(music_sheet_image)
         music_sheet_image_tk = ImageTk.PhotoImage(resized_image)
-        setattr(canvas, f"music_sheet_image_tk_right", music_sheet_image_tk)
-        canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk)
+        setattr(canvas, "music_sheet_image_tk_right", music_sheet_image_tk)
+        canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk, tags="music_sheet_image_tk_right")
 
     def correct_excercise_state(self, canvas, input_area):
         self.correct_output(canvas)
