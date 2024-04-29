@@ -1,4 +1,5 @@
 import tkinter as tk
+import pyglet
 
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
@@ -15,6 +16,11 @@ sound_manager.load_sound("next-level", resource_path("assets\\sounds\\next-level
 sound_manager.load_sound("introduction", resource_path("assets\\sounds\\introduction.mp3"))
 sound_manager.load_sound("button", resource_path("assets\\sounds\\button.mp3"))
 sound_manager.load_sound("win_emblem", resource_path("assets\\sounds\\badge\\win_emblem.mp3"))
+
+pyglet.options['win32_gdi_font'] = True
+# Preload Fonts
+pyglet.font.add_file(resource_path("assets\\font\\ModerneFraktur.ttf"))
+
 
 class Application(tk.Tk):
     def __init__(self):

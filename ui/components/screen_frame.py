@@ -1,7 +1,9 @@
 import tkinter as tk
 
 from core.screens import Screens
-from ui.screens import splash, landing, book, landing_2, win_emblem, library
+from ui.screens import splash, win_emblem
+from ui.screens.headers import programme, landing, landing_2, programme_1, book, library, programme_2, programme_3
+from ui.screens.arrays import arrays_0, arrays_1, arrays_2, arrays_3
 from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion_2, asignacion_3, asignacion_4, \
     asignacion_5, asignacion_test
 from ui.screens.comentarios_screens import comentarios_0, comentarios_1, comentarios_2, comentarios_3, comentarios_4, \
@@ -22,6 +24,10 @@ screen_draw_functions = {
     Screens.LANDING_2: landing_2.draw,
     Screens.BOOK: book.draw,
     Screens.LIBRARY: library.draw,
+    Screens.PROGRAMME: programme.draw,
+    Screens.PROGRAMME_1: programme_1.draw,
+    Screens.PROGRAMME_2: programme_2.draw,
+    Screens.PROGRAMME_3: programme_3.draw,
     Screens.WIN_EMBLEM: win_emblem.draw,
     Screens.COMENTARIOS_0: comentarios_0.draw,
     Screens.COMENTARIOS_1: comentarios_1.draw,
@@ -90,10 +96,10 @@ screen_draw_functions = {
     # Screens.BUCLE_IF_17: bucle_if_17.draw,
     # Screens.BUCLE_IF_18: bucle_if_18.draw,
     # Screens.BUCLE_IF_TEST: bucle_if_test.draw,
-    # Screens.ARRAYS_0: arrays_0.draw,
-    # Screens.ARRAYS_1: arrays_1.draw,
-    # Screens.ARRAYS_2: arrays_2.draw,
-    # Screens.ARRAYS_3: arrays_3.draw,
+    Screens.ARRAYS_0: arrays_0.draw,
+    Screens.ARRAYS_1: arrays_1.draw,
+    Screens.ARRAYS_2: arrays_2.draw,
+    Screens.ARRAYS_3: arrays_3.draw,
     # Screens.ARRAYS_4: arrays_4.draw,
     # Screens.ARRAYS_5: arrays_5.draw,
     # Screens.ARRAYS_6: arrays_6.draw,
