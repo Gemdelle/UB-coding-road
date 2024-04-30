@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         task_text='  La perfumería “Essence” vende perfumes de diferentes categorías. Las categorías corresponden a:\nfragancia (floral, cítrica o especiada), temporada (verano o invierno), ocasión (día o noche) y tipo de espacio (abierto o cerrado).\nSe necesita verificar que los pedidos de los clientes estén disponibles según sus requerimientos y el stock. Completar las variables para poder realizar la venta según el pedido del cliente:\n“Estoy buscando un perfume de fragancia cítrica que cueste menos de $6500.”',
         correct_code_text='fragancia = "cítrica"\npresupuesto = 6500\nprecio = 6320\ncumple_requisitos = precio < presupuesto\nprint(f“En el negocio hay disponibilidad de perfume de fragancia {fragancia} de valor inferior a {presupuesto}: {cumple_requisitos}”)\n',
         incorrect_code_text='fragancia =\npresupuesto =\nprecio =\ncumple_requisitos =\nprint(f"En el negocio hay disponibilidad de perfume {fragancia} de valor inferior a {presupuesto}: {cumple_requisitos}")\n',
+        change_screen=change_screen,
         extra_task_text='*En el caso de que no\nhayastock del perfume\nsolicitado, el stock\nserá declarado\ndirectamente como un\nvalor falso.\n\n**Los nombres de la\nfragancia, temporada,\nocasión y tipo de espacio\ndeben estar escritos\nen minúscula y de la\nmisma forma que\naparecen en la planilla.'
     )
     layout.draw()

@@ -52,7 +52,7 @@ def draw(frame, change_screen):
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
 
     create_programme(canvas, change_screen)
-    create_notes(canvas)
+    create_notes(canvas,change_screen)
     create_library(canvas, change_screen)
     create_toggle_sound(canvas)
 
@@ -70,8 +70,24 @@ def draw(frame, change_screen):
                 image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index)+".png"))
                 image_book = image_book.resize((50, 70))
                 image_book_tk = ImageTk.PhotoImage(image_book)
+
+                def on_book_buttom_enter(event):
+                    canvas.config(cursor="hand2")
+
+                def on_book_buttom_leave(event):
+                    canvas.config(cursor="")
+
+                def on_book_buttom_click(button_id):
+                    canvas.config(cursor="hand2")
+                    play_button_sound()
+                    change_screen(Screens.LIBRARY)
+                    canvas.destroy()
+
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                canvas.create_image(500, 160 + row_offset, anchor=tk.NW, image=image_book_tk)
+                book_buttom = canvas.create_image(500, 160 + row_offset, anchor=tk.NW, image=image_book_tk)
+                canvas.tag_bind(book_buttom, "<Enter>", on_book_buttom_enter)
+                canvas.tag_bind(book_buttom, "<Leave>", on_book_buttom_leave)
+                canvas.tag_bind(book_buttom, '<Button-1>', on_book_buttom_click)
 
             for i in range(value["total"]):
                 state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
@@ -89,6 +105,8 @@ def draw(frame, change_screen):
                 image_level_tk = ImageTk.PhotoImage(image_level)
 
                 def on_image_click(event, screen=screen_to_change):
+                    canvas.config(cursor="hand2")
+                    play_button_sound()
                     change_screen(screen)
                     canvas.destroy()
 
@@ -166,6 +184,7 @@ def create_programme(canvas, change_screen):
 
     def on_programme_button_click(button_id):
         canvas.config(cursor="hand2")
+        play_button_sound()
         change_screen(Screens.PROGRAMME)
         canvas.destroy()
 
@@ -175,7 +194,7 @@ def create_programme(canvas, change_screen):
     canvas.tag_bind(programme_button, "<Enter>", on_programme_button_enter)
     canvas.tag_bind(programme_button, "<Leave>", on_programme_button_leave)
 
-def create_notes(canvas):
+def create_notes(canvas,change_screen):
     notes_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\notes-button.png"))
     notes_button_image = notes_button_image.resize((65, 50))
     notes_button_image_tk = ImageTk.PhotoImage(notes_button_image)
@@ -188,6 +207,9 @@ def create_notes(canvas):
 
     def on_notes_button_click(button_id):
         canvas.config(cursor="hand2")
+        play_button_sound()
+        change_screen(Screens.LIBRARY)
+        canvas.destroy()
 
     setattr(canvas, "notes_button_image_tk", notes_button_image_tk)
     notes_button = canvas.create_image(320, 90, anchor="w", image=notes_button_image_tk)
@@ -208,6 +230,7 @@ def create_library(canvas, change_screen):
 
     def on_library_button_click(button_id):
         canvas.config(cursor="hand2")
+        play_button_sound()
         change_screen(Screens.LIBRARY)
         canvas.destroy()
 

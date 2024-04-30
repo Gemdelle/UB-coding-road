@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='9.0 Modificar array string a mano',
         task_text='❧ Un trabajador de una mina necesita transportar elementos (cristales, minerales y gemas). Cada elemento se guarda en un carrito, y una sucesión de carritos forma un tren. Cada carrito va a representar la posición de ese elemento en el tren. El tren declarado es un arreglo (array) que contiene un elemento (“carrito viejo”). Modificar el arreglo para que contenga cuatro carritos con la palabra carrito y el número dentro del tren, por ejemplo: “carrito 0”, “carrito 5”. El primer carrito debe ser el número 0.',
         correct_code_text='tren = [“carrito 0”, “carrito 1”, “carrito 2“]\n',
+        change_screen = change_screen,
         incorrect_code_text='tren = ["carrito viejo"]\n'
     )
     layout.draw()

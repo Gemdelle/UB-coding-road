@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='6.2 Menor o igual que (<=)',
         task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente:\n“Estoy buscando un perfume para usar este verano, tengo $7450.',
         correct_code_text='temporada = "verano"\npresupuesto = 7450\nprecio = 7450\ncumple_requisitos = precio <= presupuesto\nprint(f"En el negocio hay disponibilidad de perfume de temporada {temporada} de valor inferior o igual a {presupuesto}: {cumple_requisitos}")\n',
+        change_screen=change_screen,
         incorrect_code_text='temporada = ""\n#print(f"Stock de perfume {} de valor inferior a {}: {}")\n'
     )
     layout.draw()

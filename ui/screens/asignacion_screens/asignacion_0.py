@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         subtitle_text='2.1 String',
         task_text='❧ Declarar las variables <planeta1> y <planeta2>\npara la Tierra y la Luna (valores Earth, Moon).',
         correct_code_text='planeta1 = "Earth"\nplaneta2 = "Moon"',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

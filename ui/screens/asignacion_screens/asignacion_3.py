@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         subtitle_text='2.4 Boolean',
         task_text='❧ Declarar una variable <luz>\nde tipo boolean para encender el sol.',
         correct_code_text='estrella = "Sun"\nluz = True',
+        change_screen=change_screen,
         incorrect_code_text='estrella = "Sun"'
     )
     layout.draw()

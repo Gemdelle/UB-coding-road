@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         subtitle_text='2.3 Float',
         task_text='❧ Declarar dos variables de tipo float <diametro_planeta1>\n y <diametro_planeta2 > con el diámetro de la Tierra (12742.1 km.)\n y el diámetro de la Luna (3474.8 km.).',
         correct_code_text='planeta1 = "Earth"\nplaneta2 = "Moon"\ndistancia = 384400\ndiametro_planeta1 =  12742.1\ndiametro_planeta2 = 3474.8',
+        change_screen=change_screen,
         incorrect_code_text='planeta1 = "Earth"\nplaneta2 = "Moon"\ndistancia = 384400'
     )
     layout.draw()

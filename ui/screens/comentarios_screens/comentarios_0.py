@@ -48,6 +48,7 @@ def draw(frame, change_screen):
         subtitle_text="0.1 Comentar una variable con #",
         task_text='❧ Comenta la variable "autor" con el símbolo # para que \n no se tenga en cuenta en la ejecución del programa.',
         correct_code_text='#autor = "Ludwig van Beethoven"\n#print(autor)',
+        change_screen=change_screen,
         incorrect_code_text='autor = "Ludwig van Beethoven"\nprint(autor)'
     )
     layout.draw()

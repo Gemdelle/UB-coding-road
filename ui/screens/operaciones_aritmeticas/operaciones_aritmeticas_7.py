@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='5.8 Módulo (%)',
         task_text='❧ Se necesita distribuir uniformemente una cierta cantidad de llaves entre un número determinado de habitaciones en un hotel.\nCada habitación solo puede tener una llave y no pueden quedar llaves sobrantes.\nDeclarar la variable <cantidad_llaves> con el número total de llaves disponibles (10) y la variable <cantidad_habitaciones>\ncon el número total de habitaciones en el hotel (2). Luego, calcular cuántas llaves se asignan asignadas a cada habitación\ny cuántas llaves sobran, si las hay. Asegurate de usar el operador módulo (%) para calcular\nlas llaves sobrantes (calcular <llaves_por_habitacion> y <llaves_sobrantes>).\nImprimir la información con el siguiente formato:\nLlaves por habitación: {x}\nLlaves sobrantes: {y}\n',
         correct_code_text='cantidad_llaves = 10\ncantidad_habitaciones = 2\nllaves_por_habitacion = cantidad_llaves // cantidad_habitaciones\nllaves_sobrantes = cantidad_llaves % cantidad_habitaciones\nprint(f"Llaves por habitación: {llaves_por_habitacion}")\nprint(f"Llaves sobrantes: {llaves_sobrantes}")\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

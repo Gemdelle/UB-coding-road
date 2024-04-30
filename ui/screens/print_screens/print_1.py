@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='1.2 Variable  → print(word)',
         task_text='❧ Además de imprimir el texto que se escribe\n dentro de la función print(), es posible imprimir\n directamente el valor de una variable. Imprimir el valor\n de la variable <palabra>.',
         correct_code_text='palabra = "tower"\nprint(palabra)',
+        change_screen=change_screen,
         incorrect_code_text='palabra = "tower"'
     )
     layout.draw()

@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         subtitle_text='2.2 Int',
         task_text='❧ Declarar una variable <distancia> de tipo entero\n con la distancia entre la Tierra y la Luna (384400 km.).',
         correct_code_text='planeta1 = "Earth"\nplaneta2 = "Moon"\ndistancia = 384400',
+        change_screen=change_screen,
         incorrect_code_text='planeta1 = "Earth"\nplaneta2 = "Moon"'
     )
     layout.draw()

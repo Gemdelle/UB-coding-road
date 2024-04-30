@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         subtitle_text='0.3 Comentar una variable con """',
         task_text='❧ Apareció una mancha en la partitura,\n comentarla con comillas triples “”” “”” para que desaparezca.',
         correct_code_text='"""\nmancha = True\nprint(mancha)\n"""',
+        change_screen=change_screen,
         incorrect_code_text='mancha = True\nprint(mancha)'
     )
     layout.draw()

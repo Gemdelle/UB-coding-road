@@ -33,7 +33,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
+        next_screen=lambda: change_screen(Screens.LANDING),
         process_input=process_input,
         level_name="operaciones_aritmeticas",
         level_number=8,
@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='5.9 Concatenación str (texto y variables)',
         task_text='❧ HAY QUE ARREGLARLOO',
         correct_code_text='cantidad_llaves = 10\ncantidad_habitaciones = 2\nllaves_por_habitacion = cantidad_llaves // cantidad_habitaciones\nllaves_sobrantes = cantidad_llaves % cantidad_habitaciones\nprint(f"Llaves por habitación: {llaves_por_habitacion}")\nprint(f"Llaves sobrantes: {llaves_sobrantes}")\n',
+        change_screen=change_screen,
         incorrect_code_text='hospedaje = "Lowelle"\n'
     )
     layout.draw()

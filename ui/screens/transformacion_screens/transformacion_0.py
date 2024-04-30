@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='3.1. str a int',
         task_text='❧ Transformar el valor “3” almacenado\nen <numero> de string a entero.',
         correct_code_text='numero = int("3")',
+        change_screen=change_screen,
         incorrect_code_text='numero = "3"\n'
     )
     layout.draw()

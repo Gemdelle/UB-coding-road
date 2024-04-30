@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='5.7 Raíz (potenciación) con variables (**)',
         task_text='❧  Ahora se necesita determinar cuántas llaves serían necesarias en función de la cantidad de habitaciones disponibles.\nCada habitación en el hotel requiere una llave para su acceso. Declarar la variable <habitaciones_disponibles> con el número total de habitaciones en el hotel (144).\nLuego, calcular la cantidad máxima de llaves, <llaves necesarias> utilizando la raíz cuadrada como potenciación.\nTip: Elevar el número de habitaciones disponibles a la potencia de 0.5, devuelve la cantidad de llaves necesarias para cubrir todas las habitaciones.\nImprimir la información con el siguiente formato: Para {x} habitaciones disponibles, se necesitarían {y} llaves en total.',
         correct_code_text='habitaciones_disponibles = 144\nllaves_necesarias = habitaciones_disponibles ** 0.5 #esto da 12\nprint(f"Para {habitaciones_disponibles} habitaciones disponibles, se necesitarían {llaves_necesarias:.2f} llaves en total.")\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

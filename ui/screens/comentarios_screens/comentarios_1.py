@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text="0.2 Descomentar una variable con #",
         task_text='❧ Descomentar la variable "titulo" y la línea que la imprime,\nque está actualmente comentada con el símbolo #,\npara que se tenga en cuenta en la ejecución del programa.',
         correct_code_text='titulo = "Sonata para piano No. 14"\nprint(titulo)',
+        change_screen=change_screen,
         incorrect_code_text='#titulo = "Sonata para piano No. 14"\n#print(titulo)'
     )
     layout.draw()

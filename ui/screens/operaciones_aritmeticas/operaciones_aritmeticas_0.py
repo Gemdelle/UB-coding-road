@@ -59,6 +59,7 @@ def draw(frame, change_screen):
         subtitle_text='5.1 Suma (+)',
         task_text='❧  En un hospedaje se usan dos tipos de llaves: llaves diurnas y llaves nocturnas.\nDeclarar dos variables, <llaves_diurnas> y <llaves_nocturnas>, para representar\n la cantidad de cada tipo de llave y sumar las variables en <llaves>.',
         correct_code_text='llaves_diurnas = 2\nllaves_nocturnas = 3\nllaves = llaves_diurnas + llaves_nocturnas\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

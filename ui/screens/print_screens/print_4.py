@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='1.4. Operador + → print(word + word)',
         task_text='❧ Imprimir nuevamente “Climb the tower”,\npero esta vez a modo de frase y\nutilizando el operador de concatenación (+).',
         correct_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"\nprint(palabra1 + " " + palabra2 + " " + palabra3)',
+        change_screen=change_screen,
         incorrect_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"'
     )
     layout.draw()

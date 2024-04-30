@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='1.5 String formateado',
         task_text='❧ Imprimir la frase "Please climb the tower fast"\nutilizando un string formateado.',
         correct_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"\nprint(f"Please {palabra1} {palabra2} {palabra3} fast")',
+        change_screen=change_screen,
         incorrect_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"'
     )
     layout.draw()

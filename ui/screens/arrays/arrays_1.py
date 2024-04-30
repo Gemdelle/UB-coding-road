@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='9.1 Modificar array string con variables',
         task_text='❧ El arreglo <tren> contiene tres carritos (recordar que el primero elemento corresponde al índice 0 de la lista). Declarar la variable <carrito3> y agregarla al tren para que el tren esté formado por cuatro carritos en total.',
         correct_code_text='carrito0 = "carrito 0"\ncarrito1 = "carrito 1"\ncarrito2 = "carrito 2"\ncarrito = [carrito0,carrito1,carrito2,carrito3]\n',
+        change_screen=change_screen,
         incorrect_code_text='carrito0 = "carrito 0"\ncarrito1 = "carrito 1"\ncarrito2 = "carrito 2"\ncarrito = [carrito0,carrito1,carrito2]\n'
     )
     layout.draw()

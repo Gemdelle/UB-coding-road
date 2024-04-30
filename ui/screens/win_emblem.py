@@ -58,7 +58,7 @@ def draw(frame, change_screen):
         emblem_image_tk = ImageTk.PhotoImage(emblem_image)
 
         setattr(canvas, f"emblem_unlocked_image_tk", emblem_image_tk)
-        canvas.create_image(570, 300, anchor=tk.NW, image=emblem_image_tk)
+        canvas.create_image(595, 260, anchor=tk.NW, image=emblem_image_tk)
 
         gif_label = AnimatedGIF(canvas, resource_path("assets\\images\\gifs\\win_emblem.gif"), 400, 30)
 

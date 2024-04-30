@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente:\n“Estoy buscando un perfume de fragancia floral para usar en un salón cerrado para un casamiento la semana que viene,\ncomo es un evento importante estaría dispuesta a gastar más de $5500 pero menos de $6500, incluidos ambos valores” \n',
         correct_code_text='fragancia = "floral"\nespacio = "cerrado"\npresupuesto_maximo = 6500\npresupuesto_minimo= 5500\nprecio = 5680\ncumple_requisitos = presupuesto_maximo >= precio >= presupuesto_minimo\nprint(f"Stock de perfume de fragancia {fragancia} para espacio {espacio} de valor superior a {presupuesto_minimo} e inferior a {presupuesto_maximo}: {cumple_requisitos}")\n',
         incorrect_code_text='print(f"En el negocio hay disponibilidad de perfume de fragancia {} para espacio {} de valor superior a {} e inferior a {}: {}")\n',
+        change_screen=change_screen,
         extra_task_text='*Tener en cuenta que\nel dato del salón\n“cerrado” corresponde\na la categoría espacio.\n**Es posible que en\neste caso haya que\ndeclarar un presupuesto\nmáximo y uno mínimo ya\nque se trata de un rango.'
     )
     layout.draw()
