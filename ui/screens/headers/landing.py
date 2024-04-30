@@ -24,6 +24,14 @@ def draw(frame, change_screen):
     canvas.image = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
 
+    # Start Copyright #
+    copyright_image = Image.open(resource_path(f"assets\\images\\copyright\\copyright.png"))
+    copyright_image = copyright_image.resize((280, 33))
+    copyright_image_tk = ImageTk.PhotoImage(copyright_image)
+    setattr(canvas, f"copyright_image_tk", copyright_image_tk)
+    canvas.create_image(980, 25, anchor=tk.NW, image=copyright_image_tk)
+    # End Copyright #
+
     image_next_arrow = Image.open(resource_path("assets\\images\\next_arrow.png"))
     image_next_arrow = image_next_arrow.resize((75, 42))
     image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
