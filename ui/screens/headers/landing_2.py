@@ -14,22 +14,21 @@ def draw(frame, change_screen):
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
 
-    play_background_music()
-
     canvas = tk.Canvas(frame, bg="black", width=1280, height=720)
     canvas.pack(fill=BOTH, expand=YES)
 
-    image = Image.open(resource_path("assets\\images\\backgrounds\\background-main.png"))
+    image = Image.open(resource_path("assets\\images\\backgrounds\\background-main-2.png"))
     image = image.resize((1280, 720))
     canvas.image = ImageTk.PhotoImage(image)
     canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
 
-    image_next_arrow = Image.open(resource_path("assets\\images\\next_arrow.png"))
+    image_next_arrow = Image.open(resource_path("assets\\images\\back_arrow.png"))
     image_next_arrow = image_next_arrow.resize((75, 42))
     image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
+
     def on_image_next_arrow_click(event):
         play_button_sound()
-        change_screen(Screens.LANDING_2)
+        change_screen(Screens.LANDING)
         canvas.destroy()
 
     def on_image_next_arrow_enter(event):
@@ -39,12 +38,12 @@ def draw(frame, change_screen):
         canvas.config(cursor="")
 
     setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
-    next_arrow_button = canvas.create_image(1180, 405, anchor=tk.NW, image=image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(40, 405, anchor=tk.NW, image=image_next_arrow_tk)
     canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
     canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
     canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
 
-    create_programme(canvas)
+    create_programme(canvas, change_screen)
     create_notes(canvas)
     create_library(canvas, change_screen)
     create_toggle_sound(canvas)
@@ -53,7 +52,7 @@ def draw(frame, change_screen):
     row_offset = 50
     emblems_offset = 63
     for key, value in user_progress.items():
-        if row_index < 5:
+        if row_index >= 5 and row_index <= 6:
             column_offset = 40
             #capitalized_module_name = [word.capitalize() for word in key.split('_')]
             #output_capitalized_module_name = " ".join(capitalized_module_name)
@@ -63,16 +62,8 @@ def draw(frame, change_screen):
                 image_book = Image.open(resource_path("assets\\images\\books\\"+str(row_index)+".png"))
                 image_book = image_book.resize((50, 70))
                 image_book_tk = ImageTk.PhotoImage(image_book)
-                def on_book_buttom_enter(event):
-                    canvas.config(cursor="hand2")
-
-                def on_book_buttom_leave(event):
-                    canvas.config(cursor="")
-
                 setattr(canvas, f"image_book_{row_index}", image_book_tk)
-                book_buttom = canvas.create_image(500, 160 + row_offset, anchor=tk.NW, image=image_book_tk)
-                canvas.tag_bind(book_buttom, "<Enter>", on_book_buttom_enter)
-                canvas.tag_bind(book_buttom, "<Leave>", on_book_buttom_leave)
+                canvas.create_image(500, 160 + row_offset, anchor=tk.NW, image=image_book_tk)
 
             for i in range(value["total"]):
                 state = "LOCKED" if value["status"] == "LOCKED" else "IN_PROGRESS" if i == value["current"] else "LOCKED" if i > value["current"] else "COMPLETED"
@@ -109,7 +100,7 @@ def draw(frame, change_screen):
                 emblem_image = Image.open(resource_path("assets\\images\\emblems\\" + str(row_index) + ".png"))
                 emblem_image = emblem_image.resize((65, 85))
 
-                if value["status"] == "LOCKED":
+                if value["status"] == "LOCKED" or value["status"] == "IN_PROGRESS":
                     emblem_image_enhance = ImageEnhance.Brightness(emblem_image)
                     emblem_image_unlocked = emblem_image_enhance.enhance(0.2)
                     emblem_image_tk = ImageTk.PhotoImage(emblem_image_unlocked)
@@ -117,14 +108,12 @@ def draw(frame, change_screen):
                     emblem_image_tk = ImageTk.PhotoImage(emblem_image)
 
                 setattr(canvas, f"emblem_image_tk_{row_index}", emblem_image_tk)
-                canvas.create_image(580 + column_offset + emblems_offset, 155 + row_offset, anchor=tk.NW,
-                                    image=emblem_image_tk)
+                canvas.create_image(580 + column_offset + emblems_offset, 155 + row_offset, anchor=tk.NW, image=emblem_image_tk)
 
                 column_offset += 63
 
-        row_offset += 95
+            row_offset += 95
         row_index += 1
-
 
 def create_toggle_sound(canvas):
     sound_manager = SoundManager()
@@ -156,8 +145,8 @@ def create_toggle_sound(canvas):
     canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
     canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
 
-def create_programme(canvas):
-    programme_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\programme-button.png"))
+def create_programme(canvas, change_screen):
+    programme_button_image = Image.open(resource_path("assets\\images\\buttons\\header\\syllabus-button.png"))
     programme_button_image = programme_button_image.resize((85, 40))
     programme_button_image_tk = ImageTk.PhotoImage(programme_button_image)
 
@@ -169,6 +158,8 @@ def create_programme(canvas):
 
     def on_programme_button_click(button_id):
         canvas.config(cursor="hand2")
+        change_screen(Screens.PROGRAMME)
+        canvas.destroy()
 
     setattr(canvas, "programme_button_image_tk", programme_button_image_tk)
     programme_button = canvas.create_image(200, 90, anchor="w", image=programme_button_image_tk)

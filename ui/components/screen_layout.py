@@ -61,9 +61,9 @@ class ScreenLayout:
         # End Background #
 
         # Start Title and Subtitle #
-        canvas.create_text(120, 40, text=self.title_text, fill="#e8e8e3", font=("Georgia", 25, "bold"), anchor="w")
+        canvas.create_text(120, 40, text=self.title_text,font=("Moderne Fraktur", 25), fill="#e8e8e3", anchor="w")
         canvas.create_text(120, 75, text=self.subtitle_text, fill="#e8e8e3",
-                           font=("Georgia", 16, "bold"), anchor="w")
+                           font=("Moderne Fraktur", 16), anchor="w")
         # End Title and Subtitle #
 
         # Start Levels Images #
@@ -115,11 +115,9 @@ class ScreenLayout:
 
             def on_extra_task_tooltip_button_enter():
                 canvas.config(cursor="hand2")
-
                 setattr(canvas, f"extra_task_frame_image_tk", extra_task_frame_image_tk)
                 canvas.create_image(670, 280, anchor="w", image=extra_task_frame_image_tk, tags="extra_task_frame")
-                canvas.create_text(735, 290, justify="left", text=self.extra_task_text.upper(), fill="black",
-                                   font=("Georgia", 7, "bold"), anchor="w", tags="extra_task_text")
+                canvas.create_text(735, 290, justify="left", text=self.extra_task_text.upper(), fill="black", font=("Georgia", 7, "bold"), anchor="w", tags="extra_task_text")
 
             def on_extra_task_tooltip_button_leave():
                 canvas.config(cursor="")
@@ -181,6 +179,7 @@ class ScreenLayout:
 
             def on_tooltip_button_enter(button_id):
                 canvas.config(cursor="hand2")
+                canvas.delete("music_sheet_image_tk_wrong")
                 self.correct_output(canvas)
                 setattr(canvas, "tooltip_button_image_tk", tooltip_button_image_tk)
                 canvas.itemconfig(button_id, image=tooltip_button_image_tk)
@@ -188,6 +187,7 @@ class ScreenLayout:
             def on_tooltip_button_leave(button_id):
                 canvas.config(cursor="")
                 canvas.delete("music_sheet_image_tk_right")
+                self.incorrect_output(canvas)
                 setattr(canvas, "tooltip_button_image_tk", tooltip_off_button_image_tk)
                 canvas.itemconfig(button_id, image=tooltip_off_button_image_tk)
 

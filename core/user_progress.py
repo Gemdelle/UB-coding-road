@@ -3,8 +3,8 @@ from core.user_progress_status import UserProgressStatus
 
 initial_data = {
     "comentarios": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 4,
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 5,
         "total": 5,
         "test": {
             "actual": 0,
@@ -12,8 +12,8 @@ initial_data = {
         }
     },
     "print": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 6,
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 7,
         "total": 7,
         "test": {
             "actual": 0,
@@ -21,8 +21,8 @@ initial_data = {
         }
     },
     "asignacion": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 5,
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 6,
         "total": 6,
         "test": {
             "actual": 0,
@@ -30,8 +30,8 @@ initial_data = {
         }
     },
     "transformacion": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 3,
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 4,
         "total": 4,
         "test": {
             "actual": 0,
@@ -39,8 +39,8 @@ initial_data = {
         }
     },
     "input": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 2,
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 3,
         "total": 3,
         "test": {
             "actual": 0,
@@ -48,8 +48,8 @@ initial_data = {
         }
     },
     "operaciones_aritmeticas": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 8,
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 9,
         "total": 9,
         "test": {
             "actual": 0,
@@ -58,7 +58,7 @@ initial_data = {
     },
     "operaciones_comparacion": {
         "status": UserProgressStatus.IN_PROGRESS.value,
-        "current": 5,
+        "current": 3,
         "total": 6,
         "test": {
             "actual": 0,
@@ -66,7 +66,7 @@ initial_data = {
         }
     },
     "bucle_if": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
+        "status": UserProgressStatus.LOCKED.value,
         "current": 0,
         "total": 19,
         "test": {
@@ -75,7 +75,7 @@ initial_data = {
         }
     },
     "arrays": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
+        "status": UserProgressStatus.LOCKED.value,
         "current": 0,
         "total": 18,
         "test": {
@@ -84,7 +84,7 @@ initial_data = {
         }
     },
     "for": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
+        "status": UserProgressStatus.LOCKED.value,
         "current": 0,
         "total": 5,
         "test": {
@@ -93,7 +93,7 @@ initial_data = {
         }
     },
     "while": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
+        "status": UserProgressStatus.LOCKED.value,
         "current": 0,
         "total": 7,
         "test": {
@@ -102,7 +102,7 @@ initial_data = {
         }
     },
     "funciones": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
+        "status": UserProgressStatus.LOCKED.value,
         "current": 0,
         "total": 15,
         "test": {
