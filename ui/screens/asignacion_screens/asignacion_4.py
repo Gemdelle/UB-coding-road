@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='2.5 Sobreescribir variables de tipo string',
         task_text='❧ Sobreescribir las variables <planeta1> y <planeta2>\npara que en lugar de “Earth” y “Moon”\nguarden el valor “Venus” y “Mercury”.',
         correct_code_text='planeta1 = "Venus"\nplaneta2 = "Mercury"',
+        change_screen=change_screen,
         incorrect_code_text='planeta1 = "Earth"\nplaneta2 = "Moon"\n'
     )
     layout.draw()

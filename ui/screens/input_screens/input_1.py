@@ -53,6 +53,7 @@ def draw(frame, change_screen):
         subtitle_text='4.2 Ingresar un número en str y transformarlo después a int',
         task_text='❧ En el sobre hay que anotar el precio de envío.\nLeer por teclado el precio de envío, <precio>,\nque corresponde a 2000 pesos.',
         correct_code_text='direccion = "Paroissien 2012"\nprint(direccion)\nprecio = int(input("Ingrese el precio de envío: "))\nprint(precio)',
+        change_screen=change_screen,
         incorrect_code_text='direccion = "Paroissien 2012"\nprint(direccion)'
     )
     layout.draw()

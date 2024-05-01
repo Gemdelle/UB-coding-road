@@ -42,7 +42,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
+        next_screen=lambda: change_screen(Screens.LANDING),
         process_input=process_input,
         level_name="input",
         level_number=2,
@@ -54,6 +54,7 @@ def draw(frame, change_screen):
         subtitle_text='4.3 Ingresar un número en str y transformarlo después a float',
         task_text='❧ Otro dato necesario es el precio extra por envío express,\n <precio_express>, ya que tiene que llegar cuanto antes. Leer por teclado\nel precio del envío express, que corresponde a 600.5 pesos.',
         correct_code_text='direccion = "Paroissien 2012"\nprint(direccion)\nprecio = 2000\nprint(precio)\nprecio_express = float(input("Ingrese el precio de envío: "))\nprint(precio_express)',
+        change_screen=change_screen,
         incorrect_code_text='direccion = "Paroissien 2012"\nprint(direccion)\nprecio = 2000\nprint(precio)'
     )
     layout.draw()

@@ -47,6 +47,7 @@ def draw(frame, change_screen):
         subtitle_text='5.5 Multiplicación con variables (*)',
         task_text='❧  Un grupo de personas quiere hospedarse. Hay 8 habitaciones disponibles: 3 llaves\ncorresponden a habitaciones para 6 personas, las restantes (que no se entregaron todavía, en color oscuro)\ncorresponden a habitaciones para 3 personas. Declarar las variables <llaves_hab_chicas>\ny <llaves_hab_grandes> con la cantidad de llaves para cada tipo de habitación según la imagen.\nDeclarar <capacidad_hab_chicas> y <capacidad_hab_chicas> con la capacidad de cada tipo de habitación.\nDeclarar también <personas_hab_chicas> y <personas_hab_grandes>, realizar la multiplicación\ncorrespondiente para almacenar la cantidad de personas totales en cada tipo de habitación.',
         correct_code_text='llaves_hab_grandes = 3\nllaves_hab_chicas = 5\ncapacidad_hab_grandes = 6\ncapacidad_hab_chicas = 3\npersonas_hab_grandes = llaves_hab_grandes * capacidad_hab_grandes\npersonas_hab_chicas = llaves_hab_chicas * capacidad_hab_chicas\nprint("Personas a hospedar en habitaciones grandes:", personas_hab_grandes)\nprint("Personas a hospedar en habitaciones chicas:", personas_hab_chicas)\nprint("Total personas a hospedar:", personas_hab_grandes + personas_hab_chicas)\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
 

@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='1.1. Texto → print("Tower")',
         task_text='❧ Imprimir la palabra tower en el espejo.',
         correct_code_text='print("tower")',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

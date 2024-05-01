@@ -53,6 +53,7 @@ def draw(frame, change_screen):
         subtitle_text='5.3 División con variables (/)',
         task_text='❧  Un cliente quiere averiguar cuántos días puede alojarse con $12000. Calcular para cuántos días\nle alcanza y cuánto le saldría en total si la noche está $2600.8. Si le alcanza para más de 3 noches, le corresponde\nla llave “grande”; sino, la llave “chica”. Declarar las variables <saldo> (float), <precio_noche> (float),\n<cantidad_dias_posibles> (int), <precio_final> (float) y <llave> (str). Imprimir el mensaje “Con {x} dinero\nse puede alojar {y} días. Corresponde llave {z}”.',
         correct_code_text='saldo = 12000.0\nprecio_noche = 2600.8\ncantidad_dias_posibles = int(saldo / precio_noche)\nprecio_final = cantidad_dias_posibles * precio_noche\nllave = "grande"\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

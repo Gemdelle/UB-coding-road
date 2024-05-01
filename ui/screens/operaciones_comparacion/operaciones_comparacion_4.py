@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='6.5 Igual que (==)',
         task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente.\nEn este caso, la caja registradora NO tiene cambio, es decir,\nno se puede devolver vuelto y solo se puede abonar con billetes de $100 o $1000:\n“Estoy buscando un perfume de fragancia cítrica para usar en el verano durante el día, tengo para gastar en efectivo 6880.”',
         correct_code_text='fragancia = "cítrica"\ntemporada = "verano"\nocasion = "día"\nprecio = 6880\npresupuesto = 6880\ncumple_requisitos = precio == presupuesto\nprint(f"En el negocio hay disponibilidad de perfume de fragancia {fragancia} para temporada {temporada} para usar en ocasión de {ocasion}: {cumple_requisitos}")\n',
+        change_screen=change_screen,
         incorrect_code_text='print(f"En el negocio hay disponibilidad de perfume de fragancia {} para temporada {} para usar en ocasión de {}: {}")\n'
     )
     layout.draw()

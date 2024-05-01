@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='1.3 Múltiples líneas  → print(word)',
         task_text='❧ Imprimir la frase “Climb the tower”\nubicando una palabra debajo de la otra.',
         correct_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"\nprint(palabra1)\nprint(palabra2)\nprint(palabra3)',
+        change_screen=change_screen,
         incorrect_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"'
     )
     layout.draw()

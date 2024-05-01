@@ -33,7 +33,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.ARRAYS_4),
+        next_screen=lambda: change_screen(Screens.LANDING),
         process_input=process_input,
         level_name="arrays",
         level_number=3,
@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='9.3 Crear array int a mano',
         task_text='❧ Se llegó a una zona en donde hay cristales. Se necesita saber cuántos cristales hay de cada color; la cantidad para cada color se escribe en una nota y se ubica en el carrito que corresponde. Modificar la declaración de <tren> para que almacene la cantidad de cristales en el orden: azul, transparente, naranja, verde.',
         correct_code_text='tren= [7,3,2,5]\n',
+        change_screen=change_screen,
         incorrect_code_text='tren= []\n'
     )
     layout.draw()

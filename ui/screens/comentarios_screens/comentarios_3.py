@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='0.4 Descomentar una variable con """',
         task_text='❧ La partitura no se está mostrando en la hoja.\nDescomentar la variable partitura para mostrar el contenido.',
         correct_code_text='partitura = True\nprint(partitura)',
+        change_screen=change_screen,
         incorrect_code_text='"""\npartitura = True\nprint(partitura)\n"""'
     )
     layout.draw()

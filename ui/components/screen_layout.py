@@ -3,6 +3,7 @@ from tkinter import BOTH, YES
 import tkinter as tk
 from PIL import Image, ImageTk
 
+from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
 from utils.saltos_linea import agregar_saltos_de_linea
@@ -27,7 +28,7 @@ def resize_and_center_image(image):
     return resized_image, x, y
 
 class ScreenLayout:
-    def __init__(self, frame, back_screen, next_screen, process_input, level_name, level_number, module_number, background_image_path, correct_output_image_path, incorrect_output_image_path, title_text, subtitle_text, task_text, correct_code_text, incorrect_code_text, extra_task_text=None):
+    def __init__(self, frame, back_screen, next_screen, process_input, level_name, level_number, module_number, background_image_path, correct_output_image_path, incorrect_output_image_path, title_text, subtitle_text, task_text, correct_code_text, incorrect_code_text,change_screen , extra_task_text=None):
         self.frame = frame
         self.level_name = level_name
         self.level_number = level_number
@@ -44,6 +45,7 @@ class ScreenLayout:
         self.correct_code_text = correct_code_text
         self.incorrect_code_text = incorrect_code_text
         self.extra_task_text = extra_task_text
+        self.change_screen = change_screen
 
     def draw(self):
         repository = UserProgressRepository()
@@ -212,10 +214,17 @@ class ScreenLayout:
         def on_book_button_image_leave(event):
             canvas.config(cursor="")
 
+        def on_book_buttom_click(button_id):
+            canvas.config(cursor="hand2")
+            play_button_sound()
+            self.change_screen(Screens.LIBRARY)
+            canvas.destroy()
+
         setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
         book_button = canvas.create_image(1220, 668, anchor="w", image=book_image_image_tk)
         canvas.tag_bind(book_button, "<Enter>", on_book_button_image_enter)
         canvas.tag_bind(book_button, "<Leave>", on_book_button_image_leave)
+        canvas.tag_bind(book_button, '<Button-1>', on_book_buttom_click)
         # End Book #
 
         # Start Back Arrow #

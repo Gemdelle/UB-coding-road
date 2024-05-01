@@ -34,7 +34,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
+        next_screen=lambda: change_screen(Screens.LANDING),
         process_input=process_input,
         level_name="print",
         level_number=6,
@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='1.6 String formateado y salto de línea',
         task_text='❧ Imprimir la frase "Please climb the tower fast" con una\npalabra en cada renglón utilizando un string\nformateado con y saltos de línea.',
         correct_code_text='palabra1 = "palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"\nprint(f"Please\n{palabra1}\n{palabra2}\n{palabra3}\nfast")',
+        change_screen=change_screen,
         incorrect_code_text='palabra1 = "Climb"\npalabra2 = "the"\npalabra3 = "tower"'
     )
     layout.draw()

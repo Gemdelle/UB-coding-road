@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='3.2 str a float',
         task_text='❧ Transformar el valor "26.3"\nalmacenado en <numero> de string a float.',
         correct_code_text='numero = float("26.3")',
+        change_screen=change_screen,
         incorrect_code_text='numero = "26.3"\n'
     )
     layout.draw()

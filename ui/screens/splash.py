@@ -1,5 +1,8 @@
+from PIL import Image, ImageTk
+import tkinter as tk
+from tkinter import YES, BOTH
+
 from core.screens import Screens
-from ui.components.clickable_image import ClickableImage
 from utils.resource_path_util import resource_path
 from utils.set_time_out_manager import SetTimeoutManager
 from utils.sound_manager import SoundManager
@@ -12,8 +15,22 @@ def play_music():
 
 def draw(frame, change_screen):
     play_music()
-    splash_image = ClickableImage(frame, image_path=resource_path("assets\\images\\splash.png"), image_size=(1280, 720), bg=frame.cget('bg'))
-    splash_image.pack()
+
+    canvas = tk.Canvas(frame, bg="black", width=1280, height=720)
+    canvas.pack(fill=BOTH, expand=YES)
+
+    image = Image.open(resource_path("assets\\images\\splash.png"))
+    image = image.resize((1280, 720))
+    canvas.image = ImageTk.PhotoImage(image)
+    canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
+
+    # Start Copyright #
+    copyright_image = Image.open(resource_path(f"assets\\images\\copyright\\copyright.png"))
+    copyright_image = copyright_image.resize((280, 33))
+    copyright_image_tk = ImageTk.PhotoImage(copyright_image)
+    setattr(canvas, f"copyright_image_tk", copyright_image_tk)
+    canvas.create_image(980, 25, anchor=tk.NW, image=copyright_image_tk)
+    # End Copyright #
 
     set_timeout_manager = SetTimeoutManager()
     set_timeout_manager.setTimeout(lambda: change_screen(Screens.LANDING), 3)

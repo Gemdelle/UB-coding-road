@@ -49,6 +49,7 @@ def draw(frame, change_screen):
         subtitle_text='5.2 Resta (-)',
         task_text='❧  Hay que separar las llaves comunes de las llaves para estadía (rojas).\nDeclarar la variable <llaves> con la cantidad total de llaves, <llaves_estadia> y <llaves_comunes>.\nUsar la variable <llaves> en <llaves_estadia> y <llaves_comunes> para realizar una resta y que la cantidad\nde las variables coincida con la cantidad disponible de cada tipo.',
         correct_code_text='llaves = 6\nllaves_estadia = llaves -3\nllaves_comunes = llaves -3\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

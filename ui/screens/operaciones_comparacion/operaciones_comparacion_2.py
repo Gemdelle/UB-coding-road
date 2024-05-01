@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         task_text='❧ Declarar y completar las variables necesarias para poder realizar la venta según el pedido del cliente:\n“Estoy buscando un perfume de fragancia especiada para usar mañana por la noche, puedo gastar hasta $5120.”',
         correct_code_text='fragancia = "especiada"\nocasion = "noche"\npresupuesto = 5120\nprecio = 5350\ncumple_requisitos = presupuesto > precio\nprint(f"En el negocio hay disponibilidad de perfume de fragancia {fragancia} para ocasión {ocasion} de valor inferior a {presupuesto}: {cumple_requisitos}")\n',
         incorrect_code_text='print(f"En el negocio hay disponibilidad de perfume de fragancia {} para ocasión {} de valor inferior a {}: {}")\n',
+        change_screen=change_screen,
         extra_task_text='*Tener en cuenta que\nel dato de la “noche”\ncorresponde a la ocasión.'
     )
     layout.draw()

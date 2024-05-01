@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         task_text='❧ Ya se crearon arreglos que contienen valores ingresados a mano en su declaración (ejercicio 8.0) y arreglos que almacenan variables (ejercicio 8.1). Ahora que ya se sabe crear arreglos, modificar tren <tren> para que desde su declaración contenga “cristal”, “mineral” y “gema”',
         correct_code_text='tren = [ "cristal", "mineral", "gema"]\n',
         incorrect_code_text='tren = []\n',
+        change_screen=change_screen,
         extra_task_text='*Los elementos aparecerán\ndirectamente en carritos\nya que el carrito es el\ncontenedor del elemento,\nla POSICIÓN que ocupa\nel elemento en la lista.\nEl elemento es el VALOR\nalmacenado en esa\nposición, y puede ser\ncualquiera, “gema”,\n“cristal”, etc.'
     )
     layout.draw()

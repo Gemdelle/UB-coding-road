@@ -34,7 +34,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
+        next_screen=lambda: change_screen(Screens.LANDING),
         process_input=process_input,
         level_name="asignacion",
         level_number=5,
@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='2.6 Sobreescribir variables de tipo int',
         task_text='❧ Sobreescribir la variable <distancia> para que guarde\nel valor 77 (millones de km.)',
         correct_code_text='venus = "Venus"\nmercurio = "Mercury"\ndistancia = 77',
+        change_screen=change_screen,
         incorrect_code_text='venus = "Venus"\nmercurio = "Mercury"\ndistancia = 12\n'
     )
     layout.draw()

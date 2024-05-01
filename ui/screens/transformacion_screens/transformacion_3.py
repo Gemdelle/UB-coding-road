@@ -33,7 +33,7 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.WIN_EMBLEM),
+        next_screen=lambda: change_screen(Screens.LANDING),
         process_input=process_input,
         level_name="transformacion",
         level_number=3,
@@ -45,6 +45,7 @@ def draw(frame, change_screen):
         subtitle_text='3.4 float a str',
         task_text='❧ Transformar el valor almacenado en <numero>\nde punto flotante a string.',
         correct_code_text='numero = str(3.14)',
+        change_screen=change_screen,
         incorrect_code_text='numero = 3.14\n'
     )
     layout.draw()

@@ -50,6 +50,7 @@ def draw(frame, change_screen):
         subtitle_text='4.1 Ingresar un texto y printearlo',
         task_text='❧ En el lugar donde se está no hay internet.\nHay que mandar una carta, pero para eso hay que escribir\ntodos los datos del destino. Leer por teclado la dirección\na la que se va a enviar e imprimirla así queda\nen el sobre: “Paroissien 2012”.',
         correct_code_text='direccion = input("Ingrese la dirección a donde se enviará la carta: ")\nprint(direccion)',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()

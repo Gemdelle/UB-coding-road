@@ -46,6 +46,7 @@ def draw(frame, change_screen):
         subtitle_text='5.6 Potenciación con variables (**)',
         task_text='❧ Un hotel tiene tres tipos de habitaciones: estándar, deluxe y suite. Cada tipo de habitación\ntiene una cierta cantidad de llaves disponibles. Las habitaciones estándar son representadas por llaves comunes,\nlas deluxe son con llaves celestes y las suite son con llaves rojas. Por cada llave disponible de cada\ntipo de habitación, el hotel realiza una copia adicional de esa habitación.\nDeclarar las variables <llaves_estandar>, <llaves_deluxe> y <llaves_suite> con la cantidad de llaves disponibles\npara cada tipo de habitación según la imagen. Declarar también <copias_estandar>, <copias_deluxe> y <copias_suite> para almacenar\nla cantidad de copias adicionales de habitaciones que se generarán.',
         correct_code_text='llaves_estandar = 4\nllaves_deluxe = 2\nllaves_suite = 3\ncopias_estandar = llaves_estandar * 2\ncopias_deluxe = llaves_deluxe * 2\ncopias_suite = llaves_suite * 2\ntotal_llaves = llaves_estandar + llaves_deluxe + llaves_suite\ntotal_copias = copias_estandar + copias_deluxe + copias_suite\nprint(f"Llaves estándar: {llaves_estandar}, Copias estándar: {copias_estandar}")\nprint(f"Llaves deluxe: {llaves_deluxe}, Copias deluxe: {copias_deluxe}")\nprint(f"Llaves suite: {llaves_suite}, Copias suite: {copias_suite}")\nprint(f"Total de llaves: {total_llaves}, Total de copias: {total_copias}")\n',
+        change_screen=change_screen,
         incorrect_code_text=''
     )
     layout.draw()
