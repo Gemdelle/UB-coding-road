@@ -7,6 +7,7 @@ class Screens(Enum):
     LANDING_2 = "LANDING_2"
     BOOK = "BOOK"
     LIBRARY = "LIBRARY"
+    NOTES = "NOTES"
     PROGRAMME = "PROGRAMME"
     PROGRAMME_1 = "PROGRAMME_1"
     PROGRAMME_2 = "PROGRAMME_2"

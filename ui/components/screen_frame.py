@@ -2,7 +2,8 @@ import tkinter as tk
 
 from core.screens import Screens
 from ui.screens import splash, win_emblem
-from ui.screens.headers import programme, landing, landing_2, programme_1, book, library, programme_2, programme_3
+from ui.screens.headers import programme, landing, landing_2, programme_1, book, library, programme_2, programme_3, \
+    notes
 from ui.screens.arrays import arrays_0, arrays_1, arrays_2, arrays_3
 from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion_2, asignacion_3, asignacion_4, \
     asignacion_5, asignacion_test
@@ -24,6 +25,7 @@ screen_draw_functions = {
     Screens.LANDING_2: landing_2.draw,
     Screens.BOOK: book.draw,
     Screens.LIBRARY: library.draw,
+    Screens.NOTES: notes.draw,
     Screens.PROGRAMME: programme.draw,
     Screens.PROGRAMME_1: programme_1.draw,
     Screens.PROGRAMME_2: programme_2.draw,

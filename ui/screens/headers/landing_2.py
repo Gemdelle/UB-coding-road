@@ -208,7 +208,7 @@ def create_notes(canvas,change_screen):
     def on_notes_button_click(button_id):
         canvas.config(cursor="hand2")
         play_button_sound()
-        change_screen(Screens.LIBRARY)
+        change_screen(Screens.NOTES)
         canvas.destroy()
 
     setattr(canvas, "notes_button_image_tk", notes_button_image_tk)
