@@ -42,13 +42,13 @@ def draw(frame, change_screen):
     canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
     # End Back Arrow #
 
-    # Start Code Area #
-    text_area = tk.Text(canvas, wrap="word", width=30, height=23, borderwidth=0, highlightthickness=0, font=("Georgia", 10), bg="#b2b18e")
-    canvas.create_window(412, 355, window=text_area, anchor=tk.CENTER)
-    # End Code Area #
-
-    # Start Code Area # #b2b18e
-    text_area = tk.Text(canvas, wrap="word", width=30, height=23, borderwidth=0, highlightthickness=0,
-                        font=("Georgia", 10), bg="#b2b18e")
-    canvas.create_window(858, 355, window=text_area, anchor=tk.CENTER)
-    # End Code Area #
+    # # Start Code Area #
+    # text_area = tk.Text(canvas, wrap="word", width=30, height=23, borderwidth=0, highlightthickness=0, font=("Georgia", 10), bg="#b2b18e")
+    # canvas.create_window(412, 355, window=text_area, anchor=tk.CENTER)
+    # # End Code Area #
+    #
+    # # Start Code Area # #b2b18e
+    # text_area = tk.Text(canvas, wrap="word", width=30, height=23, borderwidth=0, highlightthickness=0,
+    #                     font=("Georgia", 10), bg="#b2b18e")
+    # canvas.create_window(858, 355, window=text_area, anchor=tk.CENTER)
+    # # End Code Area #

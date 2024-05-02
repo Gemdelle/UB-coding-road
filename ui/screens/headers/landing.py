@@ -3,6 +3,7 @@ from tkinter import YES, BOTH
 
 from PIL import Image, ImageTk, ImageEnhance
 
+from core.game_progress_repository import GameProgressRepository
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
@@ -13,6 +14,9 @@ def draw(frame, change_screen):
     global levels
     repository = UserProgressRepository()
     user_progress = repository.get_current_progress()
+
+    game_repository = GameProgressRepository()
+    game_progress = game_repository.get_current_progress()
 
     play_background_music()
 
@@ -141,6 +145,42 @@ def draw(frame, change_screen):
 
         row_offset += 95
         row_index += 1
+
+        if game_progress["landing_tutorials"]["current"] < game_progress["landing_tutorials"]["total"]:
+            show_tutorial(canvas, change_screen, game_progress["landing_tutorials"]["current"], game_repository)
+
+
+def show_tutorial(canvas, change_screen, tutorial_number, game_repository):
+    # Start Tutorial #
+    tutorial_image = Image.open(resource_path(f"assets\\images\\backgrounds\\landing_tutorial_{tutorial_number}.png"))
+    tutorial_image = tutorial_image.resize((1280, 720))
+    tutorial_image_tk = ImageTk.PhotoImage(tutorial_image)
+    setattr(canvas, f"tutorial_image_tk", tutorial_image_tk)
+    canvas.create_image(0, 0, anchor=tk.NW, image=tutorial_image_tk)
+    image_next_arrow = Image.open(resource_path("assets\\images\\next_arrow.png"))
+    image_next_arrow = image_next_arrow.resize((75, 42))
+    image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
+
+    def on_image_next_arrow_click(event):
+        canvas.config(cursor="hand2")
+        game_repository.progress_landing_tutorial()
+        play_button_sound()
+        change_screen(Screens.LANDING)
+        canvas.destroy()
+
+    def on_image_next_arrow_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_image_next_arrow_leave(event):
+        canvas.config(cursor="")
+
+    setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(1180, 405, anchor=tk.NW, image=image_next_arrow_tk)
+    canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
+    canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
+    canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
+    # End Tutorial #
+
 
 
 def create_toggle_sound(canvas):

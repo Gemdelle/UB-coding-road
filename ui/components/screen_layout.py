@@ -3,6 +3,7 @@ from tkinter import BOTH, YES
 import tkinter as tk
 from PIL import Image, ImageTk
 
+from core.game_progress_repository import GameProgressRepository
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from utils.resource_path_util import resource_path
@@ -50,6 +51,10 @@ class ScreenLayout:
     def draw(self):
         repository = UserProgressRepository()
         user_progress = repository.get_current_progress()
+
+        game_repository = GameProgressRepository()
+        game_progress = game_repository.get_current_progress()
+
         user_completed_stage = user_progress[self.level_name]["current"] > self.level_number
 
         canvas = tk.Canvas(self.frame, bg="black", width=1280, height=720)
@@ -134,7 +139,7 @@ class ScreenLayout:
 
         # Start Code Area #
         text_area = tk.Text(canvas, wrap="word", width=75, height=22)
-        canvas.create_window(55, 500, window=text_area, anchor="w")
+        text_area_window = canvas.create_window(55, 500, window=text_area, anchor="w")
         # End Code Area #
 
         if user_completed_stage:
@@ -155,7 +160,7 @@ class ScreenLayout:
             def on_run_button_click(event):
                 self.process_input(text_area, run_button_window, canvas,
                                    lambda: (self.correct_excercise_state(canvas, text_area)),
-                                   lambda: (self.incorrect_output(canvas), self.show_wrong_message(canvas)))
+                                   lambda: (self.incorrect_output(canvas)))
 
             def on_image_enter(event):
                 run_button_canvas.config(cursor="hand2")
@@ -249,6 +254,10 @@ class ScreenLayout:
         canvas.tag_bind(back_arrow_button, "<Leave>", on_arrow_click_image_leave)
         canvas.tag_bind(back_arrow_button, '<Button-1>', on_back_arrow_click)
         # End Back Arrow #
+
+        if game_progress["level_tutorials"]["current"] < game_progress["level_tutorials"]["total"]:
+            canvas.delete(text_area_window)
+            show_tutorial(canvas, self.change_screen, game_progress["level_tutorials"]["current"], game_repository)
 
     def incorrect_output(self, output_canvas):
         if self.incorrect_output_image_path is not None:
@@ -359,3 +368,34 @@ def create_toggle_sound(canvas):
     canvas.tag_bind(tooltip_button, '<Button-1>', lambda event: on_tooltip_button_click(tooltip_button))
     canvas.tag_bind(tooltip_button, "<Enter>", on_tooltip_button_enter)
     canvas.tag_bind(tooltip_button, "<Leave>", on_tooltip_button_leave)
+
+def show_tutorial(canvas, change_screen, tutorial_number, game_repository):
+    # Start Tutorial #
+    tutorial_image = Image.open(resource_path(f"assets\\images\\backgrounds\\level_tutorial_{tutorial_number}.png"))
+    tutorial_image = tutorial_image.resize((1280, 720))
+    tutorial_image_tk = ImageTk.PhotoImage(tutorial_image)
+    setattr(canvas, f"tutorial_image_tk", tutorial_image_tk)
+    canvas.create_image(0, 0, anchor=tk.NW, image=tutorial_image_tk)
+    image_next_arrow = Image.open(resource_path("assets\\images\\next_arrow.png"))
+    image_next_arrow = image_next_arrow.resize((75, 42))
+    image_next_arrow_tk = ImageTk.PhotoImage(image_next_arrow)
+
+    def on_image_next_arrow_click(event):
+        canvas.config(cursor="hand2")
+        game_repository.progress_level_tutorials()
+        play_button_sound()
+        change_screen(Screens.COMENTARIOS_0)
+        canvas.destroy()
+
+    def on_image_next_arrow_enter(event):
+        canvas.config(cursor="hand2")
+
+    def on_image_next_arrow_leave(event):
+        canvas.config(cursor="")
+
+    setattr(canvas, f"image_next_arrow_tk", image_next_arrow_tk)
+    next_arrow_button = canvas.create_image(1180, 405, anchor=tk.NW, image=image_next_arrow_tk)
+    canvas.tag_bind(next_arrow_button, '<Button-1>', on_image_next_arrow_click)
+    canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
+    canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
+    # End Tutorial #
