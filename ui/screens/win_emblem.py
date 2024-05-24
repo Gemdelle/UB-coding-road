@@ -10,6 +10,22 @@ from ui.components.gif_image import AnimatedGIF
 from utils.resource_path_util import resource_path
 from utils.sound_manager import play_button_sound, play_win_emblem_sound
 
+output_container_width = 200
+output_container_height = 200
+output_container_x = 550
+output_container_y = 380
+
+def resize_and_center_image(image):
+    img_width, img_height = image.size
+    scale = min(output_container_width / img_width, output_container_height / img_height)
+    new_width = int(img_width * scale)
+    new_height = int(img_height * scale)
+    resized_image = image.resize((new_width, new_height))
+
+    x = (output_container_width - new_width) // 2
+    y = (output_container_height - new_height) // 2
+
+    return resized_image, x, y
 
 def draw(frame, change_screen):
     repository = UserProgressRepository()
@@ -53,13 +69,12 @@ def draw(frame, change_screen):
         canvas.tag_bind(next_arrow_button, "<Enter>", on_image_next_arrow_enter)
         canvas.tag_bind(next_arrow_button, "<Leave>", on_image_next_arrow_leave)
 
-        emblem_image = Image.open(resource_path("assets\\images\\emblems\\" + str(emblem_found) + ".png"))
-        emblem_image = emblem_image.resize((int(emblem_image.width * 0.5), int(emblem_image.height * 0.5)))
-        emblem_image_tk = ImageTk.PhotoImage(emblem_image)
-
+        emblem_image = Image.open(resource_path("assets\\images\\emblems\\0.png"))
+        resized_image, x, y = resize_and_center_image(emblem_image)
+        emblem_image_tk = ImageTk.PhotoImage(resized_image)
         setattr(canvas, f"emblem_unlocked_image_tk", emblem_image_tk)
-        canvas.create_image(595, 260, anchor=tk.NW, image=emblem_image_tk)
+        canvas.create_image(output_container_x + x, output_container_y + y, anchor=tk.W, image=emblem_image_tk)
 
-        gif_label = AnimatedGIF(canvas, resource_path("assets\\images\\gifs\\win_emblem.gif"), 400, 30)
+        AnimatedGIF(canvas, resource_path("assets\\images\\gifs\\win_emblem.gif"), 400, 30)
 
 

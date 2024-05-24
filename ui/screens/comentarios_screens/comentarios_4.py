@@ -43,6 +43,7 @@ def draw(frame, change_screen):
         task_text='❧ Se quiere agregar un comentario sobre la música\n al principio del código, pero sin que aparezca en la partitura.\n Escribir un comentario (Buena, muy triste, mala, etc.)\nantes de la declaración de las variables.',
         correct_code_text='"""\nBuena\n"""\nautor = "Ludwig van Beethoven"\nprint(autor)\ntitulo = "Sonata para piano No. 14"\nprint(titulo)\npartitura = True\nprint(partitura)',
         change_screen=change_screen,
-        incorrect_code_text='autor = "Ludwig van Beethoven"\nprint(autor)\ntitulo = "Sonata para piano No. 14"\nprint(titulo)\npartitura = True\nprint(partitura)'
+        incorrect_code_text='autor = "Ludwig van Beethoven"\nprint(autor)\ntitulo = "Sonata para piano No. 14"\nprint(titulo)\npartitura = True\nprint(partitura)',
+        extra_task_text='*Tener en cuenta que\nel comentario va entre\ncomillas triples """'
     )
     layout.draw()

@@ -8,6 +8,7 @@ from ui.components.screen_layout import ScreenLayout
 from utils.resource_path_util import resource_path
 from utils.sound_manager import play_correct_sound, play_wrong_sound
 
+
 def process_input(input_area, process_button, code_canvas, correct, incorrect):
     global comentarios_0_completed
     input_text = input_area.get("1.0", "end-1c")
@@ -18,7 +19,11 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
         exec(input_text)
 
         output = captured_output.getvalue().replace("\n", "")
-        if output == "" and (input_text == '"""\nmancha = True\nprint(mancha)\n"""' or input_text == '"""mancha = True\nprint(mancha)"""'or input_text == '"""mancha = True\nprint(mancha)\n"""'):
+        if output == "" and (input_text == '"""\nmancha = True\nprint(mancha)\n"""' or
+                             input_text == '"""mancha = True\nprint(mancha)"""' or
+                             input_text == '"""mancha = True\nprint(mancha)\n"""' or
+                             input_text == 'mancha = True\n"""\nprint(mancha)\n"""' or
+                             input_text == 'mancha = True\n"""print(mancha)"""'):
             code_canvas.delete(process_button)
             repository = UserProgressRepository()
             correct()
@@ -30,6 +35,7 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
     except Exception as e:
         incorrect()
         play_wrong_sound()
+
 
 def draw(frame, change_screen):
     layout = ScreenLayout(
