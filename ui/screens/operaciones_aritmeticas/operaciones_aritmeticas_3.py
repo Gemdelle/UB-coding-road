@@ -47,7 +47,7 @@ def draw(frame, change_screen):
         level_name="operaciones_aritmeticas",
         level_number=3,
         module_number=5,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-5\\05-03-right.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-5\\05-03-wrong.png"),
         title_text="5. Operaciones Aritméticas",

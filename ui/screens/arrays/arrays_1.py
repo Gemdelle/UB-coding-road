@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         level_name="arrays",
         level_number=1,
         module_number=9,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-9\\09-01-r.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-9\\09-01-w.png"),
         title_text="9. Arrays",
