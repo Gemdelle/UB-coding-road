@@ -20,7 +20,7 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
             code_canvas.delete(process_button)
             repository = UserProgressRepository()
             correct()
-            repository.progress_print()
+            repository.progress_operaciones_comparacion()
             play_correct_sound()
         else:
             incorrect()
@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         level_name="operaciones_comparacion",
         level_number=0,
         module_number=6,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-6\\06-01-r.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-6\\06-01-w.png"),
         title_text="6. Operadores de Comparación",

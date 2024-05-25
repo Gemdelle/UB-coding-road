@@ -20,7 +20,7 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
             code_canvas.delete(process_button)
             repository = UserProgressRepository()
             correct()
-            repository.progress_print()
+            repository.progress_operaciones_aritmeticas()
             play_correct_sound()
         else:
             incorrect()
@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         level_name="operaciones_aritmeticas",
         level_number=6,
         module_number=5,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-5\\05-06-right.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-5\\05-06-wrong.png"),
         title_text="5. Operaciones Aritméticas",

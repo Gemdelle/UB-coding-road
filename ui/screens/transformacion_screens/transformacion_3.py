@@ -38,7 +38,7 @@ def draw(frame, change_screen):
         level_name="transformacion",
         level_number=3,
         module_number=3,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-4\\4-4-str.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-4\\4-4-float.png"),
         title_text="3. Transformación de Tipo",

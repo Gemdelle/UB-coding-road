@@ -41,7 +41,7 @@ def draw(frame, change_screen):
         level_name="comentarios",
         level_number=0,
         module_number=0,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-1\\1a.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-1\\1b.png"),
         title_text="0. Comentarios",

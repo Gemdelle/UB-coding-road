@@ -46,7 +46,7 @@ def draw(frame, change_screen):
         level_name="input",
         level_number=1,
         module_number=4,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-n-4\\4-3.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-n-4\\4-2.png"),
         title_text="4. Input",

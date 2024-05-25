@@ -40,7 +40,7 @@ def draw(frame, change_screen):
         level_name="asignacion",
         level_number=3,
         module_number=2,
-        background_image_path=resource_path("assets\\images\\background.jpg"),
+        background_image_path=resource_path("assets\\images\\background.png"),
         correct_output_image_path=resource_path("assets\\images\\ex-3\\02-04-light.png"),
         incorrect_output_image_path=resource_path("assets\\images\\ex-3\\02-04-no-light.png"),
         title_text="2. Asignación",
