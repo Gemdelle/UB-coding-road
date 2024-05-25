@@ -20,7 +20,7 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
             code_canvas.delete(process_button)
             repository = UserProgressRepository()
             correct()
-            repository.progress_print()
+            repository.progress_operaciones_comparacion()
             play_correct_sound()
         else:
             incorrect()

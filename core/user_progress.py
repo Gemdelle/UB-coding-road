@@ -3,7 +3,7 @@ from core.user_progress_status import UserProgressStatus
 
 initial_data = {
     "comentarios": {
-        "status": UserProgressStatus.IN_PROGRESS.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 5,
         "test": {
@@ -12,7 +12,7 @@ initial_data = {
         }
     },
     "print": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 7,
         "test": {
@@ -21,7 +21,7 @@ initial_data = {
         }
     },
     "asignacion": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 6,
         "test": {
@@ -30,7 +30,7 @@ initial_data = {
         }
     },
     "transformacion": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 4,
         "test": {
@@ -39,7 +39,7 @@ initial_data = {
         }
     },
     "input": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 3,
         "test": {

@@ -8,8 +8,6 @@ from ui.components.screen_layout import ScreenLayout
 from utils.resource_path_util import resource_path
 from utils.sound_manager import play_correct_sound, play_wrong_sound
 
-
-
 def process_input(input_area, process_button, code_canvas, correct, incorrect):
     patterns = [
         r'llaves_diurnas\s*=\s*\d+',
@@ -34,7 +32,7 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
             code_canvas.delete(process_button)
             repository = UserProgressRepository()
             correct()
-            repository.progress_input()
+            repository.progress_operaciones_aritmeticas()
             play_correct_sound()
         else:
             incorrect()

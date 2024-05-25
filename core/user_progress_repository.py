@@ -112,3 +112,9 @@ class UserProgressRepository:
         if self._current_progress["operaciones_comparacion"]["total"] == self._current_progress["operaciones_comparacion"]["current"]:
             self._current_progress["operaciones_comparacion"]["status"] = UserProgressStatus.COMPLETED.value
         self.update_progress(self._current_progress)
+
+    def progress_arrays(self):
+        self._current_progress["arrays"]["current"] += 1
+        if self._current_progress["arrays"]["total"] == self._current_progress["arrays"]["current"]:
+            self._current_progress["arrays"]["status"] = UserProgressStatus.COMPLETED.value
+        self.update_progress(self._current_progress)

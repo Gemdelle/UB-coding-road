@@ -3,7 +3,6 @@ import os
 import sqlite3
 
 from core.game_progress import game_initial_data
-from core.user_progress_status import UserProgressStatus
 
 
 class GameProgressRepository:
