@@ -2,7 +2,7 @@ import tkinter as tk
 
 from core.screens import Screens
 from ui.screens import splash, win_emblem
-from ui.screens.headers import programme, landing, landing_2, programme_1, book, library, programme_2, programme_3, \
+from ui.screens.headers import programme, landing, landing_2, programme_1, book, programme_2, programme_3, \
     notes
 from ui.screens.arrays import arrays_0, arrays_1, arrays_2, arrays_3, arrays_4, arrays_5, arrays_6, arrays_7, arrays_8, \
     arrays_9, arrays_10, arrays_11, arrays_12, arrays_13, arrays_14, arrays_15, arrays_16, arrays_17, arrays_18, \
@@ -11,6 +11,9 @@ from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion
     asignacion_5, asignacion_test
 from ui.screens.comentarios_screens import comentarios_0, comentarios_1, comentarios_2, comentarios_3, comentarios_4, \
     comentarios_test
+from ui.screens.headers.book import library, library_1, library_2, library_3, library_4, library_5, library_6, \
+    library_7, library_8, library_9, library_10, library_11, library_12, library_13, library_14, library_15, library_16, \
+    library_17, library_18, library_19, library_20
 from ui.screens.input_screens import input_0, input_1, input_2, input_test
 from ui.screens.operaciones_aritmeticas import operaciones_aritmeticas_0, operaciones_aritmeticas_1, \
     operaciones_aritmeticas_2, operaciones_aritmeticas_3, operaciones_aritmeticas_4, operaciones_aritmeticas_5, \
@@ -25,8 +28,27 @@ screen_draw_functions = {
     Screens.SPLASH: splash.draw,
     Screens.LANDING: landing.draw,
     Screens.LANDING_2: landing_2.draw,
-    Screens.BOOK: book.draw,
     Screens.LIBRARY: library.draw,
+    Screens.LIBRARY_1: library_1.draw,
+    Screens.LIBRARY_2: library_2.draw,
+    Screens.LIBRARY_3: library_3.draw,
+    Screens.LIBRARY_4: library_4.draw,
+    Screens.LIBRARY_5: library_5.draw,
+    Screens.LIBRARY_6: library_6.draw,
+    Screens.LIBRARY_7: library_7.draw,
+    Screens.LIBRARY_8: library_8.draw,
+    Screens.LIBRARY_9: library_9.draw,
+    Screens.LIBRARY_10: library_10.draw,
+    Screens.LIBRARY_11: library_11.draw,
+    Screens.LIBRARY_12: library_12.draw,
+    Screens.LIBRARY_13: library_13.draw,
+    Screens.LIBRARY_14: library_14.draw,
+    Screens.LIBRARY_15: library_15.draw,
+    Screens.LIBRARY_16: library_16.draw,
+    Screens.LIBRARY_17: library_17.draw,
+    Screens.LIBRARY_18: library_18.draw,
+    Screens.LIBRARY_19: library_19.draw,
+    Screens.LIBRARY_20: library_20.draw,
     Screens.NOTES: notes.draw,
     Screens.PROGRAMME: programme.draw,
     Screens.PROGRAMME_1: programme_1.draw,
