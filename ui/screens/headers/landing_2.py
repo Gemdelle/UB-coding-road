@@ -60,7 +60,7 @@ def draw(frame, change_screen):
     row_offset = 50
     emblems_offset = 63
     for key, value in user_progress.items():
-        if row_index >= 5 and row_index <= 6:
+        if row_index >= 5 and row_index <= 7:
             column_offset = 40
             #capitalized_module_name = [word.capitalize() for word in key.split('_')]
             #output_capitalized_module_name = " ".join(capitalized_module_name)
@@ -117,6 +117,11 @@ def draw(frame, change_screen):
                     canvas.config(cursor="")
 
                 setattr(canvas, f"image_level_tk_{row_index}_{i}", image_level_tk)
+                # Fuerza otra linea cuando son muchos accesos. #
+                if 580 + column_offset + emblems_offset > 1200:
+                    row_offset += 95
+                    column_offset = 40
+
                 button = canvas.create_image(560 + column_offset, 165 + row_offset, anchor=tk.NW, image=image_level_tk)
                 if state != "LOCKED":
                     canvas.tag_bind(button, "<Enter>", on_image_enter)

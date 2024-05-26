@@ -17,7 +17,7 @@ def process_input(input_area, process_button, code_canvas, correct, incorrect):
         exec(input_text_with_validation)
 
         output = captured_output.getvalue()
-        if output == "[7, 3, 2, 5]\n":
+        if output == "[3, 2.5, 2, 1.5]\n":
             code_canvas.delete(process_button)
             repository = UserProgressRepository()
             correct()
@@ -34,19 +34,19 @@ def draw(frame, change_screen):
     layout = ScreenLayout(
         frame=frame,
         back_screen=lambda: change_screen(Screens.LANDING),
-        next_screen=lambda: change_screen(Screens.ARRAYS_4),
+        next_screen=lambda: change_screen(Screens.ARRAYS_6),
         process_input=process_input,
         level_name="arrays",
-        level_number=3,
+        level_number=5,
         module_number=9,
         background_image_path=resource_path("assets\\images\\background.png"),
-        correct_output_image_path=resource_path("assets\\images\\ex-9\\9.4-r.png"),
-        incorrect_output_image_path=resource_path("assets\\images\\ex-9\\9.4-w.png"),
+        correct_output_image_path=resource_path("assets\\images\\ex-9\\9.6-r.png"),
+        incorrect_output_image_path=resource_path("assets\\images\\ex-9\\9.6-w.png"),
         title_text="9. Arrays - Creación",
-        subtitle_text='9.4 Crear array int a mano',
-        task_text='❧ Se llegó a una zona en donde hay cristales y se necesita saber cuántos hay de cada color; la cantidad se escribe en una nota y se ubica en la posición que corresponde. Modificar la declaración de <tren> para que almacene la cantidad de cristales en el orden que corresponde: azul, transparente, naranja, verde.',
-        correct_code_text='tren= [7,3,2,5]\n',
+        subtitle_text='9.6 Crear array int con variables',
+        task_text='❧ Los cristales pueden estar enteros o partidos, en el caso de estar enteros el valor es de 1, pero si están partidos, el valor corresponde a 0.5. Modificar la declaración de <tren> para que almacene la cantidad de cristales en el orden que corresponde: azul, transparente, naranja, verde.',
+        correct_code_text='cristales_rosas = 3\ncristales_azules = 2.5\ncristales_blancos = 1.5\ncristales_violetas = 2\ntren = [cristales_rosas, cristales_azules, cristales_blancos, cristales_violetas]',
         change_screen=change_screen,
-        incorrect_code_text='tren= []\n'
+        incorrect_code_text='cristales_rosas = 3\n'
     )
     layout.draw()

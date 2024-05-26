@@ -4,6 +4,7 @@ import pyglet
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
 from ui.components.screen_frame import ScreenFrame
+from utils.image_manager import ImageManager
 from utils.resource_path_util import resource_path
 from utils.sound_manager import SoundManager
 
@@ -20,6 +21,23 @@ sound_manager.load_sound("win_emblem", resource_path("assets\\sounds\\badge\\win
 pyglet.options['win32_gdi_font'] = True
 # Preload Fonts
 pyglet.font.add_file(resource_path("assets\\font\\ModerneFraktur.ttf"))
+
+# Preload Images
+image_manager = ImageManager()
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_0.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_1.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_2.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_3.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_4.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_5.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\landing_tutorial_6.png", resize_to=(1280, 720))
+
+image_manager.add_image("assets\\images\\backgrounds\\level_tutorial_0.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\level_tutorial_1.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\level_tutorial_2.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\level_tutorial_3.png", resize_to=(1280, 720))
+image_manager.add_image("assets\\images\\backgrounds\\level_tutorial_4.png", resize_to=(1280, 720))
+
 
 
 class Application(tk.Tk):

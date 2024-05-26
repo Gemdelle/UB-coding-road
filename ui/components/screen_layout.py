@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from core.game_progress_repository import GameProgressRepository
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
+from utils.image_manager import ImageManager
 from utils.resource_path_util import resource_path
 from utils.saltos_linea import agregar_saltos_de_linea
 from utils.set_time_out_manager import SetTimeoutManager
@@ -61,7 +62,7 @@ class ScreenLayout:
         canvas.pack(fill=BOTH, expand=YES)
 
         # Start Background #
-        image = Image.open(resource_path(f"assets\\images\\backgrounds\\background-levels.png"))
+        image = Image.open(resource_path(f"assets\\images\\backgrounds\\background-levels-2.png"))
         image = image.resize((1280, 720))
         canvas.image = ImageTk.PhotoImage(image)
         canvas.create_image(0, 0, anchor=tk.NW, image=canvas.image)
@@ -371,8 +372,8 @@ def create_toggle_sound(canvas):
 
 def show_tutorial(canvas, change_screen, tutorial_number, game_repository):
     # Start Tutorial #
-    tutorial_image = Image.open(resource_path(f"assets\\images\\backgrounds\\level_tutorial_{tutorial_number}.png"))
-    tutorial_image = tutorial_image.resize((1280, 720))
+    image_manager = ImageManager()
+    tutorial_image = image_manager.get_image(f"level_tutorial_{tutorial_number}.png")
     tutorial_image_tk = ImageTk.PhotoImage(tutorial_image)
     setattr(canvas, f"tutorial_image_tk", tutorial_image_tk)
     canvas.create_image(0, 0, anchor=tk.NW, image=tutorial_image_tk)

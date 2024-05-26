@@ -48,7 +48,7 @@ initial_data = {
         }
     },
     "operaciones_aritmeticas": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 9,
         "test": {
@@ -57,9 +57,18 @@ initial_data = {
         }
     },
     "operaciones_comparacion": {
-        "status": UserProgressStatus.LOCKED.value,
+        "status": UserProgressStatus.COMPLETED.value,
         "current": 0,
         "total": 6,
+        "test": {
+            "actual": 0,
+            "total": 100
+        }
+    },
+    "arrays": {
+        "status": UserProgressStatus.COMPLETED.value,
+        "current": 0,
+        "total": 27,
         "test": {
             "actual": 0,
             "total": 100
@@ -69,15 +78,6 @@ initial_data = {
         "status": UserProgressStatus.LOCKED.value,
         "current": 0,
         "total": 19,
-        "test": {
-            "actual": 0,
-            "total": 100
-        }
-    },
-    "arrays": {
-        "status": UserProgressStatus.LOCKED.value,
-        "current": 0,
-        "total": 4,
         "test": {
             "actual": 0,
             "total": 100

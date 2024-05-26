@@ -6,6 +6,7 @@ from PIL import Image, ImageTk, ImageEnhance
 from core.game_progress_repository import GameProgressRepository
 from core.screens import Screens
 from core.user_progress_repository import UserProgressRepository
+from utils.image_manager import ImageManager
 from utils.resource_path_util import resource_path
 from utils.sound_manager import SoundManager, play_background_music, play_button_sound
 
@@ -152,8 +153,8 @@ def draw(frame, change_screen):
 
 def show_tutorial(canvas, change_screen, tutorial_number, game_repository):
     # Start Tutorial #
-    tutorial_image = Image.open(resource_path(f"assets\\images\\backgrounds\\landing_tutorial_{tutorial_number}.png"))
-    tutorial_image = tutorial_image.resize((1280, 720))
+    image_manager = ImageManager()
+    tutorial_image = image_manager.get_image(f"landing_tutorial_{tutorial_number}.png")
     tutorial_image_tk = ImageTk.PhotoImage(tutorial_image)
     setattr(canvas, f"tutorial_image_tk", tutorial_image_tk)
     canvas.create_image(0, 0, anchor=tk.NW, image=tutorial_image_tk)

@@ -4,7 +4,9 @@ from core.screens import Screens
 from ui.screens import splash, win_emblem
 from ui.screens.headers import programme, landing, landing_2, programme_1, book, library, programme_2, programme_3, \
     notes
-from ui.screens.arrays import arrays_0, arrays_1, arrays_2, arrays_3
+from ui.screens.arrays import arrays_0, arrays_1, arrays_2, arrays_3, arrays_4, arrays_5, arrays_6, arrays_7, arrays_8, \
+    arrays_9, arrays_10, arrays_11, arrays_12, arrays_13, arrays_14, arrays_15, arrays_16, arrays_17, arrays_18, \
+    arrays_19, arrays_20, arrays_21, arrays_22, arrays_23, arrays_24, arrays_25, arrays_26
 from ui.screens.asignacion_screens import asignacion_0, asignacion_1, asignacion_2, asignacion_3, asignacion_4, \
     asignacion_5, asignacion_test
 from ui.screens.comentarios_screens import comentarios_0, comentarios_1, comentarios_2, comentarios_3, comentarios_4, \
@@ -102,20 +104,29 @@ screen_draw_functions = {
     Screens.ARRAYS_1: arrays_1.draw,
     Screens.ARRAYS_2: arrays_2.draw,
     Screens.ARRAYS_3: arrays_3.draw,
-    # Screens.ARRAYS_4: arrays_4.draw,
-    # Screens.ARRAYS_5: arrays_5.draw,
-    # Screens.ARRAYS_6: arrays_6.draw,
-    # Screens.ARRAYS_7: arrays_7.draw,
-    # Screens.ARRAYS_8: arrays_8.draw,
-    # Screens.ARRAYS_9: arrays_9.draw,
-    # Screens.ARRAYS_10: arrays_10.draw,
-    # Screens.ARRAYS_11: arrays_11.draw,
-    # Screens.ARRAYS_12: arrays_12.draw,
-    # Screens.ARRAYS_13: arrays_13.draw,
-    # Screens.ARRAYS_14: arrays_14.draw,
-    # Screens.ARRAYS_15: arrays_15.draw,
-    # Screens.ARRAYS_16: arrays_16.draw,
-    # Screens.ARRAYS_17: arrays_17.draw,
+    Screens.ARRAYS_4: arrays_4.draw,
+    Screens.ARRAYS_5: arrays_5.draw,
+    Screens.ARRAYS_6: arrays_6.draw,
+    Screens.ARRAYS_7: arrays_7.draw,
+    Screens.ARRAYS_8: arrays_8.draw,
+    Screens.ARRAYS_9: arrays_9.draw,
+    Screens.ARRAYS_10: arrays_10.draw,
+    Screens.ARRAYS_11: arrays_11.draw,
+    Screens.ARRAYS_12: arrays_12.draw,
+    Screens.ARRAYS_13: arrays_13.draw,
+    Screens.ARRAYS_14: arrays_14.draw,
+    Screens.ARRAYS_15: arrays_15.draw,
+    Screens.ARRAYS_16: arrays_16.draw,
+    Screens.ARRAYS_17: arrays_17.draw,
+    Screens.ARRAYS_18: arrays_18.draw,
+    Screens.ARRAYS_19: arrays_19.draw,
+    Screens.ARRAYS_20: arrays_20.draw,
+    Screens.ARRAYS_21: arrays_21.draw,
+    Screens.ARRAYS_22: arrays_22.draw,
+    Screens.ARRAYS_23: arrays_23.draw,
+    Screens.ARRAYS_24: arrays_24.draw,
+    Screens.ARRAYS_25: arrays_25.draw,
+    Screens.ARRAYS_26: arrays_26.draw,
     # Screens.ARRAYS_TEST: arrays_test.draw,
     # Screens.FOR_0: for_0.draw,
     # Screens.FOR_1: for_1.draw,
