@@ -85,11 +85,11 @@ class ScreenLayout:
         for i in range(user_progress[self.level_name]["total"]):
             state = "LOCKED" if user_progress[self.level_name]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress[self.level_name]["current"] else "LOCKED" if i > user_progress[self.level_name]["current"] else "COMPLETED"
             if state == "IN_PROGRESS":
-                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-current.png")
+                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-passed.png")
             elif state == "LOCKED":
                 levels_image_path = resource_path("assets\\images\\levels\\locked.png")
             elif state == "COMPLETED":
-                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-passed.png")
+                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-current.png")
 
             image_level = Image.open(levels_image_path)
             image_level = image_level.resize((image_width, 95))

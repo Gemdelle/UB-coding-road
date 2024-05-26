@@ -94,11 +94,11 @@ def draw(frame, change_screen):
                 screen_to_change = Screens[f'{key}_{i}'.upper()]
                 levels_image_path = None
                 if state == "IN_PROGRESS":
-                    levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-current.png")
+                    levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-passed.png")
                 elif state == "LOCKED":
                     levels_image_path = resource_path("assets\\images\\levels\\locked.png")
                 elif state == "COMPLETED":
-                    levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-passed.png")
+                    levels_image_path = resource_path("assets\\images\\levels\\"+str(row_index)+"-current.png")
 
                 image_level = Image.open(levels_image_path)
                 image_level = image_level.resize((50, 90))
