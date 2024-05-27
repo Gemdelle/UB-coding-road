@@ -73,32 +73,33 @@ class ScreenLayout:
         canvas.create_text(120, 75, text=self.subtitle_text, fill="#e8e8e3",
                            font=("Moderne Fraktur", 16), anchor="w")
         # End Title and Subtitle #
+        if self.level_name != "arrays":
+            # Start Levels Images #
+            levels_image_path = None
+            image_width = 55
+            offset_between_images = 10
 
-        # Start Levels Images #
-        levels_image_path = None
-        image_width = 55
-        offset_between_images = 10
+            total_width = (user_progress[self.level_name]["total"] - 1) * offset_between_images + user_progress[self.level_name]["total"] * image_width
 
-        total_width = (user_progress[self.level_name]["total"] - 1) * offset_between_images + user_progress[self.level_name]["total"] * image_width
 
-        x_start = 1130 - total_width
-        for i in range(user_progress[self.level_name]["total"]):
-            state = "LOCKED" if user_progress[self.level_name]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress[self.level_name]["current"] else "LOCKED" if i > user_progress[self.level_name]["current"] else "COMPLETED"
-            if state == "IN_PROGRESS":
-                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-passed.png")
-            elif state == "LOCKED":
-                levels_image_path = resource_path("assets\\images\\levels\\locked.png")
-            elif state == "COMPLETED":
-                levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-current.png")
+            x_start = 1130 - total_width
+            for i in range(user_progress[self.level_name]["total"]):
+                state = "LOCKED" if user_progress[self.level_name]["status"] == "LOCKED" else "IN_PROGRESS" if i == user_progress[self.level_name]["current"] else "LOCKED" if i > user_progress[self.level_name]["current"] else "COMPLETED"
+                if state == "IN_PROGRESS":
+                    levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-passed.png")
+                elif state == "LOCKED":
+                    levels_image_path = resource_path("assets\\images\\levels\\locked.png")
+                elif state == "COMPLETED":
+                    levels_image_path = resource_path(f"assets\\images\\levels\\{self.module_number}-current.png")
 
-            image_level = Image.open(levels_image_path)
-            image_level = image_level.resize((image_width, 95))
-            image_level_tk = ImageTk.PhotoImage(image_level)
+                image_level = Image.open(levels_image_path)
+                image_level = image_level.resize((image_width, 95))
+                image_level_tk = ImageTk.PhotoImage(image_level)
 
-            setattr(canvas, f"image_level_tk_{i}", image_level_tk)
-            x_coordinate = x_start + i * (image_width + offset_between_images)
-            canvas.create_image(x_coordinate, 75, anchor="w", image=image_level_tk)
-        # End Levels Images #
+                setattr(canvas, f"image_level_tk_{i}", image_level_tk)
+                x_coordinate = x_start + i * (image_width + offset_between_images)
+                canvas.create_image(x_coordinate, 75, anchor="w", image=image_level_tk)
+            # End Levels Images #
 
         create_toggle_sound(canvas)
 
@@ -226,7 +227,7 @@ class ScreenLayout:
             self.change_screen(Screens.LIBRARY)
             canvas.destroy()
 
-        setattr(canvas, f"book_image_tk_{i}", book_image_image_tk)
+        setattr(canvas, f"book_image_tk_{self.module_number}", book_image_image_tk)
         book_button = canvas.create_image(1220, 668, anchor="w", image=book_image_image_tk)
         canvas.tag_bind(book_button, "<Enter>", on_book_button_image_enter)
         canvas.tag_bind(book_button, "<Leave>", on_book_button_image_leave)
@@ -249,7 +250,7 @@ class ScreenLayout:
         def on_arrow_click_image_leave(event):
             canvas.config(cursor="")
 
-        setattr(canvas, f"back_arrow_image_tk_{i}", back_arrow_image_tk)
+        setattr(canvas, f"back_arrow_image_tk_{self.module_number}", back_arrow_image_tk)
         back_arrow_button = canvas.create_image(45, 57, anchor="w", image=back_arrow_image_tk)
         canvas.tag_bind(back_arrow_button, "<Enter>", on_arrow_click_image_enter)
         canvas.tag_bind(back_arrow_button, "<Leave>", on_arrow_click_image_leave)
@@ -277,6 +278,7 @@ class ScreenLayout:
         canvas.create_image(output_container_x + x, output_container_y + y, anchor='nw', image=music_sheet_image_tk, tags="music_sheet_image_tk_right")
 
     def correct_excercise_state(self, canvas, input_area):
+        canvas.delete("music_sheet_image_tk_wrong")
         self.correct_output(canvas)
 
         # Start Next Button #
